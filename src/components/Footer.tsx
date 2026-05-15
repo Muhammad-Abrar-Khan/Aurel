@@ -5,25 +5,25 @@ export const Footer = () => {
         <div>
           <div className="text-3xl font-display text-primary italic mb-6">AUREL</div>
           <p className="font-sans text-on-surface-variant max-w-xs leading-relaxed">
-            Precision manufacturing for the world’s most refined institutions. Crafted with generational expertise.
+            Crafted in Karachi. Premium leather goods and bespoke gifting solutions for global institutions.
           </p>
         </div>
         
         <div className="grid grid-cols-2 gap-12">
           <div className="flex flex-col gap-6">
-            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Divisions</h5>
+            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Navigation</h5>
             <div className="flex flex-col gap-3">
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Global Procurement</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Bespoke Heirlooms</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Design Lab</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">THE LEDGER</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">MANUFACTURING</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">BESPOKE</a>
             </div>
           </div>
           <div className="flex flex-col gap-6">
             <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Legal</h5>
             <div className="flex flex-col gap-3">
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Privacy Policy</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Terms of Service</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Contact Us</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Karachi Atelier</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Privacy</a>
+              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Terms</a>
             </div>
           </div>
         </div>

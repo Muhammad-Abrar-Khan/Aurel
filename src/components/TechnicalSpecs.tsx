@@ -3,25 +3,25 @@ import { motion } from "motion/react";
 export const TechnicalSpecs = () => {
   const specs = [
     {
-      grade: "Full Grain Aniline",
-      thickness: "1.2 - 1.8",
+      grade: "Signature Full Grain",
+      thickness: "1.4 - 2.0",
+      moq: "Karachi Stock",
+      leadTime: "Instant / 2 Weeks",
+      finishes: "Natural / Semi-Aniline"
+    },
+    {
+      grade: "Institutional Vegan",
+      thickness: "0.9 - 1.2",
+      moq: "500 Units",
+      leadTime: "4 Weeks",
+      finishes: "Matte / Cross-Grain"
+    },
+    {
+      grade: "Aurel Nappa",
+      thickness: "1.1 - 1.3",
       moq: "100 Units",
-      leadTime: "4-6 Weeks",
-      finishes: "Matte / Satin / Waxed"
-    },
-    {
-      grade: "Chrome-Free Nappa",
-      thickness: "0.8 - 1.1",
-      moq: "250 Units",
-      leadTime: "6-8 Weeks",
-      finishes: "Soft / Milled / Smooth"
-    },
-    {
-      grade: "Heavy Pebble Grain",
-      thickness: "2.0 - 2.5",
-      moq: "50 Units",
-      leadTime: "3-5 Weeks",
-      finishes: "Pigmented / Durable"
+      leadTime: "3 Weeks",
+      finishes: "Silky / Milled"
     }
   ];
 
@@ -30,11 +30,12 @@ export const TechnicalSpecs = () => {
       <div className="px-8 md:px-16 max-w-7xl mx-auto">
         <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
-            <span className="font-sans text-xs font-semibold text-primary mb-2 block tracking-widest uppercase">Datasheet V.24</span>
-            <h2 className="font-display text-4xl md:text-5xl text-on-surface">Technical Specifications.</h2>
+            <span className="font-sans text-xs font-semibold text-primary mb-2 block tracking-widest uppercase">Registry V.24</span>
+            <h2 className="font-display text-4xl md:text-5xl text-on-surface">Material Standards.</h2>
           </div>
-          <div className="hidden md:block">
-            <p className="font-mono text-xs text-outline uppercase tracking-wider">Last Updated: Oct 2023</p>
+          <div className="hidden md:block text-right">
+            <p className="font-mono text-[10px] text-outline uppercase tracking-wider">Locally Sourced • Global Certified</p>
+            <p className="font-mono text-[10px] text-outline uppercase tracking-wider">Karachi Atelier Facility</p>
           </div>
         </div>
         

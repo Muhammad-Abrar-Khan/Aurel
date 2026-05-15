@@ -24,9 +24,9 @@ export const AtelierSection = () => {
     <section className="py-24 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
       <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-20">
         <div className="max-w-2xl space-y-6">
-          <h2 className="font-display text-4xl md:text-5xl italic text-on-surface">Aurel Leather Atelier</h2>
+          <h2 className="font-display text-4xl md:text-5xl italic text-on-surface">The Karachi Atelier</h2>
           <p className="text-on-surface-variant text-lg leading-relaxed">
-            Our Karachi-based workshop combines generational artisanal skill with modern design precision. Every hide is inspected for grain consistency and durability.
+            Founded in 1994, our Karachi workshop combines generational artisanal skill with modern design precision. We curate the finest local hides for global institutional legacies.
           </p>
         </div>
         <motion.button 

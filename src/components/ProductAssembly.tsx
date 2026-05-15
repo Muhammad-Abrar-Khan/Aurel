@@ -32,7 +32,7 @@ export const ProductAssembly = () => {
 
   // Overall Box Container Scaling/Perspective
   const boxScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.9]);
-  const boxRotation = useTransform(scrollYProgress, [0, 1], [0, 360 * 0.05]); // Subtle slow spin
+  const boxRotation = useTransform(scrollYProgress, [0, 1], [0, 18]); // Subtle slow spin
 
   return (
     <section 
@@ -83,7 +83,7 @@ export const ProductAssembly = () => {
                 <div className="w-full h-px bg-on-surface/5"></div>
                 <div className="w-full h-px bg-on-surface/5"></div>
               </div>
-              <span className="absolute bottom-4 left-6 text-[8px] font-mono tracking-tighter text-on-surface/20">ATELIER LOGBOOK</span>
+              <span className="absolute bottom-4 left-6 text-[8px] font-mono tracking-tighter text-on-surface/20 uppercase">Karachi • 1994</span>
             </motion.div>
 
             {/* Wallet (Right) */}
@@ -97,7 +97,7 @@ export const ProductAssembly = () => {
               }}
               className="absolute right-[-10%] w-40 h-32 bg-[#2a2a2a] rounded shadow-2xl border border-primary/10 leather-texture overflow-hidden"
             >
-              <div className="absolute top-1/2 left-0 w-full h-px bg-primary/5"></div>
+              <div className="absolute top-1/2 left-0 w-full h-px bg-primary/10"></div>
               <div className="absolute top-2 right-2 w-2 h-2 bg-primary/20 rounded-full"></div>
             </motion.div>
 
@@ -109,9 +109,9 @@ export const ProductAssembly = () => {
                 scale: itemsScale,
                 translateZ: itemsZ,
               }}
-              className="absolute bottom-[-10%] w-1 h-32 bg-gradient-to-b from-primary to-primary-container rounded-full shadow-xl"
+              className="absolute bottom-[-10%] w-1.5 h-32 bg-primary rounded-full shadow-xl"
             >
-              <div className="absolute top-0 w-full h-8 bg-primary-container/50"></div>
+              <div className="absolute top-0 w-full h-8 bg-black/40"></div>
             </motion.div>
 
           </div>
@@ -127,13 +127,11 @@ export const ProductAssembly = () => {
             className="absolute inset-[-4px] bg-primary border-4 border-on-primary/10 rounded-xl flex items-center justify-center shadow-[0_50px_100px_rgba(0,0,0,0.5)] preserve-3d"
           >
             <div className="text-on-primary text-center">
-              <div className="text-[10px] font-mono tracking-[0.5em] mb-2 uppercase opacity-60">AUREL LEATHER</div>
-              <div className="w-12 h-12 border-2 border-on-primary/20 rotate-45 mx-auto flex items-center justify-center">
-                <div className="w-6 h-6 border border-on-primary/40"></div>
+              <div className="text-[12px] font-mono tracking-[0.6em] mb-4 uppercase font-bold">AUREL</div>
+              <div className="w-16 h-16 border-2 border-on-primary/20 rotate-45 mx-auto flex items-center justify-center">
+                <div className="w-8 h-8 border border-on-primary/40"></div>
               </div>
             </div>
-            {/* Lid Depth effect */}
-            <div className="absolute inset-x-0 top-0 h-8 bg-black/20 origin-top transform rotateX-90"></div>
           </motion.div>
 
         </motion.div>
@@ -144,16 +142,23 @@ export const ProductAssembly = () => {
             style={{ opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]) }}
             className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center"
           >
-            <p className="font-display text-2xl text-primary italic">The Gathering</p>
-            <p className="text-on-surface-variant text-xs font-mono tracking-widest uppercase">Scroll to assemble</p>
+            <p className="font-display text-4xl text-primary italic mb-2 tracking-tight">The Assembly</p>
+            <p className="text-on-surface-variant text-[10px] font-mono tracking-[0.3em] uppercase">Scroll to compose your gift</p>
           </motion.div>
 
           <motion.div 
             style={{ opacity: useTransform(scrollYProgress, [0.35, 0.55], [0, 1]) }}
             className="absolute bottom-1/4 left-1/2 -translate-x-1/2 text-center"
           >
-            <p className="font-display text-2xl text-primary italic">Precision Fit</p>
-            <p className="text-on-surface-variant text-xs font-mono tracking-widest uppercase">Industrial calibration</p>
+            <p className="font-display text-4xl text-primary italic mb-2 tracking-tight">Bespoke Fit</p>
+            <p className="text-on-surface-variant text-[10px] font-mono tracking-[0.3em] uppercase">Tailored for institutional legacy</p>
+          </motion.div>
+
+          <motion.div 
+            style={{ opacity: useTransform(scrollYProgress, [0.8, 1], [0, 1]) }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
+          >
+            <p className="font-display text-5xl text-on-primary italic mb-4 drop-shadow-2xl">Delivered.</p>
           </motion.div>
         </div>
 

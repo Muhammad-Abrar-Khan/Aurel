@@ -13,6 +13,7 @@ import { DeliveryModel } from "./components/DeliveryModel";
 import { AtelierSection } from "./components/AtelierSection";
 import { ProposalForm } from "./components/ProposalForm";
 import { Footer } from "./components/Footer";
+import { WhatsAppCTA } from "./components/WhatsAppCTA";
 import { motion, useScroll, useSpring } from "motion/react";
 
 export default function App() {
@@ -85,6 +86,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <WhatsAppCTA />
     </div>
   );
 }

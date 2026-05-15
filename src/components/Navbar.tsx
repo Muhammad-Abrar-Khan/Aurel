@@ -7,11 +7,11 @@ export const Navbar = () => {
         <div className="text-4xl font-display text-primary italic tracking-tight cursor-pointer">AUREL</div>
         
         <div className="hidden lg:flex items-center gap-12">
-          {["Products", "Process", "Aurel Leather"].map((item) => (
+          {["THE LEDGER", "MANUFACTURING", "BESPOKE", "ARCHIVE", "LOGIN"].map((item) => (
             <a 
               key={item}
               href="#" 
-              className={`font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-colors hover:text-primary ${item === 'Aurel Leather' ? 'text-primary border-b border-primary pb-1' : 'text-on-surface-variant'}`}
+              className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-colors hover:text-primary text-on-surface-variant"
             >
               {item}
             </a>
