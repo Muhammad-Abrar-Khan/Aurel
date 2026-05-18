@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
-import LeadModal from "./LeadModal";
+import { LeadModal } from "./LeadModal";
 
-export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
+export const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -24,10 +24,7 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
         <img 
           alt="Luxury leather craftsmanship detail" 
           className="w-full h-full object-cover opacity-60 mix-blend-luminosity brightness-50"
-          srcSet={`/assets/hero-leather-background-400.webp 400w, /assets/hero-leather-background-800.webp 800w, /assets/hero-leather-background-1200.webp 1200w, /assets/hero-leather-background.webp 1774w`}
-          sizes="(max-width: 768px) 100vw, 1200px"
-          src="/assets/hero-leather-background.webp"
-          loading="eager"
+          src="/assets/hero-leather-background.png"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent"></div>
@@ -90,7 +87,7 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
         </div>
       </div>
 
-      <LeadModal open={isModalOpen} onClose={() => setIsModalOpen(false)} product={undefined} />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
       {/* Scroll Indicator */}
       <motion.div 

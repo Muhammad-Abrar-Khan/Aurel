@@ -49,14 +49,11 @@ export const AurelLeather = () => {
         <div className="relative group">
           <div className="absolute -inset-4 bg-primary/5 rounded-sm blur-2xl group-hover:bg-primary/10 transition-colors duration-1000"></div>
           <div className="relative aspect-video bg-surface border border-primary/10 overflow-hidden rounded shadow-2xl">
-              <img 
-                srcSet={`/assets/aurel-leather-craft-karachi-400.webp 400w, /assets/aurel-leather-craft-karachi-600.webp 600w, /assets/aurel-leather-craft-karachi.webp 600w`}
-                sizes="(max-width: 768px) 100vw, 600px"
-                src="/assets/aurel-leather-craft-karachi.webp"
-                alt="Industrial scale leather manufacturing" 
-                className="w-full h-full object-cover grayscale opacity-60 contrast-125"
-                loading="lazy"
-              />
+            <img 
+              src="/assets/artisanal-leather-workflow.jpeg" 
+              alt="Industrial scale leather manufacturing" 
+              className="w-full h-full object-cover grayscale opacity-50 contrast-125"
+            />
           </div>
         </div>
       </div>
