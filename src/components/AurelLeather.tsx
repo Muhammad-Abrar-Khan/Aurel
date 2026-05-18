@@ -50,7 +50,7 @@ export const AurelLeather = () => {
           <div className="absolute -inset-4 bg-primary/5 rounded-sm blur-2xl group-hover:bg-primary/10 transition-colors duration-1000"></div>
           <div className="relative aspect-video bg-surface border border-primary/10 overflow-hidden rounded shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1590674899484-175597950269?auto=format&fit=crop&q=80&w=800" 
+              src="/assets/artisanal-leather-workflow.jpeg" 
               alt="Industrial scale leather manufacturing" 
               className="w-full h-full object-cover grayscale opacity-50 contrast-125"
             />

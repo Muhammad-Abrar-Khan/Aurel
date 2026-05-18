@@ -1,7 +1,9 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { LeadModal } from "./LeadModal";
 
 export const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,72 +22,84 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          alt="Technical leather manufacturing" 
-          className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4FxQF9dC9muQx9wmCOO_3ZostjAGf0OIkxCwsfl44RoAf_BSLIogD1zu2j5tr84ItXmOmh8h6PVS9gAUUn_YOuri-IlMoS_m657ddloL_8U5glfElzXBGeNs6Kf5dCdms7q6ndy4GvBVKv3Fba1FYxo-uyrhGXh4AhS-TUZIL-9_acSliPrGKGRIRIk2HRTTQdiqLIRKGsTW9mod6i5n3GWGBzwJR7rXO76g-sPAqAKuLHjClMzeq_HiKcdCXCixUaL9YIynvBIk"
+          alt="Luxury leather craftsmanship detail" 
+          className="w-full h-full object-cover opacity-60 mix-blend-luminosity brightness-50"
+          src="/assets/hero-leather-background.png"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent"></div>
       </motion.div>
       
-      {/* Floating 3D Elements */}
+      {/* Floating Gold Flare */}
       <motion.div 
         style={{ y: y2 }}
-        className="absolute right-[10%] top-[20%] w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+        className="absolute right-[10%] top-[20%] w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"
       />
       
       <div className="relative z-10 px-8 md:px-16 max-w-7xl mx-auto w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <motion.div
             style={{ opacity }}
             className="preserve-3d"
           >
-
             <motion.h1 
               initial={{ opacity: 0, rotateX: 45, y: 50 }}
               animate={{ opacity: 1, rotateX: 0, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="font-display text-7xl md:text-9xl text-on-surface mb-8 leading-[0.9] tracking-tight"
+              transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+              className="font-display text-7xl md:text-[10rem] text-on-surface mb-8 leading-[0.85] tracking-tight"
             >
-              Crafted in <br />
-              <span className="text-outline italic">Karachi.</span> <br />
-              Built for <br />
-              <span className="text-primary italic">Your Brand.</span>
+              CRAFTED IN <br />
+              <span className="text-outline italic font-light opacity-80">Karachi.</span> <br />
+              BUILT FOR <br />
+              <span className="text-primary italic font-light">Your Brand.</span>
             </motion.h1>
+            
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="font-sans text-lg md:text-xl text-on-surface-variant mb-12 max-w-xl leading-relaxed"
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="font-sans text-lg md:text-xl text-on-surface-variant/80 mb-12 max-w-xl leading-relaxed tracking-wide"
             >
-              Premium leather corporate gifting for HR teams, procurement managers, and enterprise brands. Wallets, notebooks, portfolios, card holders — all custom-embossed with your logo. Minimum 50 units. Delivered across Pakistan.
+              AUREL delivers precision-engineered leather gifting solutions to global institutions. Artisanal craft meets enterprise scale.
             </motion.p>
+            
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-6"
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-wrap gap-8"
             >
               <button 
-                onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
-                className="group relative bg-primary text-on-primary px-10 py-5 font-sans text-xs font-bold tracking-widest transition-all uppercase rounded-sm overflow-hidden"
+                onClick={() => setIsModalOpen(true)}
+                className="group relative bg-primary text-on-primary px-12 py-6 font-sans text-[10px] font-bold tracking-[0.3em] transition-all uppercase rounded-sm overflow-hidden shadow-2xl"
               >
-                <span className="relative z-10">VIEW COLLECTIONS</span>
-                <div className="absolute inset-0 bg-on-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <span className="relative z-10">Request Production Quote</span>
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               </button>
               <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})}
-                className="border border-primary/40 text-primary px-10 py-5 font-sans text-xs font-bold tracking-widest hover:bg-primary/5 transition-all uppercase rounded-sm"
+                onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
+                className="border border-outline/30 text-outline hover:text-primary hover:border-primary px-12 py-6 font-sans text-[10px] font-bold tracking-[0.3em] transition-all uppercase rounded-sm"
               >
-                REQUEST QUOTE
+                View Collections
               </button>
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
-      {/* Industrial Accent */}
-      <div className="absolute left-0 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+      {/* Scroll Indicator */}
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 group cursor-pointer"
+        onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
+      >
+        <span className="font-mono text-[8px] tracking-[0.4em] text-outline uppercase group-hover:text-primary transition-colors">Scroll to explore</span>
+        <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+      </motion.div>
     </section>
   );
 };
+

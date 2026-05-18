@@ -34,9 +34,9 @@ export const Navbar = () => {
         {/* Logo Wordmark ONLY */}
         <div 
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="font-display text-3xl md:text-4xl tracking-[0.3em] text-primary cursor-pointer hover:opacity-80 transition-opacity"
+          className="font-display text-3xl md:text-5xl tracking-[0.4em] text-primary cursor-pointer hover:opacity-80 transition-all duration-700 flex items-center"
         >
-          AUREL
+          AUREL<span className="text-[10px] tracking-normal font-sans font-light text-outline ml-4 opacity-40 hidden md:block">EST. 2024</span>
         </div>
         
         {/* Desktop Nav */}
