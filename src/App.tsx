@@ -18,8 +18,11 @@ import { Footer } from "./components/Footer";
 import { WhatsAppCTA } from "./components/WhatsAppCTA";
 import { motion, useScroll, useSpring } from "motion/react";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import LeadModal from "./components/LeadModal";
 
 export default function App() {
+  const [leadOpen, setLeadOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -65,10 +68,10 @@ export default function App() {
 
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left shadow-[0_0_15px_rgba(201,169,110,0.5)]" style={{ scaleX }} />
 
-      <Navbar />
+      <Navbar onRequestQuote={() => setLeadOpen(true)} />
       
       <main className="space-y-0 relative z-10">
-        <Hero />
+        <Hero onRequestQuote={() => setLeadOpen(true)} />
         <TrustBar />
         <ExecutiveCollection />
         <ProductAssembly />
@@ -82,6 +85,7 @@ export default function App() {
 
       <Footer />
       <WhatsAppCTA />
+      <LeadModal open={leadOpen} onClose={() => setLeadOpen(false)} />
     </div>
   );
 }

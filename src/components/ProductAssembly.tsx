@@ -18,7 +18,7 @@ export const ProductAssembly = () => {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <Suspense fallback={<div className="text-primary font-mono text-[10px] tracking-[0.2em] animate-pulse uppercase">Initializing Assembly Engine...</div>}>
-            <ProductAssemblyScene />
+          <ProductAssemblyScene />
         </Suspense>
 
         {/* Text Overlays - Updated labels */}

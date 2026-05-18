@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
-export const Navbar = () => {
+export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => handleScrollTo("#contact")}
+            onClick={() => (onRequestQuote ? onRequestQuote() : handleScrollTo("#contact"))}
             className="bg-primary text-on-primary px-8 py-3 font-sans text-[10px] font-bold tracking-[0.2em] hover:shadow-[0_0_20px_rgba(201,169,110,0.3)] transition-all uppercase rounded-sm"
           >
             Request Quote
@@ -90,7 +90,7 @@ export const Navbar = () => {
               </button>
             ))}
             <button 
-              onClick={() => handleScrollTo("#contact")}
+              onClick={() => (onRequestQuote ? onRequestQuote() : handleScrollTo("#contact"))}
               className="bg-primary text-on-primary w-full py-4 font-sans text-xs font-bold tracking-[0.3em] uppercase rounded-sm"
             >
               Request Quote

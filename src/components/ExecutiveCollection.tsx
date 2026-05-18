@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { ThreeDCard } from "./ThreeDCard";
-import { LeadModal } from "./LeadModal";
+import LeadModal from "./LeadModal";
+import { getAssetSrcset, getAssetPath, getAssetSizes } from "../utils/assetHelpers";
 
 export const ExecutiveCollection = () => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -15,7 +16,7 @@ export const ExecutiveCollection = () => {
       moq: "50 Units",
       description: "Full-grain leather bifold wallet with 6 card slots and embossed logo panel. Available in black, tan, and dark brown.",
       features: ["Logo Embossing", "RFID Protection Option", "Gift Box Included"],
-      image: "/assets/premium-leather-wallet-bulk.jpeg"
+      assetName: "premium-leather-wallet-bulk.jpeg"
     },
     {
       span: "md:col-span-1",
@@ -24,7 +25,7 @@ export const ExecutiveCollection = () => {
       moq: "50 Units",
       description: "A5 refillable leather-bound notebook with pen loop and business card pocket. Perfect for onboarding kits.",
       features: ["Custom Inner Pages", "Gold/Silver Emboss", "Ribbon Bookmark"],
-      image: "/assets/executive-notebook-embossed.jpeg"
+      assetName: "executive-notebook-embossed.jpeg"
     },
     {
       span: "md:col-span-1",
@@ -33,7 +34,7 @@ export const ExecutiveCollection = () => {
       moq: "100 Units",
       description: "Slim full-grain leather cardholder. Holds 8–12 cards. Laser or heat embossing available.",
       features: ["Slim Profile", "8–12 Card Capacity", "Custom Emboss"],
-      image: "/assets/card-holder-branded-bulk.jpeg"
+      assetName: "card-holder-branded-bulk.jpeg"
     },
     {
       span: "md:col-span-2",
@@ -42,7 +43,7 @@ export const ExecutiveCollection = () => {
       moq: "30 Units",
       description: "Curated set: wallet + notebook + cardholder in premium black gift box with gold ribbon. Ideal for awards gifting.",
       features: ["Premium Gift Box", "Matching Leather Set", "Custom Insert Card"],
-      image: "/assets/corporate-gift-set-pakistan.jpeg"
+      assetName: "corporate-gift-set-pakistan.jpeg"
     }
   ];
 
@@ -83,7 +84,10 @@ export const ExecutiveCollection = () => {
               
               <div className="mt-8 relative overflow-hidden rounded group shadow-inner-xl h-64 flex items-center justify-center" style={{ transform: "translateZ(30px)" }}>
                 <img 
-                  src={p.image} 
+                  src={getAssetPath(p.assetName) || "/assets/placeholder.webp"}
+                  srcSet={getAssetSrcset(p.assetName) || undefined}
+                  sizes={getAssetSizes()}
+                  loading="lazy"
                   alt={p.title} 
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale hover:grayscale-0 contrast-[1.1]"
                 />
@@ -100,9 +104,9 @@ export const ExecutiveCollection = () => {
       </div>
 
       <LeadModal 
-        isOpen={!!selectedProduct} 
-        onClose={() => setSelectedProduct(null)} 
-        productTitle={selectedProduct || ''} 
+        open={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        product={selectedProduct || ''}
       />
     </section>
   );
