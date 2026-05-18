@@ -5,43 +5,49 @@ export const ExecutiveCollection = () => {
   const products = [
     {
       span: "md:col-span-2",
-      tag: "Best Seller",
-      title: "The Corporate Ledger",
-      price: "Rs. 4,500",
+      tag: "Most Ordered",
+      title: "Executive Wallet",
+      price: "Rs. 2,500 – 3,500",
       moq: "50 Units",
-      description: "Refillable A5 leather journal with card slots and an integrated pen loop. Hand-finished edges.",
-      image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800",
-      list: ["Faux-Leather Options", "Top-Grain Leather", "Blind Debossing"]
+      description: "Full-grain leather bifold wallet with 6 card slots and embossed logo panel. Available in black, tan, and dark brown.",
+      features: ["Logo Embossing", "RFID Protection Option", "Gift Box Included"],
+      image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=800"
     },
     {
       span: "md:col-span-1",
-      title: "Bespoke Wallets",
-      price: "Rs. 2,800",
+      title: "Leather Notebook / Portfolio",
+      price: "Rs. 3,500 – 5,500",
+      moq: "50 Units",
+      description: "A5 refillable leather-bound notebook with pen loop and business card pocket. Perfect for onboarding kits.",
+      features: ["Custom Inner Pages", "Gold/Silver Emboss", "Ribbon Bookmark"],
+      image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      span: "md:col-span-1",
+      title: "Card Holder",
+      price: "Rs. 1,200 – 1,800",
       moq: "100 Units",
-      description: "Minimalist bifold design with RFID protection.",
-      image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-      span: "md:col-span-1",
-      title: "Institutional Mats",
-      price: "Rs. 6,500",
-      moq: "20 Units",
-      description: "Suede-lined desk protectors for executive cabins.",
-      image: "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?auto=format&fit=crop&q=80&w=600"
+      description: "Slim full-grain leather cardholder. Holds 8–12 cards. Laser or heat embossing available.",
+      features: ["Slim Profile", "8–12 Card Capacity", "Custom Emboss"],
+      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"
     },
     {
       span: "md:col-span-2",
-      title: "The Legacy Folio",
-      price: "Rs. 8,900",
+      title: "Executive Gift Set",
+      price: "Rs. 6,500 – 9,500",
       moq: "30 Units",
-      description: "Comprehensive A4 organizer for board meetings and summits. Custom-lined interiors reflecting your brand colors.",
-      image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
-      list: ["Tablet Compartment", "Magnetic Closure", "Silk Lined"]
+      description: "Curated set: wallet + notebook + cardholder in premium black gift box with gold ribbon. Ideal for awards gifting.",
+      features: ["Premium Gift Box", "Matching Leather Set", "Custom Insert Card"],
+      image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
+  const handleEnquire = (title: string) => {
+    window.open(`https://wa.me/923323632052?text=Hi AUREL, I'm interested in ${title}. MOQ enquiry.`, '_blank');
+  };
+
   return (
-    <section className="py-24 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
+    <section id="collections" className="py-24 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
       <div className="mb-16 text-center space-y-4">
         <h2 className="font-display text-4xl md:text-5xl text-on-surface">The Gifting Ledger</h2>
         <div className="w-24 h-px bg-primary mx-auto gold-thread"></div>
@@ -64,9 +70,9 @@ export const ExecutiveCollection = () => {
                   <span className="text-[10px] font-mono text-primary bg-primary/5 px-2 py-1 rounded border border-primary/10">MOQ: {p.moq}</span>
                 </div>
 
-                {p.list && (
+                {p.features && (
                   <ul className="space-y-2 mt-4">
-                    {p.list.map(li => (
+                    {p.features.map(li => (
                       <li key={li} className="flex items-center gap-3 text-xs font-mono text-on-surface-variant">
                         <span className="w-1.5 h-1.5 bg-primary rounded-full"></span> {li}
                       </li>
@@ -75,12 +81,18 @@ export const ExecutiveCollection = () => {
                 )}
               </div>
               
-              <div className="mt-8 relative overflow-hidden rounded group shadow-inner-xl flex-grow flex items-end" style={{ transform: "translateZ(30px)" }}>
+              <div className="mt-8 relative overflow-hidden rounded group shadow-inner-xl h-48 flex items-center justify-center" style={{ transform: "translateZ(30px)" }}>
                 <img 
                   src={p.image} 
                   alt={p.title} 
-                  className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale hover:grayscale-0"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale hover:grayscale-0"
                 />
+                <button 
+                  onClick={() => handleEnquire(p.title)}
+                  className="absolute bottom-4 right-4 bg-primary text-on-primary px-4 py-2 text-[10px] font-bold tracking-widest uppercase rounded-sm shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  Enquire on WhatsApp
+                </button>
               </div>
             </div>
           </ThreeDCard>

@@ -40,13 +40,7 @@ export const Hero = () => {
             style={{ opacity }}
             className="preserve-3d"
           >
-            <motion.span 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: -10 }}
-              className="font-sans text-xs font-semibold text-primary mb-6 block tracking-[0.4em] uppercase"
-            >
-              Karachi Atelier • Est. 1994
-            </motion.span>
+
             <motion.h1 
               initial={{ opacity: 0, rotateX: 45, y: 50 }}
               animate={{ opacity: 1, rotateX: 0, y: 0 }}
@@ -54,7 +48,9 @@ export const Hero = () => {
               className="font-display text-7xl md:text-9xl text-on-surface mb-8 leading-[0.9] tracking-tight"
             >
               Crafted in <br />
-              <span className="text-outline italic">Karachi.</span>
+              <span className="text-outline italic">Karachi.</span> <br />
+              Built for <br />
+              <span className="text-primary italic">Your Brand.</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +58,7 @@ export const Hero = () => {
               transition={{ delay: 0.4 }}
               className="font-sans text-lg md:text-xl text-on-surface-variant mb-12 max-w-xl leading-relaxed"
             >
-              AUREL delivers premium leather craftsmanship and bespoke gifting solutions to global institutions. Built for longevity, designed for your brand.
+              Premium leather corporate gifting for HR teams, procurement managers, and enterprise brands. Wallets, notebooks, portfolios, card holders — all custom-embossed with your logo. Minimum 50 units. Delivered across Pakistan.
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -70,12 +66,18 @@ export const Hero = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-wrap gap-6"
             >
-              <button className="group relative bg-primary text-on-primary px-10 py-5 font-sans text-xs font-bold tracking-widest transition-all uppercase rounded-sm overflow-hidden">
-                <span className="relative z-10">THE LEDGER</span>
+              <button 
+                onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
+                className="group relative bg-primary text-on-primary px-10 py-5 font-sans text-xs font-bold tracking-widest transition-all uppercase rounded-sm overflow-hidden"
+              >
+                <span className="relative z-10">VIEW COLLECTIONS</span>
                 <div className="absolute inset-0 bg-on-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               </button>
-              <button className="border border-primary/40 text-primary px-10 py-5 font-sans text-xs font-bold tracking-widest hover:bg-primary/5 transition-all uppercase rounded-sm">
-                Corporate Inquiry
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})}
+                className="border border-primary/40 text-primary px-10 py-5 font-sans text-xs font-bold tracking-widest hover:bg-primary/5 transition-all uppercase rounded-sm"
+              >
+                REQUEST QUOTE
               </button>
             </motion.div>
           </motion.div>

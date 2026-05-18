@@ -26,15 +26,16 @@ export const AtelierSection = () => {
         <div className="max-w-2xl space-y-6">
           <h2 className="font-display text-4xl md:text-5xl italic text-on-surface">The Karachi Atelier</h2>
           <p className="text-on-surface-variant text-lg leading-relaxed">
-            Founded in 1994, our Karachi workshop combines generational artisanal skill with modern design precision. We curate the finest local hides for global institutional legacies.
+            Our Karachi manufacturing facility combines skilled artisanal craft with modern production precision. Every product is hand-finished, quality checked, and delivered on time.
           </p>
         </div>
         <motion.button 
+          onClick={() => document.getElementById('process')?.scrollIntoView({behavior:'smooth'})}
           whileHover={{ scale: 1.05, rotateY: 10 }}
           whileTap={{ scale: 0.95 }}
           className="font-sans text-[10px] font-bold tracking-[0.2em] text-primary border border-outline px-10 py-4 hover:bg-primary hover:text-on-primary transition-all uppercase rounded-sm cursor-pointer"
         >
-          View Craft Process
+          View Our Process →
         </motion.button>
       </div>
 

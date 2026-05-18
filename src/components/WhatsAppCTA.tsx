@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 export const WhatsAppCTA = () => {
   return (
     <motion.a
-      href="https://wa.me/923001234567" // Placeholder for actual brand number
+      href="https://wa.me/923323632052?text=Hi AUREL, I'm interested in corporate gifting solutions." 
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

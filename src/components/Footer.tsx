@@ -11,19 +11,20 @@ export const Footer = () => {
         
         <div className="grid grid-cols-2 gap-12">
           <div className="flex flex-col gap-6">
-            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Navigation</h5>
+            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Sitemap</h5>
             <div className="flex flex-col gap-3">
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">THE LEDGER</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">MANUFACTURING</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">BESPOKE</a>
+              <button onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})} className="text-left text-on-surface-variant hover:text-primary transition-colors text-sm">Collections</button>
+              <button onClick={() => document.getElementById('corporate')?.scrollIntoView({behavior:'smooth'})} className="text-left text-on-surface-variant hover:text-primary transition-colors text-sm">Solutions</button>
+              <button onClick={() => document.getElementById('process')?.scrollIntoView({behavior:'smooth'})} className="text-left text-on-surface-variant hover:text-primary transition-colors text-sm">Process</button>
+              <button onClick={() => document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})} className="text-left text-on-surface-variant hover:text-primary transition-colors text-sm">Quote</button>
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Legal</h5>
+            <h5 className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.2rem] mb-2">Location</h5>
             <div className="flex flex-col gap-3">
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Karachi Atelier</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Privacy</a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Terms</a>
+              <p className="text-on-surface-variant text-sm">Karachi, Pakistan</p>
+              <p className="text-on-surface-variant text-sm">Ph: +92 332 3632052</p>
+              <p className="text-on-surface-variant text-sm">Email: info@aurel.pk</p>
             </div>
           </div>
         </div>
@@ -45,7 +46,7 @@ export const Footer = () => {
       
       <div className="mt-24 pt-8 border-t border-outline-variant/10 text-center">
         <p className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.4rem]">
-          © 2024 AUREL CORPORATE GIFTING. THE BESPOKE LEATHER HEIRLOOM.
+          © 2025 AUREL CORPORATE GIFTING. PRECISION CRAFTED IN KARACHI.
         </p>
       </div>
     </footer>

@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #141311;
-  --color-primary: #e6c487;
-  --color-on-primary: #412d00;
+  --color-background: #1A1917;
+  --color-primary: #C9A96E;
+  --color-on-primary: #1A1917;
   --color-surface: #211f1d;
   --color-surface-low: #1c1b19;
   --color-surface-high: #2b2a28;
@@ -96,6 +96,6 @@
 
 .grain-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.15;
+  opacity: 0.06;
   pointer-events: none;
 }

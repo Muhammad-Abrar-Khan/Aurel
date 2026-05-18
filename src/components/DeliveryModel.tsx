@@ -11,19 +11,26 @@ export const DeliveryModel = () => {
   ];
 
   return (
-    <section className="py-32 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden perspective-2000">
+    <section id="process" className="py-32 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden perspective-2000">
       <motion.h2 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
         className="font-display text-4xl md:text-5xl text-on-surface text-center mb-20"
       >
-        The Six-Phase Delivery Model.
+        How It Works.
       </motion.h2>
       
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 relative">
         <div className="absolute top-[24px] left-0 w-full h-[1px] bg-primary/20 hidden lg:block"></div>
-        {steps.map((step, index) => (
+        {[
+          { id: "01", label: "WhatsApp Inquiry" },
+          { id: "02", label: "Catalog & Quote" },
+          { id: "03", label: "Sample Approval" },
+          { id: "04", label: "Production" },
+          { id: "05", label: "Quality Check" },
+          { id: "06", label: "Delivery" },
+        ].map((step, index) => (
           <motion.div 
             key={index}
             initial={{ opacity: 0, y: 50, rotateX: -20 }}

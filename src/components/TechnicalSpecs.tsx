@@ -1,77 +1,54 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 export const TechnicalSpecs = () => {
-  const specs = [
-    {
-      grade: "Signature Full Grain",
-      thickness: "1.4 - 2.0",
-      moq: "Karachi Stock",
-      leadTime: "Instant / 2 Weeks",
-      finishes: "Natural / Semi-Aniline"
-    },
-    {
-      grade: "Institutional Vegan",
-      thickness: "0.9 - 1.2",
-      moq: "500 Units",
-      leadTime: "4 Weeks",
-      finishes: "Matte / Cross-Grain"
-    },
-    {
-      grade: "Aurel Nappa",
-      thickness: "1.1 - 1.3",
-      moq: "100 Units",
-      leadTime: "3 Weeks",
-      finishes: "Silky / Milled"
-    }
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const faqs = [
+    { q: "What is the minimum order quantity?", a: "50 units for AUREL branded products. 100 units for white-label Aurel Leather orders." },
+    { q: "How long does production take?", a: "Standard: 7–14 business days. Express: 3–5 days (30% surcharge applies)." },
+    { q: "Can I get a sample before ordering?", a: "Yes. Sample fee applies and is deducted from bulk order. Contact us on WhatsApp." },
+    { q: "Do you ship outside Karachi?", a: "Yes — we deliver Pakistan-wide. International shipping available on request." },
+    { q: "What customization is available?", a: "Logo embossing, debossing, foil stamping, custom color lining, personalized packaging, and branded gift boxes." },
+    { q: "What payment terms do you offer?", a: "50% advance, 50% before delivery. Bank transfer or cash accepted." },
   ];
 
   return (
-    <section className="bg-surface-low py-24 border-y border-outline-variant/20">
-      <div className="px-8 md:px-16 max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div>
-            <span className="font-sans text-xs font-semibold text-primary mb-2 block tracking-widest uppercase">Registry V.24</span>
-            <h2 className="font-display text-4xl md:text-5xl text-on-surface">Material Standards.</h2>
-          </div>
-          <div className="hidden md:block text-right">
-            <p className="font-mono text-[10px] text-outline uppercase tracking-wider">Locally Sourced • Global Certified</p>
-            <p className="font-mono text-[10px] text-outline uppercase tracking-wider">Karachi Atelier Facility</p>
-          </div>
+    <section className="bg-surface-low py-32 border-y border-outline-variant/10">
+      <div className="px-8 md:px-16 max-w-4xl mx-auto">
+        <div className="mb-16 text-center">
+          <span className="font-sans text-xs font-bold text-primary mb-4 block tracking-[0.3em] uppercase">Common Registry</span>
+          <h2 className="font-display text-4xl md:text-5xl text-on-surface italic">Frequently Asked Questions.</h2>
         </div>
         
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[800px]">
-            <thead>
-              <tr className="border-b border-outline-variant/50">
-                <th className="py-6 px-4 font-sans text-xs font-bold text-outline uppercase tracking-[0.15em]">Material Grade</th>
-                <th className="py-6 px-4 font-sans text-xs font-bold text-outline uppercase tracking-[0.15em]">Thickness (mm)</th>
-                <th className="py-6 px-4 font-sans text-xs font-bold text-outline uppercase tracking-[0.15em]">MOQ Tier</th>
-                <th className="py-6 px-4 font-sans text-xs font-bold text-outline uppercase tracking-[0.15em]">Lead Time</th>
-                <th className="py-6 px-4 font-sans text-xs font-bold text-outline uppercase tracking-[0.15em]">Finish Opts</th>
-              </tr>
-            </thead>
-            <tbody className="font-mono text-sm">
-              {specs.map((spec, index) => (
-                <motion.tr 
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  delay={index * 0.1}
-                  className="border-b border-outline-variant/20 hover:bg-surface-high transition-colors"
-                >
-                  <td className="py-8 px-4 text-on-surface flex items-center">
-                    <span className="w-2 h-2 bg-primary inline-block rounded-full mr-4 shadow-[0_0_8px_rgba(230,196,135,0.5)]"></span>
-                    {spec.grade}
-                  </td>
-                  <td className="py-8 px-4 text-on-surface-variant">{spec.thickness}</td>
-                  <td className="py-8 px-4 text-on-surface-variant font-mono">{spec.moq}</td>
-                  <td className="py-8 px-4 text-on-surface-variant">{spec.leadTime}</td>
-                  <td className="py-8 px-4 text-on-surface-variant">{spec.finishes}</td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="border border-primary/5 rounded-sm overflow-hidden transition-all duration-300">
+              <button 
+                onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
+                className={`w-full flex items-center justify-between p-6 text-left transition-all ${activeIndex === idx ? 'bg-primary/5 border-l-4 border-primary' : 'bg-surface hover:bg-surface-high'}`}
+              >
+                <span className="font-sans text-sm font-bold tracking-wide text-on-surface uppercase">{faq.q}</span>
+                {activeIndex === idx ? <Minus size={16} className="text-primary" /> : <Plus size={16} className="text-primary/40" />}
+              </button>
+              
+              <AnimatePresence>
+                {activeIndex === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="bg-surface/50"
+                  >
+                    <div className="p-6 pt-0 text-on-surface-variant font-sans text-sm leading-relaxed border-t border-primary/5">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </section>
