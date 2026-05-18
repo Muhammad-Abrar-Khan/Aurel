@@ -3,21 +3,9 @@ import { ThreeDCard } from "./ThreeDCard";
 
 export const AtelierSection = () => {
   const images = [
-    {
-      span: "md:col-span-2",
-      image: "/assets/artisanal-leather-workflow.jpeg",
-      label: "Hand-Stitched Precision"
-    },
-    {
-      span: "md:col-span-1",
-      image: "/assets/gold-foil-stamping-detail.jpeg",
-      label: "Gold Embossing"
-    },
-    {
-      span: "md:col-span-1",
-      image: "/assets/aurel-leather-craft-karachi.jpeg",
-      label: "Raw Hide Curation"
-    }
+    { span: "md:col-span-2", image: "/assets/artisanal-leather-workflow.webp", label: "Hand-Stitched Precision" },
+    { span: "md:col-span-1", image: "/assets/gold-foil-stamping-detail.webp", label: "Gold Embossing" },
+    { span: "md:col-span-1", image: "/assets/raw-hide-curation-01.webp", label: "Raw Hide Curation" }
   ];
 
   return (
@@ -49,6 +37,7 @@ export const AtelierSection = () => {
                 src={img.image} 
                 alt={img.label} 
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[2000ms]"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent flex items-end p-8" style={{ transform: "translateZ(40px)" }}>
                 <span className="font-sans text-[10px] font-bold tracking-[0.3em] text-on-surface uppercase opacity-80 group-hover:opacity-100 transition-opacity">
@@ -62,3 +51,5 @@ export const AtelierSection = () => {
     </section>
   );
 };
+
+export default AtelierSection;
