@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { captureLead, getWhatsAppUrl } from '../utils/leadCapture';
 
 type Props = {
   open: boolean;
@@ -12,22 +13,14 @@ export const LeadModal: React.FC<Props> = ({ open, onClose, product }) => {
 
   if (!open) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     const payload = { ...form, product };
-    try {
-      await fetch('/api/lead-capture', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-    } catch (err) {
-      // swallow
-    }
+    captureLead(payload);
 
-    const msg = encodeURIComponent(`AUREL Enterprise Inquiry\nProduct: ${product || 'General'}\nName: ${form.name}\nCompany: ${form.company}\nQuantity: ${form.qty}\nBudget: ${form.budget}\nEmail: ${form.email}`);
-    window.open(`https://wa.me/923323632052?text=${msg}`, '_blank');
+    const msg = `AUREL Enterprise Inquiry\nProduct: ${product || 'General'}\nName: ${form.name}\nCompany: ${form.company}\nQuantity: ${form.qty}\nBudget: ${form.budget}\nEmail: ${form.email}`;
+    window.open(getWhatsAppUrl(msg), '_blank');
     setLoading(false);
     onClose();
   };

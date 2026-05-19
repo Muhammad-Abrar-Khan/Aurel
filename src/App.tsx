@@ -44,7 +44,7 @@ export default function App() {
             "@type": "Organization",
             "name": "AUREL",
             "url": "https://aurel.pk",
-            "logo": "https://aurel.pk/logo.png",
+            "logo": "https://aurel.pk/assets/institutional-gifting-packaging.jpeg",
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+92-332-3632052",

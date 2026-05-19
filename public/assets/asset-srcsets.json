@@ -1,0 +1,198 @@
+[
+  {
+    "original": "artisanal-leather-workflow.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "artisanal-leather-workflow-400.webp"
+      },
+      {
+        "width": 750,
+        "file": "artisanal-leather-workflow.webp"
+      }
+    ]
+  },
+  {
+    "original": "aurel-leather-craft-karachi.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "aurel-leather-craft-karachi-400.webp"
+      },
+      {
+        "width": 600,
+        "file": "aurel-leather-craft-karachi.webp"
+      }
+    ]
+  },
+  {
+    "original": "aurel-showroom-karachi.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "aurel-showroom-karachi-400.webp"
+      },
+      {
+        "width": 474,
+        "file": "aurel-showroom-karachi.webp"
+      }
+    ]
+  },
+  {
+    "original": "card-holder-branded-bulk.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "card-holder-branded-bulk-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "card-holder-branded-bulk-800.webp"
+      },
+      {
+        "width": 800,
+        "file": "card-holder-branded-bulk.webp"
+      }
+    ]
+  },
+  {
+    "original": "corporate-gift-set-pakistan.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "corporate-gift-set-pakistan-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "corporate-gift-set-pakistan-800.webp"
+      },
+      {
+        "width": 1000,
+        "file": "corporate-gift-set-pakistan.webp"
+      }
+    ]
+  },
+  {
+    "original": "executive-notebook-embossed.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "executive-notebook-embossed-400.webp"
+      },
+      {
+        "width": 564,
+        "file": "executive-notebook-embossed.webp"
+      }
+    ]
+  },
+  {
+    "original": "gold-foil-stamping-detail.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "gold-foil-stamping-detail-400.webp"
+      },
+      {
+        "width": 500,
+        "file": "gold-foil-stamping-detail.webp"
+      }
+    ]
+  },
+  {
+    "original": "hero-leather-background.png",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "hero-leather-background-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "hero-leather-background-800.webp"
+      },
+      {
+        "width": 1200,
+        "file": "hero-leather-background-1200.webp"
+      },
+      {
+        "width": 1774,
+        "file": "hero-leather-background.webp"
+      }
+    ]
+  },
+  {
+    "original": "institutional-gifting-packaging.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "institutional-gifting-packaging-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "institutional-gifting-packaging-800.webp"
+      },
+      {
+        "width": 960,
+        "file": "institutional-gifting-packaging.webp"
+      }
+    ]
+  },
+  {
+    "original": "leather-portfolio-manufacturing.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "leather-portfolio-manufacturing-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "leather-portfolio-manufacturing-800.webp"
+      },
+      {
+        "width": 1000,
+        "file": "leather-portfolio-manufacturing.webp"
+      }
+    ]
+  },
+  {
+    "original": "packaging-close-up.png",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "packaging-close-up-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "packaging-close-up-800.webp"
+      },
+      {
+        "width": 1200,
+        "file": "packaging-close-up-1200.webp"
+      },
+      {
+        "width": 1254,
+        "file": "packaging-close-up.webp"
+      }
+    ]
+  },
+  {
+    "original": "premium-leather-wallet-bulk.jpeg",
+    "mapping": [
+      {
+        "width": 400,
+        "file": "premium-leather-wallet-bulk-400.webp"
+      },
+      {
+        "width": 800,
+        "file": "premium-leather-wallet-bulk-800.webp"
+      },
+      {
+        "width": 1200,
+        "file": "premium-leather-wallet-bulk-1200.webp"
+      },
+      {
+        "width": 1200,
+        "file": "premium-leather-wallet-bulk.webp"
+      }
+    ]
+  }
+]

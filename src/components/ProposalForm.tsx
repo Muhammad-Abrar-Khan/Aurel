@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
+import { captureLead, getWhatsAppUrl } from "../utils/leadCapture";
 
 export const ProposalForm = () => {
   const [formData, setFormData] = useState({
@@ -9,23 +10,13 @@ export const ProposalForm = () => {
     message: ""
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const payload = { name: formData.name, company: formData.company, qty: formData.qty, message: formData.message };
-    try {
-      await fetch('/api/lead-capture', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-    } catch (err) {
-      // ignore
-    }
+    captureLead(payload);
 
-    const msg = encodeURIComponent(
-      `*AUREL Quote Request*\n\nName: ${formData.name}\nCompany: ${formData.company}\nQuantity: ${formData.qty}\nMessage: ${formData.message}`
-    );
-    window.open(`https://wa.me/923323632052?text=${msg}`, '_blank');
+    const msg = `*AUREL Quote Request*\n\nName: ${formData.name}\nCompany: ${formData.company}\nQuantity: ${formData.qty}\nMessage: ${formData.message}`;
+    window.open(getWhatsAppUrl(msg), '_blank');
   };
 
   return (

@@ -5,7 +5,7 @@ export const AtelierSection = () => {
   const images = [
     { span: "md:col-span-2", image: "/assets/artisanal-leather-workflow.webp", label: "Hand-Stitched Precision" },
     { span: "md:col-span-1", image: "/assets/gold-foil-stamping-detail.webp", label: "Gold Embossing" },
-    { span: "md:col-span-1", image: "/assets/raw-hide-curation-01.webp", label: "Raw Hide Curation" }
+    { span: "md:col-span-1", image: "/assets/aurel-showroom-karachi.webp", label: "Raw Hide Curation" }
   ];
 
   return (

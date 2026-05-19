@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "optimize:assets": "node scripts/optimize-assets.js"
+    "optimize:assets": "node scripts/optimize-assets.js",
+    "deploy:firebase": "npm run build && npx firebase deploy --only hosting"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -20,7 +21,6 @@
     "@tailwindcss/vite": "^4.1.14",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
-    "dotenv": "^17.2.3",
     "three": "^0.165.0",
     "@react-three/fiber": "^8.13.0",
     "@react-three/drei": "^9.59.0",

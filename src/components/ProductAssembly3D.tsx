@@ -127,7 +127,6 @@ const BoxLid = () => {
         position={[0, 0, 0.06]}
         fontSize={0.4}
         color="#C9A96E"
-        font="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bm39__LgnTRiBZ_1R82_YAtL_f_6x.woff"
         letterSpacing={0.5}
       >
         AUREL
