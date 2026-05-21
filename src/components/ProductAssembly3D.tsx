@@ -1,8 +1,9 @@
 // @ts-nocheck
 /// <reference types="@react-three/fiber" />
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { ScrollControls, Float, ContactShadows, Environment, Text, useScroll } from '@react-three/drei';
+import { isMobileDevice } from '../utils/hooks';
 import * as THREE from 'three';
 
 const LeatherMaterial = ({ color = "#1A1917" }: any) => (
@@ -151,8 +152,20 @@ const BoxBase = () => {
 };
 
 export const ProductAssemblyScene = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(()=>{ setMounted(true); },[]);
+
+  // On mobile devices we render a static fallback image to save GPU
+  if (typeof window !== 'undefined' && isMobileDevice()) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-surface">
+        <img src="/assets/institutional-gifting-packaging.webp" alt="Product assembly" className="w-full h-full object-cover" />
+      </div>
+    );
+  }
+
   return (
-    <Canvas shadows camera={{ position: [0, 0, 8], fov: 35 }}>
+    <Canvas dpr={[1, Math.min(1.5, window.devicePixelRatio || 1)]} gl={{ antialias: false }} shadows camera={{ position: [0, 0, 8], fov: 35 }}>
       <color attach="background" args={["#1c1b19"]} />
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />

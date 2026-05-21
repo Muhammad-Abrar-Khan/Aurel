@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
+import { usePrefersReducedMotion } from "../utils/hooks";
 import LeadModal from "./LeadModal";
 
 export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
@@ -10,10 +11,11 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
     offset: ["start start", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  const prefersReduced = usePrefersReducedMotion();
+  const y1 = prefersReduced ? undefined : useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const y2 = prefersReduced ? undefined : useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const opacity = prefersReduced ? undefined : useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = prefersReduced ? undefined : useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   return (
     <section ref={containerRef} className="relative h-[110vh] flex items-center overflow-hidden perspective-2000">
@@ -34,10 +36,12 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
       </motion.div>
       
       {/* Floating Gold Flare */}
-      <motion.div 
-        style={{ y: y2 }}
-        className="absolute right-[10%] top-[20%] w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"
-      />
+      {!prefersReduced && (
+        <motion.div 
+          style={{ y: y2 }}
+          className="absolute right-[10%] top-[20%] w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"
+        />
+      )}
       
       <div className="relative z-10 px-8 md:px-16 max-w-7xl mx-auto w-full">
         <div className="max-w-4xl">
@@ -45,17 +49,21 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
             style={{ opacity }}
             className="preserve-3d"
           >
-            <motion.h1 
-              initial={{ opacity: 0, rotateX: 45, y: 50 }}
-              animate={{ opacity: 1, rotateX: 0, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
-              className="font-display text-7xl md:text-[10rem] text-on-surface mb-8 leading-[0.85] tracking-tight"
-            >
-              CRAFTED IN <br />
-              <span className="text-outline italic font-light opacity-80">Karachi.</span> <br />
-              BUILT FOR <br />
-              <span className="text-primary italic font-light">Your Brand.</span>
-            </motion.h1>
+            {prefersReduced ? (
+              <h1 className="font-display text-5xl md:text-[6rem] text-on-surface mb-8 leading-[0.95] tracking-tight">CRAFTED IN <span className="text-outline italic font-light opacity-80">Karachi.</span> BUILT FOR <span className="text-primary italic font-light">Your Brand.</span></h1>
+            ) : (
+              <motion.h1 
+                initial={{ opacity: 0, rotateX: 45, y: 50 }}
+                animate={{ opacity: 1, rotateX: 0, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+                className="font-display text-7xl md:text-[10rem] text-on-surface mb-8 leading-[0.85] tracking-tight"
+              >
+                CRAFTED IN <br />
+                <span className="text-outline italic font-light opacity-80">Karachi.</span> <br />
+                BUILT FOR <br />
+                <span className="text-primary italic font-light">Your Brand.</span>
+              </motion.h1>
+            )}
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -93,15 +101,17 @@ export const Hero = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
       <LeadModal open={isModalOpen} onClose={() => setIsModalOpen(false)} product={undefined} />
       
       {/* Scroll Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 group cursor-pointer"
-        onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
-      >
-        <span className="font-mono text-[8px] tracking-[0.4em] text-outline uppercase group-hover:text-primary transition-colors">Scroll to explore</span>
-        <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
-      </motion.div>
+      {!prefersReduced && (
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 group cursor-pointer"
+          onClick={() => document.getElementById('collections')?.scrollIntoView({behavior:'smooth'})}
+        >
+          <span className="font-mono text-[8px] tracking-[0.4em] text-outline uppercase group-hover:text-primary transition-colors">Scroll to explore</span>
+          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        </motion.div>
+      )}
     </section>
   );
 };

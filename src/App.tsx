@@ -70,7 +70,7 @@ export default function App() {
 
       <Navbar onRequestQuote={() => setLeadOpen(true)} />
       
-      <main className="space-y-0 relative z-10">
+      <main id="main-content" className="space-y-0 relative z-10">
         <Hero onRequestQuote={() => setLeadOpen(true)} />
         <TrustBar />
         <ExecutiveCollection />

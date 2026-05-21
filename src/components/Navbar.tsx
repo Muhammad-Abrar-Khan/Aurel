@@ -29,7 +29,7 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${scrolled ? 'h-20 bg-background/95 border-b border-primary/10' : 'h-28 bg-transparent'}`}>
+    <nav aria-label="Primary" className={`fixed top-0 w-full z-[100] transition-all duration-500 ${scrolled ? 'h-20 bg-background/95 border-b border-primary/10' : 'h-28 bg-transparent'}`}>
       <div className="flex justify-between items-center px-8 md:px-16 max-w-7xl mx-auto h-full">
         {/* Logo Wordmark ONLY */}
         <div 
