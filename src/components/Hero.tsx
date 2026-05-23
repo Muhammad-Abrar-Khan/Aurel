@@ -73,5 +73,7 @@ export const Hero = () => {
       </div>
 
       <LeadModal open={isModalOpen} onClose={() => setIsModalOpen(false)} product={undefined} />
+    </section>
+  );
 };
 

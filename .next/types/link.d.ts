@@ -44,6 +44,7 @@ declare namespace __next_route_internal_types__ {
     | `/contact`
     | `/corporate-gifting`
     | `/customization`
+    | `/products`
     | `/robots.txt`
     | `/sitemap.xml`
     | `/wallets`

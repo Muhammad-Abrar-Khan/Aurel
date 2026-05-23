@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://aurel-app-3498d.web.app/sitemap.xml
-Host: https://aurel-app-3498d.web.app
+Sitemap: https://aurelleatherpk.web.app/sitemap.xml
+Host: https://aurelleatherpk.web.app

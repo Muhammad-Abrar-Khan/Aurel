@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductBySlug, getProductSlugs, getRelatedProducts } from '@/lib/shop';
@@ -7,15 +6,7 @@ import { productSchema, breadcrumbSchema, organizationSchema, localBusinessSchem
 import { APP_URL, WHATSAPP_URL } from '@/lib/constants';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
-
-const ProductViewer3D = dynamic(() => import('@/components/HeroProduct3D'), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[420px] rounded-[2rem] bg-[#090805]/80 flex items-center justify-center text-sm text-on-surface-variant">
-      Loading 3D presentation…
-    </div>
-  ),
-});
+import ProductViewerWrapper from '@/components/ProductViewerWrapper';
 
 export async function generateStaticParams() {
   return getProductSlugs();
@@ -146,8 +137,8 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
               <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
                 <h2 className="font-display text-3xl mb-4">Interactive 360° view</h2>
                 <p className="text-on-surface-variant leading-8">Experience the premium form and finish in a dynamic interactive presentation, built with real 3D rendering for a luxury product preview.</p>
-                <div className="mt-6">
-                  <ProductViewer3D />
+              <div className="mt-6">
+                  <ProductViewerWrapper />
                 </div>
               </div>
 
