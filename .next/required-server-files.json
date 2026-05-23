@@ -65,7 +65,7 @@
           "hostname": "fonts.gstatic.com"
         }
       ],
-      "unoptimized": false
+      "unoptimized": true
     },
     "devIndicators": {
       "position": "bottom-left"

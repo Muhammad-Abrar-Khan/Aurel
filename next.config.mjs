@@ -8,6 +8,7 @@ const nextConfig = {
   typedRoutes: true,
   output: 'export',
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

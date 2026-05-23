@@ -1,12 +1,13 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { APP_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Aurel Leather | Premium Leather Corporate Gifts in Pakistan',
   description:
     'Aurel Leather creates premium leather wallets, corporate gifts and custom branded packaging from Karachi. Enterprise-grade manufacturing for bulk corporate gifting and bespoke solutions in Pakistan.',
-  metadataBase: new URL('https://aurel-app-3498d.web.app'),
+  metadataBase: new URL(APP_URL),
   alternates: {
     canonical: '/',
   },
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Aurel Leather | Premium Leather Corporate Gifts in Pakistan',
     description:
       'Aurel Leather creates premium leather wallets, corporate gifts and custom branded packaging from Karachi. Enterprise-grade manufacturing for bulk corporate gifting and bespoke solutions in Pakistan.',
-    url: 'https://aurel-app-3498d.web.app',
+    url: APP_URL,
     siteName: 'Aurel Leather',
     type: 'website',
     images: [

@@ -11,6 +11,7 @@ import { ProposalForm } from '@/components/ProposalForm';
 import { Footer } from '@/components/Footer';
 import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { organizationSchema, localBusinessSchema, breadcrumbSchema, businessServiceSchema } from '@/lib/schemas';
+import { APP_URL } from '@/lib/constants';
 
 export default function HomePage() {
   return (
@@ -38,14 +39,14 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              organizationSchema("https://aurel-app-3498d.web.app"),
-              localBusinessSchema("https://aurel-app-3498d.web.app"),
-              businessServiceSchema("https://aurel-app-3498d.web.app"),
+            '@context': 'https://schema.org',
+            '@graph': [
+              organizationSchema(APP_URL),
+              localBusinessSchema(APP_URL),
+              businessServiceSchema(APP_URL),
               breadcrumbSchema([
-                { name: "Home", url: "https://aurel-app-3498d.web.app" },
-                { name: "Collections", url: "https://aurel-app-3498d.web.app#collections" }
+                { name: 'Home', url: APP_URL },
+                { name: 'Collections', url: `${APP_URL}/products` },
               ])
             ]
           })

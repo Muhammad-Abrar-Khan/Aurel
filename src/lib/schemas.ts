@@ -49,7 +49,9 @@ export const productSchema = (
   name: string,
   description: string,
   imageUrl: string,
-  baseUrl: string
+  baseUrl: string,
+  price?: string,
+  productUrl?: string
 ) => ({
   "@context": "https://schema.org",
   "@type": "Product",
@@ -66,9 +68,16 @@ export const productSchema = (
     "url": baseUrl
   },
   "offers": {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     "priceCurrency": "PKR",
-    "availability": "https://schema.org/InStock"
+    "price": price ?? "0",
+    "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+    "availability": "https://schema.org/InStock",
+    "url": productUrl ?? baseUrl,
+    "seller": {
+      "@type": "Organization",
+      "name": "Aurel Leather"
+    }
   }
 });
 

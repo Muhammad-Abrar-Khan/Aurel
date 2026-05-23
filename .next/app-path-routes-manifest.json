@@ -1,12 +1,19 @@
 {
   "/_not-found/page": "/_not-found",
-  "/sitemap.xml/route": "/sitemap.xml",
   "/robots.txt/route": "/robots.txt",
-  "/customization/page": "/customization",
-  "/contact/page": "/contact",
+  "/sitemap.xml/route": "/sitemap.xml",
   "/page": "/",
-  "/wallets/page": "/wallets",
+  "/about/page": "/about",
   "/cardholders/page": "/cardholders",
+  "/contact/page": "/contact",
+  "/collections/page": "/collections",
+  "/customization/page": "/customization",
+  "/wallets/page": "/wallets",
+  "/products/[slug]/page": "/products/[slug]",
   "/corporate-gifting/page": "/corporate-gifting",
-  "/about/page": "/about"
+  "/admin/cms/page": "/admin/cms",
+  "/admin/dashboard/page": "/admin/dashboard",
+  "/admin/login/page": "/admin/login",
+  "/admin/page": "/admin",
+  "/admin/products/page": "/admin/products"
 }

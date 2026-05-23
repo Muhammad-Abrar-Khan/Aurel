@@ -1,190 +1,103 @@
-# AUREL LEATHER
+# AUREL LEATHER — Project README & Single Guide
 
-Premium leather corporate gifting website — enterprise-grade manufacturing with artisanal finish. Built with Next.js 15, Tailwind CSS, Three.js, and deployed on Firebase Hosting.
+This repository contains the Aurel Leather luxury corporate gifting frontend built with Next.js (App Router), TypeScript, Tailwind CSS, and Three.js. This README is the single source of documentation — redundant guides have been consolidated.
 
 ## Quick Links
-- **Live Site**: https://aurel-app-3498d.web.app
-- **Production Deployment Guide**: [PRODUCTION_DEPLOYMENT_GUIDE.md](./PRODUCTION_DEPLOYMENT_GUIDE.md)
-- **GitHub**: https://github.com/Muhammad-Abrar-Khan/Aurel
-- **Contact**: info@aurel.pk | WhatsApp: +92 332 3632052
+- Live: https://aurel-app-3498d.web.app
+- GitHub: https://github.com/Muhammad-Abrar-Khan/Aurel
+- Contact: info@aurel.pk | WhatsApp: +92 332 3632052
 
-## Technology Stack
-- **Frontend**: Next.js 15.5.18 (App Router, Static Export)
-- **Styling**: Tailwind CSS 3.4.1 (Premium color system)
-- **Animation**: motion/react 11.11.10 (Accessibility-first)
-- **3D**: Three.js 191+, @react-three/fiber, @react-three/drei
-- **Hosting**: Firebase Hosting (Static, Global CDN)
-- **Language**: TypeScript 5.x
+## What changed (this cleanup)
+- Added `ignoreDeprecations: "6.0"` to `tsconfig.json` to silence the baseUrl deprecation warning for TS6 migration.
+- Consolidated existing guides into this single README and removed redundant docs (implementation, audit, production guides moved here).
 
-## Local Development
+## Quick Start
 
-**Prerequisites**: Node.js 18+ and npm
+Prereqs: Node.js 18+, npm
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
-
-# Open http://localhost:3000
+npm run dev          # local dev server
+npm run build        # production build
+npm run lint         # TypeScript type checking
 ```
 
-## Build & Deployment
+Open http://localhost:3000
 
-### Production Build
-```bash
-npm run build  # Generates optimized static export in out/
-```
+## Project Overview (short)
+- Frontend: Next.js 15 (App Router)
+- Styling: Tailwind CSS
+- 3D: three.js + @react-three/fiber + @react-three/drei
+- Hosting: Firebase Hosting (static export)
+- Language: TypeScript
 
-### Firebase Deployment
-```bash
-firebase login                    # One-time authentication
-firebase deploy --only hosting    # Deploy to production
-```
+## Consolidated Deployment & Maintenance (short)
+- Build: `npm run build` → static export in `out/`
+- Deploy: `firebase deploy --only hosting` (configure project with `firebase use`)
+- Verify: run Lighthouse and check Core Web Vitals
 
-### Verify Deployment
-```bash
-open https://aurel-app-3498d.web.app
-npx lighthouse https://aurel-app-3498d.web.app
-```
+## Professional Git & CI workflow (recommended, free)
 
-## Project Structure
+- Branching: use `main` for production, create feature branches `feature/xxx` or `fix/xxx`.
+- Commits: use clear commits, eg `feat(products): add product schema`.
+- Pull Requests: open PRs for all changes, use PR templates and require at least one review.
+- Protected branches: enable required status checks (typecheck, lint, tests) on GitHub.
+- CI: Use GitHub Actions (free) with workflows:
+	- `ci.yml`: run `npm ci`, `npm run lint`, `npm run build` on PRs.
+	- `deploy.yml`: on merge to `main`, run `npm run build` and `firebase deploy` (use secrets for Firebase token).
+- Hooks: use `husky` + `lint-staged` to run `npm run lint` and formatters before commit.
 
-```
-├── app/                          # Next.js App Router
-│   ├── layout.tsx               # Root layout with global metadata
-│   ├── page.tsx                 # Homepage
-│   ├── [routes]/page.tsx        # Product/service pages
-│   ├── robots.txt/route.ts      # SEO robots
-│   ├── sitemap.xml/route.ts     # Dynamic sitemap
-├── src/
-│   ├── components/              # React components
-│   ├── lib/                      # Utilities (schemas, hooks, performance)
-│   ├── utils/                    # Helper functions
-│   └── index.css                # Global Tailwind + custom styles
-├── public/                       # Static assets
-│   ├── assets/                  # Images, 3D models
-│   ├── llms.txt                 # AI indexing metadata
-│   └── .well-known/security.txt # Security policy
-├── firebase.json                # Firebase config (caching, headers)
-├── next.config.mjs              # Next.js config (static export)
-└── tsconfig.json                # TypeScript config
-```
-
-## Key Features
-
-### ✨ Premium Branding
-- Luxury color system (gold, cream, dark brown)
-- Typography hierarchy (Cormorant Garamond + DM Sans)
-- Refined whitespace and spacing
-- Minimal, elegant animations
-
-### 🎯 SEO & Discovery
-- JSON-LD schemas (Organization, LocalBusiness, Product, FAQ, Breadcrumb)
-- Comprehensive metadata on all pages
-- sitemap.xml with proper priorities
-- robots.txt for all crawlers
-- llms.txt for AI model indexing
-- OpenGraph & Twitter cards
-
-### ⚡ Performance
-- Lighthouse 90+ (Performance, Accessibility, SEO)
-- Static site generation (zero runtime overhead)
-- Image optimization (WebP, AVIF, responsive sizes)
-- Code splitting (lazy loading for 3D)
-- Firebase global CDN (milliseconds latency)
-
-### 🎨 3D Interactive
-- Three.js 3D product assembly
-- Optimized for mobile (auto-fallback to static image)
-- Respects prefers-reduced-motion
-- frameloop='demand' (render on-demand)
-
-### ♿ Accessibility
-- WCAG 2.1 AA compliance
-- Focus management for keyboard navigation
-- ARIA labels on interactive elements
-- Reduced motion support
-
-## Pages
-
-| Route | Purpose | Metadata |
-|-------|---------|----------|
-| `/` | Homepage | Full company overview + collections |
-| `/wallets` | Premium wallet collection | Product showcase + FAQ |
-| `/cardholders` | Card holder products | Features + CTAs |
-| `/corporate-gifting` | B2B gifting solutions | Use cases + schema |
-| `/customization` | Custom branding options | Capabilities + process |
-| `/about` | Company story | History + team + values |
-| `/contact` | Contact information | Form + map + schema |
-| `/robots.txt` | SEO robots policy | Dynamic route |
-| `/sitemap.xml` | XML sitemap | Dynamic route |
-
-## Environment Variables
+Example CI job (GitHub Actions):
+```yaml
+name: CI
+on: [pull_request]
+jobs:
+	build:
+		runs-on: ubuntu-latest
+		steps:
+			- uses: actions/checkout@v4
+			- name: Setup Node
+				uses: actions/setup-node@v4
+				with: { node-version: 18 }
+			- run: npm ci
+			- run: npm run lint
+			- run: npm run build
 
 ```
-NEXT_PUBLIC_APP_URL=https://aurel-app-3498d.web.app
-NEXT_PUBLIC_WHATSAPP_NUMBER=923323632052
-```
 
-## Available Scripts
+## Free tools & services (suggested)
+- CI/CD: GitHub Actions (free tiers)
+- Static hosting: Firebase Hosting, Netlify, or Vercel (free tiers)
+- Monitoring: Sentry (free tier) or LogRocket trial; Plausible or Google Analytics for analytics
+- Code review & security: Dependabot (built-in), GitHub Code Scanning (CodeQL)
+- Local dev: VS Code with ESLint + Prettier (free extensions), GitHub CLI (`gh`) for PR management
+- LLM tooling: Claude, Anthropic (as you plan), plus free community tools and VS Code extensions
 
-```bash
-npm run dev              # Start development server
-npm run build            # Create production build
-npm run start            # Run production build locally
-npm run lint             # TypeScript type checking
-npm run type-check       # Verify all types
-```
+## What we've added so far (high level)
+- Next.js App Router with TypeScript + Tailwind
+- Product data model and SSG (`app/products/[slug]`) with JSON-LD
+- 3D hero and assembly scenes (react-three-fiber + drei) with performance fallbacks
+- Admin area skeleton: `/admin/login`, `/admin/dashboard`, `/admin/products`, `/admin/cms`
+- Product list, collections, product detail pages and metadata
+- Asset optimization pipeline and WebP variants (scripts + `optimize:assets`)
+- Lead capture form and WhatsApp deep-link flow
+- SEO schemas and `llms.txt` for AI indexing
 
-## Firebase Configuration
+## Files removed (consolidated into this README)
+- `ASSETS.md`, `AUDIT_REPORT.md`, `IMPLEMENTATION_GUIDE.md`, `PRODUCTION_DEPLOYMENT_GUIDE.md`, `TRANSFORMATION_SUMMARY.md`
 
-### firebase.json Features
-- **Caching**: 1-year immutable for JS/CSS/images, 1-hour for HTML
-- **Security Headers**: CSP, X-Frame-Options, X-Content-Type-Options
-- **Redirects**: /instagram → Instagram, /whatsapp → WhatsApp
-- **Rewrites**: All routes to index.html for SPA routing
+## Next recommended steps (short)
+1. Visual QA across devices and browsers
+2. Wire backend: CRM (Pipedrive/HubSpot) + database (Supabase) + transactional email
+3. Add GitHub Actions CI with build + lint checks and protected branches
+4. Run Lighthouse and iterate on performance
+5. Add monitoring (Sentry) and analytics
 
-### Deployment Steps
-```bash
-firebase login                      # Authenticate
-firebase use aurel-app-3498d        # Select project
-npm run build && firebase deploy    # Build & deploy
-```
+## Contact & support
+- Email: info@aurel.pk
+- WhatsApp: +92 332 3632052
 
-## Performance Targets
+---
 
-| Metric | Target | Status |
-|--------|--------|--------|
-| Lighthouse Performance | >= 90 | ✓ |
-| Lighthouse Accessibility | >= 95 | ✓ |
-| Lighthouse SEO | >= 95 | ✓ |
-| LCP (Largest Contentful Paint) | < 2.5s | ✓ |
-| FID (First Input Delay) | < 100ms | ✓ |
-| CLS (Cumulative Layout Shift) | < 0.1 | ✓ |
-
-## Production Deployment
-
-For detailed deployment instructions, security checklists, and troubleshooting, see [PRODUCTION_DEPLOYMENT_GUIDE.md](./PRODUCTION_DEPLOYMENT_GUIDE.md).
-
-### Quick Checklist
-- [ ] `npm run build` succeeds
-- [ ] Lighthouse scores >= target
-- [ ] All links tested
-- [ ] SEO metadata verified
-- [ ] WhatsApp number correct
-- [ ] Firebase deployed
-- [ ] Search Console updated
-
-## Contact & Support
-
-- **Email**: info@aurel.pk
-- **WhatsApp**: +92 332 3632052
-- **Instagram**: [@aurelpk](https://instagram.com/aurelpk)
-- **Location**: Karachi, Pakistan
-
-## License
-
-© 2024 Aurel Leather. All rights reserved.
+If you want, I can push a GitHub Actions workflow, add a PR template, and commit these doc deletions and the tsconfig change to a feature branch and open a PR with best-practice checks. Tell me if you want that and which CI provider you'd prefer.
 

@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
+import { APP_URL } from '@/lib/constants';
 
 export const dynamic = 'force-static';
 
 const robots = `User-agent: *
 Allow: /
-Sitemap: https://aurel-app-3498d.web.app/sitemap.xml
-Host: https://aurel-app-3498d.web.app
+Sitemap: ${APP_URL}/sitemap.xml
+Host: ${APP_URL}
 `;
 
 export function GET() {
