@@ -1,25 +1,39 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, Suspense, lazy } from "react";
+"use client";
 
-const ProductAssemblyScene = lazy(() => import("./ProductAssembly3D"));
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
+import { useInView } from '@/utils/useInView';
+
+const ProductAssemblyScene = dynamic(() => import('./ProductAssembly3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="p-8"><img src="/assets/product-assembly-fallback.webp" alt="Product assembly" className="w-full h-auto rounded shadow" loading="lazy"/></div>
+  ),
+});
 
 export const ProductAssembly = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { ref: inViewRef, inView } = useInView<HTMLDivElement>({ threshold: 0.15 });
+  const [mounted, setMounted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  useEffect(()=>{
+    // defer mounting until client and observer ready
+    if (inView) setMounted(true);
+  },[inView]);
 
   return (
     <section 
       ref={containerRef}
       className="relative h-[300vh] bg-surface-low"
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      <div ref={inViewRef} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        <Suspense fallback={<div className="text-primary font-mono text-[10px] tracking-[0.2em] animate-pulse uppercase">Initializing Assembly Engine...</div>}>
-          <ProductAssemblyScene />
-        </Suspense>
+        {mounted && <ProductAssemblyScene />}
 
         {/* Text Overlays - Updated labels */}
         <div className="absolute inset-0 pointer-events-none">

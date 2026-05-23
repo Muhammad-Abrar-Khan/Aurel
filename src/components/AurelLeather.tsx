@@ -1,9 +1,11 @@
+"use client";
+
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
 
 export const AurelLeather = () => {
   const openWhatsApp = () => {
-    window.open("https://wa.me/923323632052?text=Hi AUREL, I'd like to enquire about trade pricing for white-label production.", "_blank");
+    window.open("https://wa.me/923323632052?text=Hi Aurel Leather, I'd like to enquire about trade pricing for white-label production.", "_blank");
   };
 
   return (
@@ -13,7 +15,7 @@ export const AurelLeather = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
           <div className="space-y-4">
-            <h2 className="font-display text-5xl md:text-6xl text-primary tracking-tight">AUREL LEATHER</h2>
+            <h2 className="font-display text-5xl md:text-6xl text-primary tracking-tight">Aurel Leather</h2>
             <p className="font-sans text-xs font-bold tracking-[0.3em] text-outline uppercase">B2B Manufacturing Division</p>
           </div>
           

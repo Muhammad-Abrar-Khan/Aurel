@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
@@ -6,7 +8,7 @@ export const TechnicalSpecs = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqs = [
-    { q: "What is the minimum order quantity?", a: "50 units for AUREL branded products. 100 units for white-label Aurel Leather orders." },
+    { q: "What is the minimum order quantity?", a: "50 units for Aurel Leather branded products. 100 units for white-label production." },
     { q: "How long does production take?", a: "Standard: 7–14 business days. Express: 3–5 days (30% surcharge applies)." },
     { q: "Can I get a sample before ordering?", a: "Yes. Sample fee applies and is deducted from bulk order. Contact us on WhatsApp." },
     { q: "Do you ship outside Karachi?", a: "Yes — we deliver Pakistan-wide. International shipping available on request." },

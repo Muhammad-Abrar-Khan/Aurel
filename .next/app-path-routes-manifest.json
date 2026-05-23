@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/page": "/",
+  "/about/page": "/about",
+  "/wallets/page": "/wallets",
+  "/cardholders/page": "/cardholders",
+  "/contact/page": "/contact",
+  "/corporate-gifting/page": "/corporate-gifting",
+  "/customization/page": "/customization"
+}

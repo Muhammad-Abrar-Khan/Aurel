@@ -1,9 +1,11 @@
+"use client";
+
 export const Footer = () => {
   return (
     <footer className="w-full py-24 px-8 md:px-16 border-t border-primary/10 bg-surface-low">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-start max-w-7xl mx-auto">
         <div>
-          <div className="text-3xl font-display text-primary italic mb-6">AUREL</div>
+          <div className="text-3xl font-display text-primary italic mb-6">Aurel Leather</div>
           <p className="font-sans text-on-surface-variant max-w-xs leading-relaxed">
             Crafted in Karachi. Premium leather goods and bespoke gifting solutions for global institutions.
           </p>
@@ -46,7 +48,7 @@ export const Footer = () => {
       
       <div className="mt-24 pt-8 border-t border-outline-variant/10 text-center">
         <p className="font-sans text-[10px] font-bold text-outline uppercase tracking-[0.4rem]">
-          © 2025 AUREL CORPORATE GIFTING. PRECISION CRAFTED IN KARACHI.
+          © 2025 Aurel Leather Corporate Gifting. PRECISION CRAFTED IN KARACHI.
         </p>
       </div>
     </footer>

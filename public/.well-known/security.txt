@@ -1,0 +1,4 @@
+Contact: security@aurel.pk
+Preferred-Languages: en, ur
+Expiration: 2026-05-22T00:00:00Z
+Canonical: https://aurel-app-3498d.web.app/.well-known/security.txt

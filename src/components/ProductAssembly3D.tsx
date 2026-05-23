@@ -1,9 +1,11 @@
 // @ts-nocheck
+"use client";
+
 /// <reference types="@react-three/fiber" />
 import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { ScrollControls, Float, ContactShadows, Environment, Text, useScroll } from '@react-three/drei';
-import { isMobileDevice } from '../utils/hooks';
+import { isMobileDevice, usePrefersReducedMotion } from '../utils/hooks';
 import * as THREE from 'three';
 
 const LeatherMaterial = ({ color = "#1A1917" }: any) => (
@@ -130,7 +132,7 @@ const BoxLid = () => {
         color="#C9A96E"
         letterSpacing={0.5}
       >
-        AUREL
+        Aurel Leather
       </Text>
     </group>
   );
@@ -155,8 +157,9 @@ export const ProductAssemblyScene = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(()=>{ setMounted(true); },[]);
 
-  // On mobile devices we render a static fallback image to save GPU
-  if (typeof window !== 'undefined' && isMobileDevice()) {
+  // Respect reduced motion preference and mobile devices: render static fallback
+  const prefersReduced = usePrefersReducedMotion();
+  if (typeof window !== 'undefined' && (isMobileDevice() || prefersReduced)) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-surface">
         <img src="/assets/institutional-gifting-packaging.webp" alt="Product assembly" className="w-full h-full object-cover" />
@@ -165,14 +168,14 @@ export const ProductAssemblyScene = () => {
   }
 
   return (
-    <Canvas dpr={[1, Math.min(1.5, window.devicePixelRatio || 1)]} gl={{ antialias: false }} shadows camera={{ position: [0, 0, 8], fov: 35 }}>
+    <Canvas frameloop="demand" dpr={[1, Math.min(1.25, window.devicePixelRatio || 1)]} gl={{ antialias: false, powerPreference: 'low-power' }} shadows camera={{ position: [0, 0, 8], fov: 35 }}>
       <color attach="background" args={["#1c1b19"]} />
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
       <pointLight position={[-10, -10, -10]} intensity={1} />
 
       <ScrollControls pages={3} damping={0.2}>
-        <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+        <Float speed={1.2} rotationIntensity={0.35} floatIntensity={0.35}>
           <Wallet />
           <Notebook />
           <Pen />

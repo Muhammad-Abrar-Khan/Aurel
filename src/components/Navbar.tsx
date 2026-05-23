@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
@@ -13,18 +15,22 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   }, []);
 
   const navItems = [
-    { label: "COLLECTIONS", href: "#collections" },
-    { label: "CORPORATE GIFTING", href: "#corporate" },
-    { label: "PROCESS", href: "#process" },
-    { label: "AUREL LEATHER", href: "#aurel-leather" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "Collections", href: "#collections" },
+    { label: "Corporate", href: "#corporate" },
+    { label: "Atelier", href: "#aurel-leather" },
+    { label: "Process", href: "#process" },
+    { label: "Contact", href: "#contact" },
   ];
 
-  const handleScrollTo = (id: string) => {
+  const handleScrollTo = (href: string) => {
     setIsOpen(false);
-    const element = document.querySelector(id);
+    const elementId = href.replace(/^#/, "");
+    const element = document.getElementById(elementId);
+
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.hash = href;
     }
   };
 
@@ -36,20 +42,24 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="font-display text-3xl md:text-5xl tracking-[0.4em] text-primary cursor-pointer hover:opacity-80 transition-all duration-700 flex items-center"
         >
-          AUREL<span className="text-[10px] tracking-normal font-sans font-light text-outline ml-4 opacity-40 hidden md:block">EST. 2024</span>
+          Aurel Leather<span className="text-[10px] tracking-normal font-sans font-light text-outline ml-4 opacity-40 hidden md:block">EST. 2024</span>
         </div>
         
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
-            <button 
+            <a
               key={item.label}
-              onClick={() => handleScrollTo(item.href)}
-              className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-all hover:text-primary text-on-surface-variant cursor-pointer relative group"
+              href={item.href}
+              onClick={(event) => {
+                event.preventDefault();
+                handleScrollTo(item.href);
+              }}
+              className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-all hover:text-primary text-on-surface-variant relative group"
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
-            </button>
+            </a>
           ))}
           
           <motion.button 
@@ -81,13 +91,17 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
             className="absolute top-full left-0 w-full bg-surface border-b border-primary/10 lg:hidden px-8 py-12 flex flex-col gap-8 shadow-2xl"
           >
             {navItems.map((item) => (
-              <button 
+              <a
                 key={item.label}
-                onClick={() => handleScrollTo(item.href)}
+                href={item.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleScrollTo(item.href);
+                }}
                 className="font-sans text-[12px] font-bold tracking-[0.3em] uppercase text-on-surface-variant hover:text-primary text-left"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
             <button 
               onClick={() => (onRequestQuote ? onRequestQuote() : handleScrollTo("#contact"))}

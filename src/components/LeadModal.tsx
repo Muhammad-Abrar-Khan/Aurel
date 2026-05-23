@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { captureLead, getWhatsAppUrl } from '../utils/leadCapture';
 
@@ -19,7 +21,7 @@ export const LeadModal: React.FC<Props> = ({ open, onClose, product }) => {
     const payload = { ...form, product };
     captureLead(payload);
 
-    const msg = `AUREL Enterprise Inquiry\nProduct: ${product || 'General'}\nName: ${form.name}\nCompany: ${form.company}\nQuantity: ${form.qty}\nBudget: ${form.budget}\nEmail: ${form.email}`;
+    const msg = `Aurel Leather Enterprise Inquiry\nProduct: ${product || 'General'}\nName: ${form.name}\nCompany: ${form.company}\nQuantity: ${form.qty}\nBudget: ${form.budget}\nEmail: ${form.email}`;
     window.open(getWhatsAppUrl(msg), '_blank');
     setLoading(false);
     onClose();

@@ -8,8 +8,8 @@ export type LeadPayload = {
   message?: string;
 };
 
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '923323632052';
-const leadEndpoint = import.meta.env.VITE_LEAD_ENDPOINT;
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923323632052';
+const leadEndpoint = process.env.NEXT_PUBLIC_LEAD_ENDPOINT;
 
 export const getWhatsAppUrl = (message: string) => {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

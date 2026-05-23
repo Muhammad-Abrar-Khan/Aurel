@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { useState } from "react";
 import { captureLead, getWhatsAppUrl } from "../utils/leadCapture";
@@ -15,7 +17,7 @@ export const ProposalForm = () => {
     const payload = { name: formData.name, company: formData.company, qty: formData.qty, message: formData.message };
     captureLead(payload);
 
-    const msg = `*AUREL Quote Request*\n\nName: ${formData.name}\nCompany: ${formData.company}\nQuantity: ${formData.qty}\nMessage: ${formData.message}`;
+    const msg = `*Aurel Leather Quote Request*\n\nName: ${formData.name}\nCompany: ${formData.company}\nQuantity: ${formData.qty}\nMessage: ${formData.message}`;
     window.open(getWhatsAppUrl(msg), '_blank');
   };
 

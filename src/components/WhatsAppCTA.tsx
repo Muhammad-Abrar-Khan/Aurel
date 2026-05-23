@@ -1,10 +1,12 @@
+"use client";
+
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
 
 export const WhatsAppCTA = () => {
   return (
     <motion.a
-      href="https://wa.me/923323632052?text=Hi%20AUREL%2C%20I%E2%80%99m%20enquiring%20about%20corporate%20gifting.%20Quantity%3A%20%5BQTY%5D.%20Company%3A%20%5BCOMPANY%5D." 
+      href="https://wa.me/923323632052?text=Hi%20Aurel%20Leather%2C%20I%E2%80%99m%20enquiring%20about%20corporate%20gifting.%20Quantity%3A%20%5BQTY%5D.%20Company%3A%20%5BCOMPANY%5D." 
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
