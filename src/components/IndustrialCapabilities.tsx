@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { motion } from "motion/react";
 import { Factory, Inventory, Security, PrecisionManufacturing } from "./Icons";
 import { ThreeDCard } from "./ThreeDCard";

@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
 

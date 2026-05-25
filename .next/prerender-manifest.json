@@ -26,34 +26,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/sitemap.xml": {
-      "initialHeaders": {
-        "content-type": "application/xml;charset=UTF-8",
-        "x-next-cache-tags": "_N_T_/layout,_N_T_/sitemap.xml/layout,_N_T_/sitemap.xml/route,_N_T_/sitemap.xml"
-      },
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/sitemap.xml",
-      "dataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/robots.txt": {
       "initialHeaders": {
         "content-type": "text/plain;charset=UTF-8",
@@ -72,6 +44,34 @@
       ],
       "initialRevalidateSeconds": false,
       "srcRoute": "/robots.txt",
+      "dataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/sitemap.xml": {
+      "initialHeaders": {
+        "content-type": "application/xml;charset=UTF-8",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/sitemap.xml/layout,_N_T_/sitemap.xml/route,_N_T_/sitemap.xml"
+      },
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/sitemap.xml",
       "dataRoute": null,
       "allowHeader": [
         "host",
@@ -568,8 +568,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "b6dc13dc892b47eed5ca5308b951d599",
-    "previewModeSigningKey": "9ffc30faf34171648a9b5ddfd301b41983fec6059366ff29ccc74cb867f417eb",
-    "previewModeEncryptionKey": "f428708fd2aa76ae304bec8f55c2b72e1569e30b120e2a6a4ee8ed620c5912bc"
+    "previewModeId": "166afea1409e041f77ac349dcbb85cde",
+    "previewModeSigningKey": "4129597bb708a4c34bcab8818405855c13c37a755b55284f548183cb0451f11c",
+    "previewModeEncryptionKey": "a27f5a5f00ea568dd41e585af93bbb8cc09871ddfbd3a3c898c4d0556b5bad13"
   }
 }

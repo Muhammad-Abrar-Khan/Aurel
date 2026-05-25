@@ -1,8 +1,7 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { motion } from 'motion/react';
-import { useState } from 'react';
 import LeadModal from './LeadModal';
 import { WHATSAPP_URL } from '@/lib/constants';
 
@@ -17,6 +16,9 @@ const HeroProduct3D = dynamic(() => import('./HeroProduct3D'), {
 
 export const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <section className="relative overflow-hidden bg-background/95 py-24 lg:py-32">
@@ -68,7 +70,11 @@ export const Hero = () => {
         </div>
 
         <div className="relative rounded-[2rem] border border-white/10 bg-[#090805]/95 shadow-2xl overflow-hidden min-h-[520px]">
-          <HeroProduct3D />
+          {mounted ? (
+            <HeroProduct3D />
+          ) : (
+            <div className="h-[520px] w-full flex items-center justify-center text-sm text-on-surface-variant">Loading preview…</div>
+          )}
         </div>
       </div>
 

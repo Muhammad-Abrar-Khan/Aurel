@@ -1,103 +1,175 @@
-# AUREL LEATHER — Project README & Single Guide
+# Aurel Leather — README
 
-This repository contains the Aurel Leather luxury corporate gifting frontend built with Next.js (App Router), TypeScript, Tailwind CSS, and Three.js. This README is the single source of documentation — redundant guides have been consolidated.
+Live: https://aurel-app-3498d.web.app
+Repo: https://github.com/Muhammad-Abrar-Khan/Aurel
+Contact: info@aurel.pk | WhatsApp: +92 332 3632052
 
-## Quick Links
-- Live: https://aurel-app-3498d.web.app
-- GitHub: https://github.com/Muhammad-Abrar-Khan/Aurel
-- Contact: info@aurel.pk | WhatsApp: +92 332 3632052
+This README is the authoritative guide for running, developing, and deploying the Aurel Leather frontend. It describes the tech stack, local development (including GitHub Codespaces and VS Code), and exact steps to build and deploy to Firebase Hosting.
 
-## What changed (this cleanup)
-- Added `ignoreDeprecations: "6.0"` to `tsconfig.json` to silence the baseUrl deprecation warning for TS6 migration.
-- Consolidated existing guides into this single README and removed redundant docs (implementation, audit, production guides moved here).
+---
 
-## Quick Start
+## Tech stack
+- Next.js (App Router) v15, TypeScript
+- Styling: Tailwind CSS
+- Animations: Framer Motion (motion/react)
+- 3D rendering: three.js + @react-three/fiber + @react-three/drei
+- Hosting target: Firebase Hosting (static export)
+- Tooling: ESLint, Prettier, VS Code recommended extensions
 
-Prereqs: Node.js 18+, npm
+## Prerequisites
+- Node.js 18 or later
+- npm (or pnpm/yarn) — commands below use `npm`
+- Firebase CLI (for deployment): `npm i -g firebase-tools` (optional for local/CI deploy)
+
+## Development — locally or in GitHub Codespaces
+
+1) Install dependencies
 
 ```bash
-npm install
-npm run dev          # local dev server
-npm run build        # production build
-npm run lint         # TypeScript type checking
+npm ci
 ```
 
-Open http://localhost:3000
+2) Start development server
 
-## Project Overview (short)
-- Frontend: Next.js 15 (App Router)
-- Styling: Tailwind CSS
-- 3D: three.js + @react-three/fiber + @react-three/drei
-- Hosting: Firebase Hosting (static export)
-- Language: TypeScript
+```bash
+npm run dev
+# Open http://localhost:3000 (Codespaces will forward port automatically)
+```
 
-## Consolidated Deployment & Maintenance (short)
-- Build: `npm run build` → static export in `out/`
-- Deploy: `firebase deploy --only hosting` (configure project with `firebase use`)
-- Verify: run Lighthouse and check Core Web Vitals
+GitHub Codespaces: open the repository in Codespaces or use `gh codespace create --repo` and then `gh codespace code` to connect. The `npm run dev` server will be available on the forwarded port; approve port forwarding when prompted.
 
-## Professional Git & CI workflow (recommended, free)
+VS Code (recommended extensions)
+- ESLint
+- Prettier - Code formatter
+- Tailwind CSS IntelliSense
+- TypeScript Hero / TSC helpers
+- GitLens
+- Antigravity (UI theme) — optional aesthetic choice
+- GitHub Copilot (optional)
 
-- Branching: use `main` for production, create feature branches `feature/xxx` or `fix/xxx`.
-- Commits: use clear commits, eg `feat(products): add product schema`.
-- Pull Requests: open PRs for all changes, use PR templates and require at least one review.
-- Protected branches: enable required status checks (typecheck, lint, tests) on GitHub.
-- CI: Use GitHub Actions (free) with workflows:
-	- `ci.yml`: run `npm ci`, `npm run lint`, `npm run build` on PRs.
-	- `deploy.yml`: on merge to `main`, run `npm run build` and `firebase deploy` (use secrets for Firebase token).
-- Hooks: use `husky` + `lint-staged` to run `npm run lint` and formatters before commit.
+Tip: Use the Command Palette → “Remote-Containers: Reopen in Container” if a `.devcontainer` exists.
 
-Example CI job (GitHub Actions):
+Using Claude or other LLMs
+- Use Claude (Anthropic) or your preferred model for content suggestions, commit-message drafting, or content/SEO copy. Keep models out of CI secrets; use them locally for iterative editing.
+
+---
+
+## Build & static export
+
+This project is configured to produce a static export suitable for Firebase Hosting (the Next config uses `output: 'export'`).
+
+1) Create a production build and export static files
+
+```bash
+npm run build
+```
+
+The `build` step will run Next's build and export pipeline and produce a static `out/` directory (check project root for `out/`).
+
+2) Preview the exported site locally
+
+```bash
+npx serve out
+# or use a static file server of your choice
+```
+
+Do I need to run `npm run build` before deploying to Firebase? Yes — unless you use a CI workflow that runs `npm run build` as part of its steps. For a manual deploy from your machine, run `npm run build` to generate `out/` and then `firebase deploy`.
+
+---
+
+## Deploying to Firebase Hosting (manual)
+
+1) Install and authenticate Firebase CLI (if not installed):
+
+```bash
+npm i -g firebase-tools
+firebase login
+```
+
+2) Initialize hosting for the repository (only once)
+
+```bash
+firebase init hosting
+# When asked for public directory, set: out
+# Configure as a single-page app? No (choose "No") — this is a static export
+```
+
+3) Build and deploy
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+Notes:
+- If you prefer to deploy from CI, skip the local `firebase login` step and instead use a CI token (see GitHub Actions below).
+- Confirm your `firebase.json` has `"public": "out"` under `hosting`.
+
+---
+
+## Deploying to Firebase from CI (GitHub Actions)
+
+Create a CI secret `FIREBASE_TOKEN` using a token created with:
+
+```bash
+firebase login:ci
+# copy token and save as repo secret FIREBASE_TOKEN
+```
+
+Example GitHub Action workflow (save as `.github/workflows/deploy.yml`):
+
 ```yaml
-name: CI
-on: [pull_request]
+name: Deploy
+on:
+	push:
+		branches: [ main ]
+
 jobs:
-	build:
+	deploy:
 		runs-on: ubuntu-latest
 		steps:
 			- uses: actions/checkout@v4
 			- name: Setup Node
 				uses: actions/setup-node@v4
-				with: { node-version: 18 }
-			- run: npm ci
-			- run: npm run lint
-			- run: npm run build
-
+				with:
+					node-version: 18
+			- name: Install dependencies
+				run: npm ci
+			- name: Build
+				run: npm run build
+			- name: Deploy to Firebase
+				env:
+					FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+				run: |
+					npm i -g firebase-tools
+					firebase deploy --Only hosting --token "$FIREBASE_TOKEN"
 ```
 
-## Free tools & services (suggested)
-- CI/CD: GitHub Actions (free tiers)
-- Static hosting: Firebase Hosting, Netlify, or Vercel (free tiers)
-- Monitoring: Sentry (free tier) or LogRocket trial; Plausible or Google Analytics for analytics
-- Code review & security: Dependabot (built-in), GitHub Code Scanning (CodeQL)
-- Local dev: VS Code with ESLint + Prettier (free extensions), GitHub CLI (`gh`) for PR management
-- LLM tooling: Claude, Anthropic (as you plan), plus free community tools and VS Code extensions
-
-## What we've added so far (high level)
-- Next.js App Router with TypeScript + Tailwind
-- Product data model and SSG (`app/products/[slug]`) with JSON-LD
-- 3D hero and assembly scenes (react-three-fiber + drei) with performance fallbacks
-- Admin area skeleton: `/admin/login`, `/admin/dashboard`, `/admin/products`, `/admin/cms`
-- Product list, collections, product detail pages and metadata
-- Asset optimization pipeline and WebP variants (scripts + `optimize:assets`)
-- Lead capture form and WhatsApp deep-link flow
-- SEO schemas and `llms.txt` for AI indexing
-
-## Files removed (consolidated into this README)
-- `ASSETS.md`, `AUDIT_REPORT.md`, `IMPLEMENTATION_GUIDE.md`, `PRODUCTION_DEPLOYMENT_GUIDE.md`, `TRANSFORMATION_SUMMARY.md`
-
-## Next recommended steps (short)
-1. Visual QA across devices and browsers
-2. Wire backend: CRM (Pipedrive/HubSpot) + database (Supabase) + transactional email
-3. Add GitHub Actions CI with build + lint checks and protected branches
-4. Run Lighthouse and iterate on performance
-5. Add monitoring (Sentry) and analytics
-
-## Contact & support
-- Email: info@aurel.pk
-- WhatsApp: +92 332 3632052
+This workflow runs on push to `main`. If you want protected releases, change the trigger to `workflow_dispatch` and deploy on demand or via a release tag.
 
 ---
 
-If you want, I can push a GitHub Actions workflow, add a PR template, and commit these doc deletions and the tsconfig change to a feature branch and open a PR with best-practice checks. Tell me if you want that and which CI provider you'd prefer.
+## Pushing changes vs local deploy
+- Manual deploy: run `npm run build` locally and `firebase deploy` — no push required.
+- CI deploy: push your changes and the GitHub Action will run `npm run build` and `firebase deploy` using the repo secret.
+
+If you want a single-source-of-truth deployment from the repository, use the CI approach (recommended).
+
+---
+
+## Cleanup & removing useless artifacts
+
+If the repository contains legacy docs or duplicate guides, I recommend consolidating them into this README and removing files such as `ASSETS.md`, `AUDIT_REPORT.md`, `IMPLEMENTATION_GUIDE.md`, `PRODUCTION_DEPLOYMENT_GUIDE.md`, and other historical notes if they're no longer needed.
+
+I can create a cleanup branch that removes or archives those files and open a PR for review.
+
+---
+
+## Recommended next steps I can run for you
+- Update this README (done)
+- Add a GitHub Actions CI workflow to run `npm ci`, `npm run lint`, `npm run build` on PRs (I can add this)
+- Add a deploy workflow that runs on merge to `main` and deploys to Firebase (I can add this)
+- Remove or archive legacy docs in a PR (I can prepare the PR)
+
+Tell me which of the above you want me to run next and I will implement it.
 
