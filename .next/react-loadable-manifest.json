@@ -1,26 +1,22 @@
 {
-  "node_modules/@react-three/drei/core/VideoTexture.js -> hls.js": {
-    "id": null,
+  "node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js": {
+    "id": "node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js",
     "files": []
   },
-  "node_modules/@react-three/drei/web/FaceLandmarker.js -> @mediapipe/tasks-vision": {
-    "id": null,
+  "node_modules\\@react-three\\drei\\web\\FaceLandmarker.js -> @mediapipe/tasks-vision": {
+    "id": "node_modules\\@react-three\\drei\\web\\FaceLandmarker.js -> @mediapipe/tasks-vision",
     "files": []
   },
-  "src/components/Hero.tsx -> ./HeroProduct3D": {
-    "id": 3991,
+  "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
+    "id": "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
     "files": [
-      "static/chunks/b536a0f1.b6128973e6870f3d.js",
-      "static/chunks/748.40892105fe26e3f9.js",
-      "static/chunks/991.ea66aeac62c06cd7.js"
+      "static/chunks/_app-pages-browser_node_modules_next_dist_client_dev_noop-turbopack-hmr_js.js"
     ]
   },
-  "src/components/ProductViewerWrapper.tsx -> ./HeroProduct3D": {
-    "id": 3991,
+  "src\\components\\Hero.tsx -> ./HeroProduct3D": {
+    "id": "src\\components\\Hero.tsx -> ./HeroProduct3D",
     "files": [
-      "static/chunks/b536a0f1.b6128973e6870f3d.js",
-      "static/chunks/748.40892105fe26e3f9.js",
-      "static/chunks/991.ea66aeac62c06cd7.js"
+      "static/chunks/_app-pages-browser_src_components_HeroProduct3D_tsx.js"
     ]
   }
 }
