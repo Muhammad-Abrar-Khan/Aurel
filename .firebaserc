@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "aurelleatherpk"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "aurel-leather-prod",
+    "production": "aurel-leather-prod",
+    "staging": "aurel-leather-staging"
+  }
 }
