@@ -1,8 +1,42 @@
+# Dependencies
 node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build
 build/
 dist/
+
+# Coverage & Testing
 coverage/
-.DS_Store
-*.log
+playwright-report/
+test-results/
+
+# Firebase
+.firebase/
+
+# Environment
 .env*
 !.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large source/design assets
+*.blend
+*.psd
+*.fig
+raw-assets/
+source-assets/
+
+# VS Code local
+.vscode/settings.json
