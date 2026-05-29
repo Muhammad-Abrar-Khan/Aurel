@@ -1,7 +1,5 @@
 {
   "projects": {
-    "default": "aurel-leather-prod",
-    "production": "aurel-leather-prod",
-    "staging": "aurel-leather-staging"
+    "default": "aurelleatherpk"
   }
 }
