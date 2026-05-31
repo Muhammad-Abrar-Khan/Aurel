@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navItems = [
   { label: 'Products',    href: '/products',          type: 'route'  },
   { label: 'Collections', href: '#collections',        type: 'anchor' },
-  { label: 'Corporate',   href: '#corporate',          type: 'anchor' },
-  { label: 'Atelier',     href: '#aurel-leather',      type: 'anchor' },
+  { label: 'Atelier',     href: '#atelier-stitching',  type: 'anchor' },
+  { label: 'Packaging',   href: '#packaging-experience',type: 'anchor' },
   { label: 'Process',     href: '#process',            type: 'anchor' },
   { label: 'Contact',     href: '#contact',            type: 'anchor' },
 ] as const;
@@ -17,6 +18,8 @@ const navItems = [
 export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   const [isOpen,   setIsOpen]   = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -24,18 +27,41 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle hash scrolling on homepage mount or pathname change
+  useEffect(() => {
+    if (pathname === '/' && typeof window !== 'undefined' && window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
+  const handleLogoClick = () => {
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push('/');
+    }
+  };
+
   const handleAnchor = (href: string) => {
     setIsOpen(false);
     const id = href.replace(/^#/, '');
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-    else window.location.hash = href;
+    if (pathname === '/') {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push(`/#${id}`);
+    }
   };
 
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 w-full z-[100] transition-all duration-700 ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-750 ${
         scrolled
           ? 'h-[72px] bg-background/90 backdrop-blur-xl border-b border-primary/8 shadow-[0_1px_30px_rgba(0,0,0,0.4)]'
           : 'h-[100px] bg-transparent'
@@ -43,23 +69,29 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
     >
       <div className="flex justify-between items-center px-8 md:px-16 max-w-7xl mx-auto h-full">
 
-        {/* Logo */}
+        {/* Logo Monogram */}
         <motion.div
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          whileHover={{ opacity: 0.85 }}
+          onClick={handleLogoClick}
+          whileHover={{ opacity: 0.9 }}
           transition={{ duration: 0.3 }}
-          className="group cursor-pointer flex items-end gap-3"
+          className="group cursor-pointer flex items-center gap-3 select-none"
         >
-          <span
-            className={`font-display italic tracking-[0.3em] text-primary transition-all duration-700 ${
-              scrolled ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'
-            }`}
-          >
-            Aurel Leather
-          </span>
-          <span className="hidden md:block font-mono text-[8px] tracking-[0.3em] text-outline/50 uppercase mb-1 transition-opacity duration-500">
-            Est. 2024
-          </span>
+          <div className="w-10 h-10 border border-primary/40 rounded flex items-center justify-center bg-surface-high relative shadow-md">
+            <span className="font-display italic text-lg text-primary leading-none">A</span>
+            <div className="absolute inset-[2px] border border-primary/10 rounded-sm pointer-events-none" />
+          </div>
+          <div className="flex flex-col">
+            <span
+              className={`font-display italic tracking-[0.25em] text-primary transition-all duration-700 leading-none ${
+                scrolled ? 'text-xl' : 'text-2xl'
+              }`}
+            >
+              Aurel Leather
+            </span>
+            <span className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mt-1 leading-none">
+              Karachi &bull; Pakistan
+            </span>
+          </div>
         </motion.div>
 
         {/* Desktop nav */}

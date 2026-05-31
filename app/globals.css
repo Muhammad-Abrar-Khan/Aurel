@@ -41,10 +41,18 @@
     background: var(--color-background);
     color: var(--color-on-surface);
     font-family: var(--font-sans);
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+  }
+
+  /* Deactivate standard cursor on desktop viewports to leverage the bespoke golden cursor */
+  @media (min-width: 1024px) {
+    html, body, a, button, [role="button"], input, textarea, select, .cursor-pointer {
+      cursor: none !important;
+    }
   }
 
   h1, h2, h3, h4 {

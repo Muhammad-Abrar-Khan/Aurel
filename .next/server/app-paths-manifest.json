@@ -5,16 +5,16 @@
   "/page": "app/page.js",
   "/about/page": "app/about/page.js",
   "/collections/page": "app/collections/page.js",
-  "/cardholders/page": "app/cardholders/page.js",
-  "/corporate-gifting/page": "app/corporate-gifting/page.js",
   "/contact/page": "app/contact/page.js",
+  "/customization/page": "app/customization/page.js",
+  "/cardholders/page": "app/cardholders/page.js",
   "/products/page": "app/products/page.js",
   "/wallets/page": "app/wallets/page.js",
-  "/customization/page": "app/customization/page.js",
   "/products/[slug]/page": "app/products/[slug]/page.js",
-  "/admin/page": "app/admin/page.js",
+  "/corporate-gifting/page": "app/corporate-gifting/page.js",
   "/admin/login/page": "app/admin/login/page.js",
   "/admin/cms/page": "app/admin/cms/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/products/page": "app/admin/products/page.js"
+  "/admin/products/page": "app/admin/products/page.js",
+  "/admin/page": "app/admin/page.js"
 }

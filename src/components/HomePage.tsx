@@ -2,7 +2,6 @@
 
 import { Navbar }                 from '@/components/Navbar';
 import { Hero }                   from '@/components/Hero';
-import { BrandPhilosophy }        from '@/components/BrandPhilosophy';
 import { TrustBar }               from '@/components/TrustBar';
 import { ExecutiveCollection }    from '@/components/ExecutiveCollection';
 import { CorporateGiftingFlow }   from '@/components/CorporateGiftingFlow';
@@ -26,43 +25,40 @@ export function HomePageContent() {
         {/* 1 — Cinematic fullscreen hero */}
         <Hero />
 
-        {/* 2 — Brand philosophy: editorial statement */}
-        <BrandPhilosophy />
-
-        {/* 3 — Animated stats + industry marquee */}
+        {/* 2 — Trust Indicators (Animated Stats + "Built For" marquee) */}
         <TrustBar />
 
-        {/* 4 — Executive leather collections */}
-        <ExecutiveCollection />
-
-        {/* 5 — 3-step corporate procurement flow */}
-        <CorporateGiftingFlow />
-
-        {/* 6 — Corporate gifting use cases */}
-        <IndustrialCapabilities />
-
-        {/* 7 — Competitive differentiation */}
-        <WhyAurel />
-
-        {/* 8 — B2B manufacturing / Atelier */}
+        {/* 3 — Aurel Leather Manufacturing deep dive */}
         <AurelLeather />
 
-        {/* 9 — Karachi atelier photo grid */}
+        {/* 4 — Karachi Atelier visual & loop video grid */}
         <AtelierSection />
 
-        {/* 10 — Luxury packaging experience */}
+        {/* 5 — Packaging Experience (Rigid R3F 3D hinged box) */}
         <LuxuryPackaging />
 
-        {/* 11 — How it works: 6-step process */}
+        {/* 6 — Executive Collections (Premium product catalog cards) */}
+        <ExecutiveCollection />
+
+        {/* 7 — Customization & Branding capabilities */}
+        <IndustrialCapabilities />
+
+        {/* 8 — Corporate Gifting Flow & Bespoke Scale */}
+        <CorporateGiftingFlow />
+
+        {/* 9 — Why Aurel (Competitive Moat & Product Comparison Table) */}
+        <WhyAurel />
+
+        {/* 10 — Delivery Model & Procurement Logistics */}
         <DeliveryModel />
 
-        {/* 12 — Enterprise client testimonials */}
+        {/* 11 — Testimonials & Enterprise client voice */}
         <TestimonialsSection />
 
-        {/* 13 — FAQ accordion */}
+        {/* 12 — Technical Specs (FAQ Accordion with SEO Schema) */}
         <TechnicalSpecs />
 
-        {/* 14 — Quote form + procurement CTA */}
+        {/* 13 — Quote Form & Custom MOQ Proposal Selector */}
         <ProposalForm />
       </main>
       <Footer />

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 
+import { Landmark, Cpu, GraduationCap, Building, HeartPulse } from 'lucide-react';
+
 const STATS = [
   { value: 50,  suffix: "+",  label: "Enterprise Clients"  },
   { value: 10,  suffix: "K+", label: "Units Delivered"     },
@@ -10,11 +12,18 @@ const STATS = [
   { value: 14,  suffix: " days", label: "Max Turnaround"   },
 ];
 
-const INDUSTRIES = [
-  "Banking & Finance", "Telecom", "FMCG", "Real Estate",
-  "HR & Recruitment",  "Technology", "Insurance", "Pharma",
-  "Banking & Finance", "Telecom", "FMCG", "Real Estate",
-  "HR & Recruitment",  "Technology", "Insurance", "Pharma",
+const INDUSTRIES_WITH_ICONS = [
+  { label: "Banking & Finance", icon: Landmark },
+  { label: "Enterprise Technology", icon: Cpu },
+  { label: "Higher Education", icon: GraduationCap },
+  { label: "Prestige Real Estate", icon: Building },
+  { label: "Healthcare & Pharma", icon: HeartPulse },
+  // Duplicate for smooth looping marquee
+  { label: "Banking & Finance", icon: Landmark },
+  { label: "Enterprise Technology", icon: Cpu },
+  { label: "Higher Education", icon: GraduationCap },
+  { label: "Prestige Real Estate", icon: Building },
+  { label: "Healthcare & Pharma", icon: HeartPulse },
 ];
 
 /* Animated counter */
@@ -69,17 +78,22 @@ export const TrustBar = () => {
           ))}
         </div>
 
-        {/* Marquee separator */}
+        {/* Built For Marquee */}
         <div className="mt-10 pt-8 border-t border-primary/5 overflow-hidden">
+          <p className="font-mono text-[8px] tracking-[0.3em] uppercase text-center text-outline/40 mb-6">Built For Industry Leaders</p>
           <div className="marquee-track">
-            {INDUSTRIES.map((industry, i) => (
-              <div key={i} className="flex items-center shrink-0">
-                <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-outline/70 whitespace-nowrap px-6">
-                  {industry}
-                </span>
-                <div className="w-1 h-1 bg-primary/30 rotate-45 shrink-0" />
-              </div>
-            ))}
+            {INDUSTRIES_WITH_ICONS.map((ind, i) => {
+              const Icon = ind.icon;
+              return (
+                <div key={i} className="flex items-center gap-3 shrink-0 px-8">
+                  <Icon size={12} className="text-primary opacity-60" />
+                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-outline/70 whitespace-nowrap">
+                    {ind.label}
+                  </span>
+                  <div className="w-1 h-1 bg-primary/20 rotate-45 shrink-0 ml-4" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
