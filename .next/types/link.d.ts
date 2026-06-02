@@ -44,9 +44,11 @@ declare namespace __next_route_internal_types__ {
     | `/contact`
     | `/corporate-gifting`
     | `/customization`
+    | `/privacy-policy`
     | `/products`
     | `/robots.txt`
     | `/sitemap.xml`
+    | `/terms`
     | `/wallets`
   type DynamicRoutes<T extends string = string> = 
     | `/products/${SafeSlug<T>}`

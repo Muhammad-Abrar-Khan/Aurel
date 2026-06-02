@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-background: #1A1917;
   --color-primary: #C9A96E;
+  --color-primary-light: #dfc08c;
+  --color-primary-dark: #a88548;
   --color-on-primary: #1A1917;
   --color-surface: #211f1d;
   --color-surface-low: #1c1b19;
@@ -21,6 +23,11 @@
   --spacing-section-gap: 128px;
   --spacing-gutter: 32px;
   --spacing-margin-edge: 64px;
+
+  /* Luxury easing */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
@@ -34,9 +41,18 @@
     background: var(--color-background);
     color: var(--color-on-surface);
     font-family: var(--font-sans);
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Deactivate standard cursor on desktop viewports to leverage the bespoke golden cursor */
+  @media (min-width: 1024px) {
+    html, body, a, button, [role="button"], input, textarea, select, .cursor-pointer {
+      cursor: none !important;
+    }
   }
 
   h1, h2, h3, h4 {
@@ -53,11 +69,24 @@
   }
 
   ::selection {
-    background: rgba(201, 169, 110, 0.3);
-    color: var(--color-background);
+    background: rgba(201, 169, 110, 0.25);
+    color: var(--color-on-surface);
+  }
+
+  /* Luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-dark);
+    border-radius: 2px;
   }
 }
 
+/* ─── Skip Link ─── */
 .skip-link {
   position: fixed;
   top: 1rem;
@@ -70,31 +99,279 @@
   transform: translateY(-120%);
   transition: transform 0.2s ease;
 }
-
 .skip-link:focus-visible {
   transform: translateY(0);
 }
 
-.perspective-2000 {
-  perspective: 2000px;
+/* ─── 3D Utilities ─── */
+.perspective-2000 { perspective: 2000px; }
+.preserve-3d { transform-style: preserve-3d; }
+
+/* ─── Grain Overlay ─── */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
-.preserve-3d {
-  transform-style: preserve-3d;
+/* ─── Luxury Glow ─── */
+.luxury-glow {
+  box-shadow:
+    0 0 60px rgba(201, 169, 110, 0.06),
+    0 0 120px rgba(201, 169, 110, 0.03);
+}
+.luxury-glow-strong {
+  box-shadow:
+    0 0 30px rgba(201, 169, 110, 0.15),
+    0 0 80px rgba(201, 169, 110, 0.07);
 }
 
-.floating {
-  animation: floating 3s ease-in-out infinite;
+/* ─── Gold Thread / Divider ─── */
+.gold-thread {
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+
+/* ─── Cinema Vignette ─── */
+.cinema-vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(26,25,23,0.6) 100%);
+  pointer-events: none;
+}
+
+/* ─── Scrollbar None (for marquees) ─── */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Marquee ─── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Gold Shimmer (button) ─── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transition: none;
+  pointer-events: none;
+}
+.shimmer-btn:hover::before {
+  animation: shimmerSweep 0.65s var(--ease-luxury) forwards;
+}
+
+/* ─── Floating stat badge ─── */
+.floating-badge {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+.floating-badge:nth-child(2) {
+  animation-delay: -2s;
+}
+
+/* ─── Luxury border gradient ─── */
+.border-gold-gradient {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.border-gold-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(201,169,110,0.4), transparent 50%, rgba(201,169,110,0.2));
+  z-index: -1;
+}
+
+/* ─── Animated Gold Line ─── */
+.gold-line-animate {
+  position: relative;
+  overflow: hidden;
+}
+.gold-line-animate::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background: var(--color-primary);
+  transition: width 0.6s var(--ease-luxury);
+}
+.gold-line-animate:hover::after {
+  width: 100%;
+}
+
+/* ─── Keyframes ─── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes shimmerSweep {
+  from { left: -100%; }
+  to   { left: 160%; }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
 }
 
 @keyframes floating {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-20px) rotate(2deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
-.grain-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.06;
-  pointer-events: none;
+@keyframes goldPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
 }
+
+@keyframes scaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.floating { animation: floating 4s ease-in-out infinite; }
+.gold-pulse { animation: goldPulse 2.5s ease-in-out infinite; }
+.fade-up { animation: fadeUp 0.8s var(--ease-luxury) forwards; }
+
+/* ─── Text Stroke (luxury outline text) ─── */
+.text-stroke-gold {
+  -webkit-text-stroke: 1px var(--color-primary);
+  color: transparent;
+}
+
+/* ─── Luxury section transition separator ─── */
+.section-fade-top {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%);
+}
+.section-fade-bottom {
+  mask-image: linear-gradient(to top, transparent 0%, black 15%);
+}
+
+/* ─── Glow border utility ─── */
+.glow-border-gold {
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 169, 110, 0.2),
+    0 0 24px rgba(201, 169, 110, 0.06);
+  transition: box-shadow 0.5s var(--ease-luxury);
+}
+.glow-border-gold:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 169, 110, 0.5),
+    0 0 40px rgba(201, 169, 110, 0.14);
+}
+
+/* ─── Premium focus ring ─── */
+*:focus-visible {
+  outline: 2px solid rgba(201, 169, 110, 0.5);
+  outline-offset: 3px;
+}
+
+/* ─── Line clamp utilities ─── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Reveal clip animation (cinema curtain) ─── */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: clipReveal 1s var(--ease-luxury) forwards;
+}
+@keyframes clipReveal {
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+/* ─── Luxury horizontal rule ─── */
+.hr-gold {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-primary) 30%, var(--color-primary) 70%, transparent 100%);
+  opacity: 0.25;
+}
+
+/* ─── Smooth image hover zoom base ─── */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 1.4s var(--ease-luxury);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* ─── Badge glow ─── */
+.badge-glow {
+  animation: badgeGlow 3s ease-in-out infinite;
+}
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0); }
+  50%       { box-shadow: 0 0 16px 2px rgba(201, 169, 110, 0.14); }
+}
+
+/* ─── Noise texture (heavier, for full-bleed panels) ─── */
+.noise-heavy {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ─── Perspective utilities ─── */
+.perspective-1200 { perspective: 1200px; }
+.perspective-3000 { perspective: 3000px; }
+
+/* ─── Smooth number transition ─── */
+.tabular-nums { font-variant-numeric: tabular-nums; }

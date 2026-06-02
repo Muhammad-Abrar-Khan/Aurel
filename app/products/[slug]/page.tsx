@@ -6,7 +6,6 @@ import { productSchema, breadcrumbSchema, organizationSchema, localBusinessSchem
 import { APP_URL, WHATSAPP_URL } from '@/lib/constants';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
-import ProductViewerWrapper from '@/components/ProductViewerWrapper';
 
 export async function generateStaticParams() {
   return getProductSlugs();
@@ -46,6 +45,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+const productVideos: Record<string, string> = {
+  'executive-wallet': '/assets/video-wallet-showcase.mp4',
+  'card-holder': '/assets/video-cardholder-flex.mp4',
+  'executive-gift-set': '/assets/video-giftset-unboxing.mp4',
+  'leather-notebook': '/assets/video-wallet-details.mp4',
+  'pen-case': '/assets/video-giftbox-close.mp4',
+};
+
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
@@ -54,77 +61,128 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   }
 
   const related = getRelatedProducts(product.slug);
+  const videoSrc = productVideos[product.slug] || null;
+
   const faqItems = [
-    { q: 'Do you offer branded packaging for corporate gifting?', a: 'Yes — Aurel Leather provides premium branded packaging and custom inserts for corporate gifting programs.' },
-    { q: 'What is the minimum order quantity for executive gifts?', a: 'Most corporate orders start at 50 units, with flexible scaling for larger programs.' },
-    { q: 'Can I request a sample before bulk production?', a: 'Absolutely. We can prepare a sample and sample kit for approval before production begins.' },
+    { q: 'Do you offer custom branding for corporate gifting?', a: 'Yes — Aurel Leather provides high-precision gold foil stamping, debossing, and tailored interior options.' },
+    { q: 'What is the minimum order quantity (MOQ) for corporate orders?', a: 'Our production minimums start at 50 units for wallets/notebooks and 30 units for gift sets to optimize factory efficiency.' },
+    { q: 'Can we inspect material samples before initiating bulk production?', a: 'Absolutely. We prepare pre-production physical samples and custom sample cards for executive boardroom approval.' },
   ];
 
   return (
     <div className="bg-background text-on-surface min-h-screen">
       <Navbar />
-      <main id="main" className="py-20 px-6 md:px-16 max-w-7xl mx-auto">
+      <main id="main" className="pt-32 pb-20 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="space-y-16">
-          <section className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
+          
+          {/* Main Showcase Section */}
+          <section className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-start">
+            
+            {/* Gallery Content */}
             <div className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.35em] text-outline">{product.category}</p>
-              <h1 className="font-display text-5xl leading-tight">{product.name}</h1>
-              <p className="max-w-2xl text-on-surface-variant leading-8">{product.description}</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary">{product.category}</p>
+              <h1 className="font-display text-4xl md:text-5xl leading-tight text-on-surface">{product.name}</h1>
+              <p className="max-w-2xl text-on-surface-variant text-sm md:text-base leading-relaxed">{product.description}</p>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.75rem] overflow-hidden border border-white/10 bg-surface">
-                  <Image src={product.images[0]} alt={product.name} width={1200} height={900} className="h-full w-full object-cover" />
+              {/* Grid of high-fashion pictures */}
+              <div className="grid gap-4 sm:grid-cols-2 mt-8">
+                <div className="rounded-lg overflow-hidden border border-primary/10 bg-surface shadow-lg relative group h-[380px] sm:h-auto min-h-[300px]">
+                  <Image 
+                    src={product.images[0]} 
+                    alt={product.name} 
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080705]/65 via-transparent to-transparent pointer-events-none" />
                 </div>
                 <div className="grid gap-4">
                   {product.gallery.slice(1).map((src, index) => (
-                    <div key={index} className="rounded-[1.5rem] overflow-hidden border border-white/10 bg-surface">
-                      <Image src={src} alt={`${product.name} ${index + 1}`} width={1200} height={900} className="h-full w-full object-cover" />
+                    <div key={index} className="rounded-lg overflow-hidden border border-primary/10 bg-surface shadow-md relative h-[180px] group">
+                      <Image 
+                        src={src} 
+                        alt={`${product.name} Angle ${index + 1}`} 
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#080705]/50 via-transparent to-transparent pointer-events-none" />
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <aside className="space-y-8">
-              <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-                <p className="text-xs uppercase tracking-[0.35em] text-outline">Price</p>
-                <p className="text-4xl font-semibold text-on-surface mt-3">{product.price}</p>
-                <p className="mt-4 text-sm text-on-surface-variant">Luxury corporate pricing, custom quotes available for bulk orders.</p>
-                <div className="mt-8 grid gap-3">
+            {/* Sidebar Pricing & Actions */}
+            <aside className="space-y-8 lg:sticky lg:top-28">
+              
+              {/* Core conversion card */}
+              <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none rounded-bl-full" />
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-outline">B2B Procurement Price</p>
+                <p className="text-4xl font-display text-primary mt-3 italic">{product.price}</p>
+                <p className="mt-4 text-xs text-on-surface-variant leading-relaxed">
+                  Karachi factory-direct bulk pricing. Includes luxury presentation box and custom brand debossing.
+                </p>
+                
+                {/* Specifications strip */}
+                <div className="mt-6 pt-6 border-t border-primary/5 space-y-3">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-outline">Factory MOQ</span>
+                    <span className="font-bold text-on-surface">{product.specs.MOQ || "50 Units"}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-outline">Material Base</span>
+                    <span className="font-bold text-on-surface">100% Genuine Leather</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-outline">Production Time</span>
+                    <span className="font-bold text-on-surface">10–14 Days</span>
+                  </div>
+                </div>
+
+                <div className="mt-8 space-y-3">
                   <a
-                    href={`${WHATSAPP_URL}?text=Hi%20Aurel%20Leather%2C%20I%20would%20like%20a%20quote%20for%20${encodeURIComponent(product.name)}`}
-                    className="block rounded-full bg-primary px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-on-primary transition hover:bg-primary/90"
+                    href={`${WHATSAPP_URL}?text=Hi%20Aurel%20Leather%2C%20I%20would%20like%20to%20request%20a%20corporate%20quote%20for%20the%20${encodeURIComponent(product.name)}`}
+                    className="block w-full py-4 bg-primary text-on-primary text-center text-xs font-bold uppercase tracking-[0.25em] hover:bg-primary/95 transition hover:shadow-[0_0_24px_rgba(201,169,110,0.25)] rounded-sm"
                   >
                     Inquire via WhatsApp
                   </a>
-                  <Link
-                    href="/contact"
-                    className="block rounded-full border border-white/10 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-on-surface transition hover:border-primary/30 hover:text-primary"
+                  <a
+                    href="#contact"
+                    className="block w-full py-4 border border-primary/30 text-center text-xs font-bold uppercase tracking-[0.25em] text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary transition duration-300 rounded-sm"
                   >
-                    Request corporate order
-                  </Link>
+                    Request Corporate Proposal
+                  </a>
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-                <h2 className="font-display text-2xl mb-4">Why choose this design</h2>
-                <ul className="space-y-3 text-on-surface-variant text-sm">
+              {/* Highlights card */}
+              <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl">
+                <h2 className="font-display text-xl italic text-primary mb-4">Why Choose This Design</h2>
+                <ul className="space-y-4 text-on-surface-variant text-xs leading-relaxed">
                   {product.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3">
-                      <span className="mt-1 block h-2 w-2 rounded-full bg-primary" />
+                    <li key={highlight} className="flex gap-3 items-start">
+                      <span className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-                <h2 className="font-display text-2xl mb-4">Related products</h2>
-                <div className="space-y-4">
+              {/* Related products card */}
+              <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl">
+                <h2 className="font-display text-xl italic text-primary mb-4">Complementary Designs</h2>
+                <div className="space-y-3">
                   {related.map((item) => (
-                    <Link key={item.slug} href={`/products/${item.slug}`} className="block rounded-[1.5rem] border border-white/10 bg-[#10100f] px-4 py-4 transition hover:border-primary/30">
-                      <p className="text-sm text-on-surface-variant">{item.category}</p>
-                      <p className="font-semibold text-on-surface">{item.name}</p>
+                    <Link 
+                      key={item.slug} 
+                      href={`/products/${item.slug}`} 
+                      className="block rounded border border-primary/5 bg-[#0f0e0d]/50 p-4 transition-all duration-300 hover:border-primary/20 hover:bg-[#0f0e0d]"
+                    >
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-outline">{item.category}</p>
+                      <p className="text-xs font-bold text-on-surface mt-1 group-hover:text-primary transition-colors">{item.name}</p>
                     </Link>
                   ))}
                 </div>
@@ -132,44 +190,78 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
             </aside>
           </section>
 
-          <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start">
+          {/* Secondary Details & Cinematic Video Showcase */}
+          <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] items-start">
+            
             <div className="space-y-6">
-              <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-                <h2 className="font-display text-3xl mb-4">Interactive 360° view</h2>
-                <p className="text-on-surface-variant leading-8">Experience the premium form and finish in a dynamic interactive presentation, built with real 3D rendering for a luxury product preview.</p>
-              <div className="mt-6">
-                  <ProductViewerWrapper />
+              
+              {/* High-fidelity Video Card */}
+              {videoSrc && (
+                <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl overflow-hidden relative">
+                  <h2 className="font-display text-2xl italic text-primary mb-4">Cinematic Showcase</h2>
+                  <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
+                    Observe the genuine leather grain reflection, meticulous gold debossing, and flexible structural resilience under professional cinematic studio lighting.
+                  </p>
+                  <div className="relative w-full h-[360px] rounded border border-primary/10 overflow-hidden shadow-inner bg-background">
+                    <video
+                      src={videoSrc}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080705]/85 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-4 left-4 font-mono text-[8px] tracking-[0.25em] text-primary uppercase bg-background/90 px-3 py-1.5 border border-primary/20">
+                      Studio Close-Up Loop
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-                <h3 className="font-display text-2xl mb-4">Material & craftsmanship</h3>
-                <ul className="space-y-3 text-on-surface-variant">
-                  {product.features.map((feature) => (
-                    <li key={feature} className="flex gap-3">
-                      <span className="mt-1 block h-2 w-2 rounded-full bg-primary" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* Material specifications card */}
+              <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl">
+                <h3 className="font-display text-2xl italic text-primary mb-6">Material & Craftsmanship</h3>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <ul className="space-y-4 text-on-surface-variant text-xs leading-relaxed">
+                    {product.features.map((feature, idx) => (
+                      <li key={idx} className="flex gap-3 items-start">
+                        <span className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="bg-[#0f0e0d]/50 p-6 border border-primary/5 rounded space-y-4">
+                    <h4 className="font-mono text-[9px] tracking-widest text-primary uppercase border-b border-primary/10 pb-2">Technical Summary</h4>
+                    {Object.entries(product.specs).map(([key, val]) => (
+                      <div key={key} className="flex justify-between text-xs py-1 border-b border-white/5 last:border-b-0">
+                        <span className="text-outline">{key}</span>
+                        <span className="font-bold text-on-surface text-right">{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-surface p-8 shadow-2xl">
-              <h2 className="font-display text-3xl mb-4">FAQ</h2>
-              <div className="space-y-4 text-on-surface-variant">
+            {/* FAQ card */}
+            <div className="rounded-lg border border-primary/10 bg-surface p-8 shadow-2xl">
+              <h2 className="font-display text-2xl italic text-primary mb-6">Fulfillment FAQ</h2>
+              <div className="space-y-4 text-on-surface-variant text-xs leading-relaxed">
                 {faqItems.map((faq) => (
-                  <div key={faq.q} className="rounded-2xl border border-white/10 p-5 bg-background">
-                    <p className="font-semibold text-on-surface">{faq.q}</p>
-                    <p className="mt-2 text-sm leading-6">{faq.a}</p>
+                  <div key={faq.q} className="rounded border border-primary/5 p-5 bg-[#0a0908]/50">
+                    <p className="font-bold text-on-surface text-sm mb-2">{faq.q}</p>
+                    <p className="text-on-surface-variant leading-relaxed">{faq.a}</p>
                   </div>
                 ))}
               </div>
             </div>
           </section>
+
         </div>
       </main>
 
+      {/* Advanced Rich SEO Schema Markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

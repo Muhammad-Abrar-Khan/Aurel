@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import dynamic from 'next/dynamic';
