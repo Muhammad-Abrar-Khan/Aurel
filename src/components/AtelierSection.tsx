@@ -33,7 +33,7 @@ export const AtelierSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="atelier-stitching" className="scroll-mt-28 py-28 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
+    <section id="atelier" className="scroll-mt-28 py-28 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
       {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-end gap-10 mb-16">
         <SectionHeading

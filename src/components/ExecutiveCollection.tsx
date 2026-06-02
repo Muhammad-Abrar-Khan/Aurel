@@ -11,44 +11,49 @@ import { ArrowRight } from "lucide-react";
 
 const products = [
   {
+    id: 'wallet',
     span: "md:col-span-2",
-    tag: "Most Ordered",
+    tag: "Popular",
     title: "Executive Wallet",
-    price: "Rs. 2,500 – 3,500",
-    moq: "50 Units",
     description:
       "Full-grain leather bifold wallet with 6 card slots and embossed logo panel. Available in black, tan, and dark brown.",
-    features: ["Logo Embossing", "RFID Protection Option", "Gift Box Included"],
+    features: ["Logo Embossing", "6 Card Slots", "Gift Box Included"],
+    pricing: "Rs. 1,400–1,200 per unit",
+    moq: "50 Units Minimum",
     assetName: "premium-leather-wallet-bulk.jpeg",
   },
   {
-    span: "md:col-span-1",
-    title: "Leather Notebook",
-    price: "Rs. 3,500 – 5,500",
-    moq: "50 Units",
-    description:
-      "A5 refillable leather-bound notebook with pen loop and business card pocket. Perfect for onboarding kits.",
-    features: ["Custom Inner Pages", "Gold/Silver Emboss", "Ribbon Bookmark"],
-    assetName: "executive-notebook-embossed.jpeg",
-  },
-  {
+    id: 'cardholder',
     span: "md:col-span-1",
     title: "Card Holder",
-    price: "Rs. 1,200 – 1,800",
-    moq: "100 Units",
     description:
       "Slim full-grain leather cardholder. Holds 8–12 cards. Laser or heat embossing available.",
-    features: ["Slim Profile", "8–12 Card Capacity", "Custom Emboss"],
+    features: ["Slim Profile", "8–12 Cards", "Custom Emboss"],
+    pricing: "Rs. 750–650 per unit",
+    moq: "50 Units Minimum",
     assetName: "card-holder-branded-bulk.jpeg",
   },
   {
+    id: 'notebook',
+    span: "md:col-span-1",
+    title: "Leather Notebook",
+    description:
+      "A5 refillable leather-bound notebook with pen loop and business card pocket. Perfect for onboarding kits.",
+    features: ["Custom Inner Pages", "Gold/Silver Emboss", "Ribbon Bookmark"],
+    pricing: "Rs. 1,100–950 per unit",
+    moq: "50 Units Minimum",
+    assetName: "executive-notebook-embossed.jpeg",
+  },
+  {
+    id: 'giftset',
     span: "md:col-span-2",
+    tag: "Most Ordered",
     title: "Executive Gift Set",
-    price: "Rs. 6,500 – 9,500",
-    moq: "30 Units",
     description:
       "Curated set: wallet + notebook + cardholder in premium black gift box with gold ribbon. Ideal for awards gifting.",
     features: ["Premium Gift Box", "Matching Leather Set", "Custom Insert Card"],
+    pricing: "Custom Quote",
+    moq: "50 Units Minimum",
     assetName: "corporate-gift-set-pakistan.jpeg",
   },
 ];
@@ -59,16 +64,16 @@ export const ExecutiveCollection = () => {
   return (
     <section id="collections" className="scroll-mt-28 py-28 px-8 md:px-16 max-w-7xl mx-auto perspective-2000">
       <SectionHeading
-        eyebrow="Curated Corporate Collections"
-        title="The Gifting Ledger."
-        subtitle="Premium leather essentials engineered for executive corporate gifting programmes."
+        eyebrow="THE GIFTING LEDGER"
+        title="Curated Corporate Collections."
+        subtitle="Premium leather essentials engineered for executive gifting programmes."
         align="center"
         className="mb-16"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((p, index) => (
-          <AnimatedReveal key={index} variant="fadeUp" delay={index * 0.1} className={p.span}>
+          <AnimatedReveal key={p.id} variant="fadeUp" delay={index * 0.1} className={p.span}>
             <ThreeDCard className="h-full">
               <div className="group relative bg-surface border border-primary/8 overflow-hidden flex flex-col justify-between h-full transition-all duration-500 hover:border-primary/35 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
                 {/* Top gradient accent */}
@@ -82,18 +87,23 @@ export const ExecutiveCollection = () => {
                         {p.tag}
                       </span>
                     )}
-                    <span className="ml-auto font-display text-xl text-primary italic">{p.price}</span>
                   </div>
 
                   <h3 className="font-display text-3xl md:text-4xl text-on-surface group-hover:text-primary transition-colors duration-400">
                     {p.title}
                   </h3>
+                  
                   <p className="text-on-surface-variant text-sm leading-relaxed">{p.description}</p>
 
-                  {/* MOQ badge */}
-                  <span className="inline-block font-mono text-[9px] text-primary bg-primary/5 px-3 py-1.5 border border-primary/15 tracking-widest uppercase">
-                    MOQ: {p.moq}
-                  </span>
+                  {/* Pricing */}
+                  <div className="pt-2">
+                    <p className="font-mono text-[10px] text-primary tracking-[0.15em] uppercase font-bold">
+                      {p.pricing}
+                    </p>
+                    <p className="font-mono text-[8px] text-outline/50 tracking-[0.2em] uppercase mt-1">
+                      {p.moq}
+                    </p>
+                  </div>
 
                   {/* Features */}
                   {p.features && (

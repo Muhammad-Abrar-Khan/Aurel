@@ -7,6 +7,7 @@ export const metadata = {
 };
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
+  // Note: html and body tags are ONLY in root layout.tsx
   return (
     <div className="min-h-screen bg-[#080705] text-on-surface">
       <header className="border-b border-white/10 bg-surface/95 backdrop-blur-lg">

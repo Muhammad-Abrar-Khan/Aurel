@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import React, { useRef } from "react";
 

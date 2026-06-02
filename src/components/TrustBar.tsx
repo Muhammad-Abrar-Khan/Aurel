@@ -2,28 +2,26 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-
 import { Landmark, Cpu, GraduationCap, Building, HeartPulse } from 'lucide-react';
 
 const STATS = [
-  { value: 50,  suffix: "+",  label: "Enterprise Clients"  },
-  { value: 10,  suffix: "K+", label: "Units Delivered"     },
-  { value: 30,  suffix: "+",  label: "Product Variants"    },
-  { value: 14,  suffix: " days", label: "Max Turnaround"   },
+  { value: 50,  suffix: " Units",  label: "Minimum Order"  },
+  { value: 14,  suffix: " Days", label: "Production Time"     },
+  { value: 100,  suffix: "%", label: "Full-Grain Leather"    },
 ];
 
 const INDUSTRIES_WITH_ICONS = [
   { label: "Banking & Finance", icon: Landmark },
   { label: "Enterprise Technology", icon: Cpu },
   { label: "Higher Education", icon: GraduationCap },
-  { label: "Prestige Real Estate", icon: Building },
-  { label: "Healthcare & Pharma", icon: HeartPulse },
+  { label: "Real Estate", icon: Building },
+  { label: "Healthcare", icon: HeartPulse },
   // Duplicate for smooth looping marquee
   { label: "Banking & Finance", icon: Landmark },
   { label: "Enterprise Technology", icon: Cpu },
   { label: "Higher Education", icon: GraduationCap },
-  { label: "Prestige Real Estate", icon: Building },
-  { label: "Healthcare & Pharma", icon: HeartPulse },
+  { label: "Real Estate", icon: Building },
+  { label: "Healthcare", icon: HeartPulse },
 ];
 
 /* Animated counter */

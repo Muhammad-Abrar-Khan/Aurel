@@ -5,18 +5,17 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
+import { WHATSAPP_URL } from '@/lib/constants';
 
 const navItems = [
-  { label: 'Products',    href: '/products',          type: 'route'  },
-  { label: 'Collections', href: '#collections',        type: 'anchor' },
-  { label: 'Atelier',     href: '#atelier-stitching',  type: 'anchor' },
-  { label: 'Packaging',   href: '#packaging-experience',type: 'anchor' },
-  { label: 'Process',     href: '#process',            type: 'anchor' },
-  { label: 'Contact',     href: '#contact',            type: 'anchor' },
+  { label: 'Collections', href: '#collections', type: 'anchor' },
+  { label: 'Process', href: '#process', type: 'anchor' },
+  { label: 'Atelier', href: '#atelier', type: 'anchor' },
+  { label: 'Contact', href: '#contact', type: 'anchor' },
 ] as const;
 
 export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
-  const [isOpen,   setIsOpen]   = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -27,7 +26,6 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle hash scrolling on homepage mount or pathname change
   useEffect(() => {
     if (pathname === '/' && typeof window !== 'undefined' && window.location.hash) {
       const id = window.location.hash.replace('#', '');
@@ -40,11 +38,8 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   }, [pathname]);
 
   const handleLogoClick = () => {
-    if (pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      router.push('/');
-    }
+    if (pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+    else router.push('/');
   };
 
   const handleAnchor = (href: string) => {
@@ -61,87 +56,46 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 w-full z-[100] transition-all duration-750 ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
         scrolled
           ? 'h-[72px] bg-background/90 backdrop-blur-xl border-b border-primary/8 shadow-[0_1px_30px_rgba(0,0,0,0.4)]'
           : 'h-[100px] bg-transparent'
       }`}
     >
-      <div className="flex justify-between items-center px-8 md:px-16 max-w-7xl mx-auto h-full">
+      <div className="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-full">
 
-        {/* Logo Monogram */}
-        <motion.div
-          onClick={handleLogoClick}
-          whileHover={{ opacity: 0.9 }}
-          transition={{ duration: 0.3 }}
-          className="group cursor-pointer flex items-center gap-3 select-none"
-        >
-          <div className="w-10 h-10 border border-primary/40 rounded flex items-center justify-center bg-surface-high relative shadow-md">
-            <span className="font-display italic text-lg text-primary leading-none">A</span>
-            <div className="absolute inset-[2px] border border-primary/10 rounded-sm pointer-events-none" />
-          </div>
-          <div className="flex flex-col">
-            <span
-              className={`font-display italic tracking-[0.25em] text-primary transition-all duration-700 leading-none ${
-                scrolled ? 'text-xl' : 'text-2xl'
-              }`}
-            >
-              Aurel Leather
-            </span>
-            <span className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mt-1 leading-none">
-              Karachi &bull; Pakistan
-            </span>
-          </div>
-        </motion.div>
+        <motion.button onClick={handleLogoClick} whileHover={{ opacity: 0.9 }} className="group cursor-pointer select-none focus:outline-none">
+          <span className={`font-display font-bold tracking-[0.2em] text-primary ${scrolled ? 'text-lg' : 'text-2xl'}`}>AUREL</span>
+        </motion.button>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-9">
+        <div className="hidden lg:flex items-center gap-8">
           {navItems.map((item) =>
             item.type === 'anchor' ? (
-              <button
-                key={item.label}
-                onClick={() => handleAnchor(item.href)}
-                className="relative font-sans text-[10px] font-bold tracking-[0.22em] uppercase text-on-surface-variant hover:text-primary transition-colors duration-300 group py-1"
-              >
+              <button key={item.label} onClick={() => handleAnchor(item.href)} className="relative font-sans text-[10px] font-bold tracking-[0.22em] uppercase text-on-surface-variant hover:text-primary transition-colors duration-200 group py-1">
                 {item.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-primary to-primary-light group-hover:w-full transition-all duration-500 ease-out" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-primary to-primary-light group-hover:w-full transition-all duration-400" />
               </button>
             ) : (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="relative font-sans text-[10px] font-bold tracking-[0.22em] uppercase text-on-surface-variant hover:text-primary transition-colors duration-300 group py-1"
-              >
+              <Link key={item.label} href={item.href} className="relative font-sans text-[10px] font-bold tracking-[0.22em] uppercase text-on-surface-variant hover:text-primary transition-colors duration-200 group py-1">
                 {item.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-primary to-primary-light group-hover:w-full transition-all duration-500 ease-out" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-primary to-primary-light group-hover:w-full transition-all duration-400" />
               </Link>
             )
           )}
 
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => (onRequestQuote ? onRequestQuote() : handleAnchor('#contact'))}
-            className="shimmer-btn relative bg-primary text-on-primary px-7 py-[10px] font-sans text-[10px] font-bold tracking-[0.22em] uppercase hover:shadow-[0_0_28px_rgba(201,169,110,0.28)] transition-all duration-300 overflow-hidden"
-          >
+          <motion.a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }} className="shimmer-btn bg-primary text-on-primary px-6 py-2 font-sans text-[10px] font-bold tracking-[0.18em] uppercase">
             Request Quote
-          </motion.button>
+          </motion.a>
         </div>
 
-        {/* Mobile hamburger */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          className="lg:hidden text-primary p-1"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <AnimatePresence mode="wait" initial={false}>
+        <motion.button whileTap={{ scale: 0.95 }} className="lg:hidden text-primary p-1" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          <AnimatePresence initial={false} mode="wait">
             {isOpen ? (
-              <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+              <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
                 <X size={22} />
               </motion.span>
             ) : (
-              <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+              <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
                 <Menu size={22} />
               </motion.span>
             )}
@@ -149,52 +103,31 @@ export const Navbar = ({ onRequestQuote }: { onRequestQuote?: () => void }) => {
         </motion.button>
       </div>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -16, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, y: 0,  backdropFilter: 'blur(24px)' }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-2xl border-b border-primary/10 lg:hidden px-8 py-10 flex flex-col gap-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
-          >
-            {navItems.map((item, i) =>
-              item.type === 'anchor' ? (
-                <motion.button
-                  key={item.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => handleAnchor(item.href)}
-                  className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-on-surface-variant hover:text-primary text-left transition-colors duration-200"
-                >
-                  {item.label}
-                </motion.button>
-              ) : (
-                <motion.div key={item.label} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-on-surface-variant hover:text-primary transition-colors duration-200"
-                  >
+          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.28 }} className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-2xl border-b border-primary/10 lg:hidden px-6 py-8 shadow-lg">
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                item.type === 'anchor' ? (
+                  <button key={item.label} onClick={() => { setIsOpen(false); handleAnchor(item.href); }} className="font-sans text-[13px] font-bold uppercase text-on-surface-variant text-left py-2">
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link key={item.label} href={item.href} onClick={() => setIsOpen(false)} className="font-sans text-[13px] font-bold uppercase text-on-surface-variant text-left py-2">
                     {item.label}
                   </Link>
-                </motion.div>
-              )
-            )}
-            <motion.button
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navItems.length * 0.05 + 0.05, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => { setIsOpen(false); onRequestQuote ? onRequestQuote() : handleAnchor('#contact'); }}
-              className="shimmer-btn bg-primary text-on-primary w-full py-4 font-sans text-[10px] font-bold tracking-[0.3em] uppercase mt-2"
-            >
-              Request Quote
-            </motion.button>
+                )
+              ))}
+
+              <motion.a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-4 bg-primary text-on-primary w-full text-center py-3 font-sans font-bold uppercase">
+                Request Quote
+              </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
   );
 };
+
+export default Navbar;
