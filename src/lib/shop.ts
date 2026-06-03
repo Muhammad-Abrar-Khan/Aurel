@@ -30,7 +30,7 @@ export const products: Product[] = [
     priceNumber: 2800,
     excerpt: 'Full-grain leather wallet crafted for corporate prestige and daily refinement.',
     description:
-      'Aurel Leather executive wallets are designed for premium corporate gifting. Each piece is finished in Pakistan with soft matte leather, polished edges, and an embossed logo panel tucked into a bespoke presentation box.',
+      'The Executive Leather Wallet by Aurel Leather is a premium full-grain cowhide wallet manufactured in Karachi, Pakistan, and designed specifically for corporate gifting, executive use, and branded company merchandise. This factory-direct leather wallet is trusted by leading banks, telecom companies, software houses, real estate developers, and FMCG brands across Pakistan for high-volume corporate gifting campaigns. Each wallet is handcrafted using genuine full-grain leather and undergoes strict quality control inspection to ensure durability, texture consistency, and premium finish. Ideal for corporate gifting programs, employee appreciation gifts, client onboarding kits, Eid and annual reward campaigns, and executive branding merchandise. Features full-grain cowhide leather, custom embossing/debossing (gold, blind, or foil), premium stitching with edge finishing, slim executive design, and gift-ready premium packaging. Our manufacturing facility in Karachi ensures production within 7–14 days with export-ready documentation available for international orders.',
     highlights: ['Full-grain leather', '8+ card capacity', 'Embossed corporate branding'],
     features: ['Premium leather interior', 'Custom foil stamping', 'Gift-ready packaging'],
     specs: {
@@ -44,8 +44,8 @@ export const products: Product[] = [
     gallery: ['/assets/premium-leather-wallet-bulk.webp', '/assets/card-holder-branded-bulk.webp', '/assets/corporate-gift-set-pakistan.webp'],
     featured: true,
     published: true,
-    seoTitle: 'Executive Leather Wallet | Aurel Leather',
-    seoDescription: 'Premium executive leather wallet for corporate gifting. Full-grain construction, premium finish, and bespoke branding options.',
+    seoTitle: 'Executive Leather Wallet Pakistan | Corporate Gift Supplier Karachi | Aurel Leather',
+    seoDescription: 'Factory-direct executive leather wallet for corporate gifting in Pakistan. Full-grain cowhide, MOQ 50 units, 7-14 day production. Custom embossing. Trusted by banks & corporates.',
   },
   {
     id: 'card-holder',

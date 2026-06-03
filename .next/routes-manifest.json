@@ -20,6 +20,14 @@
   },
   "dynamicRoutes": [
     {
+      "page": "/industries/[slug]",
+      "regex": "^/industries/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/industries/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/products/[slug]",
       "regex": "^/products/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -84,6 +92,12 @@
       "namedRegex": "^/cardholders(?:/)?$"
     },
     {
+      "page": "/case-studies",
+      "regex": "^/case\\-studies(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies(?:/)?$"
+    },
+    {
       "page": "/collections",
       "regex": "^/collections(?:/)?$",
       "routeKeys": {},
@@ -108,6 +122,36 @@
       "namedRegex": "^/customization(?:/)?$"
     },
     {
+      "page": "/faq",
+      "regex": "^/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/faq(?:/)?$"
+    },
+    {
+      "page": "/industries",
+      "regex": "^/industries(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries(?:/)?$"
+    },
+    {
+      "page": "/manufacturing",
+      "regex": "^/manufacturing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manufacturing(?:/)?$"
+    },
+    {
+      "page": "/manufacturing/oem",
+      "regex": "^/manufacturing/oem(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manufacturing/oem(?:/)?$"
+    },
+    {
+      "page": "/materials",
+      "regex": "^/materials(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/materials(?:/)?$"
+    },
+    {
       "page": "/privacy-policy",
       "regex": "^/privacy\\-policy(?:/)?$",
       "routeKeys": {},
@@ -118,6 +162,12 @@
       "regex": "^/products(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/products(?:/)?$"
+    },
+    {
+      "page": "/request-quote",
+      "regex": "^/request\\-quote(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/request\\-quote(?:/)?$"
     },
     {
       "page": "/robots.txt",

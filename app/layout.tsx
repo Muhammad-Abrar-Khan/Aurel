@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'Aurel Leather | Factory-Direct Leather Manufacturing Pakistan',
   description:
     'Aurel Leather — Karachi-based factory-direct leather manufacturer specializing in bulk corporate gifting, executive wallets, notebooks, and premium branded packaging. MOQ from 50 units. Genuine leather, global delivery.',
+  keywords: [
+    'leather corporate gifts Pakistan',
+    'leather manufacturer Karachi',
+    'corporate gifting Pakistan',
+    'executive leather gifts',
+    'custom leather goods Pakistan',
+    'OEM leather manufacturer Pakistan',
+  ],
   metadataBase: new URL(APP_URL),
   alternates: {
     canonical: '/',

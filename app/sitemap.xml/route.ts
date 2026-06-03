@@ -9,10 +9,20 @@ const staticUrls = [
   '/products',
   '/about',
   '/contact',
-  '/wallets',
-  '/cardholders',
   '/corporate-gifting',
   '/customization',
+  '/manufacturing',
+  '/manufacturing/oem',
+  '/industries',
+  '/industries/banking-finance',
+  '/industries/technology',
+  '/industries/education',
+  '/industries/real-estate',
+  '/industries/healthcare',
+  '/case-studies',
+  '/faq',
+  '/request-quote',
+  '/materials',
 ];
 
 const productUrls = getProductSlugs().map(({ slug }) => `/products/${slug}`);
