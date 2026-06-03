@@ -24,25 +24,36 @@ const INDUSTRIES_WITH_ICONS = [
   { label: "Healthcare", icon: HeartPulse },
 ];
 
-/* Animated counter */
+/* Animated counter - displays value immediately, then animates when in view */
 const Counter = ({ target, suffix }: { target: number; suffix: string }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target); // Show target immediately
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: false, margin: "-50px" });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated) return;
+    
+    setHasAnimated(true);
+    setCount(0); // Start animation from 0
+    
     const duration = 1600;
-    const steps    = 50;
-    const inc      = target / steps;
-    let   current  = 0;
+    const steps = 50;
+    const inc = target / steps;
+    let current = 0;
+    
     const timer = setInterval(() => {
       current += inc;
-      if (current >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(current));
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
     }, duration / steps);
+    
     return () => clearInterval(timer);
-  }, [inView, target]);
+  }, [inView, target, hasAnimated]);
 
   return <span ref={ref}>{count}{suffix}</span>;
 };
@@ -83,12 +94,9 @@ export const TrustBar = () => {
             {INDUSTRIES_WITH_ICONS.map((ind, i) => {
               const Icon = ind.icon;
               return (
-                <div key={i} className="flex items-center gap-3 shrink-0 px-8">
-                  <Icon size={12} className="text-primary opacity-60" />
-                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-outline/70 whitespace-nowrap">
-                    {ind.label}
-                  </span>
-                  <div className="w-1 h-1 bg-primary/20 rotate-45 shrink-0 ml-4" />
+                <div key={i} className="flex items-center gap-4 shrink-0">
+                  <Icon size={16} className="text-primary/60" />
+                  <span className="font-sans text-xs text-outline/70">{ind.label}</span>
                 </div>
               );
             })}

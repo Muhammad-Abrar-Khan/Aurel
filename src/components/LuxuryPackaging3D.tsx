@@ -6,6 +6,9 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Environment, Text } from '@react-three/drei';
 import * as THREE from 'three';
 
+// Easing helper (cubic ease-out)
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
 const LeatherMaterial = ({ color = "#171614", roughness = 0.55 }: { color?: string; roughness?: number }) => (
   <meshStandardMaterial 
     color={color}
@@ -90,7 +93,7 @@ export const LuxuryBoxScene = ({ triggerOpen }: { triggerOpen: boolean }) => {
 
     if (hingeRef.current) {
       // Rotate on X axis, starting at 0 (closed) up to 110 degrees (-Math.PI * 0.61)
-      const targetAngle = -Math.PI * 0.61 * THREE.MathUtils.easeOutCubic(openProgress);
+      const targetAngle = -Math.PI * 0.61 * easeOutCubic(openProgress);
       hingeRef.current.rotation.x = targetAngle;
     }
   });
@@ -165,7 +168,6 @@ export const LuxuryBoxScene = ({ triggerOpen }: { triggerOpen: boolean }) => {
             position={[0, 0.082, 0]}
             rotation={[-Math.PI / 2, 0, 0]}
             fontSize={0.4}
-            font="Georgia"
             italic
             color="#C9A96E"
             letterSpacing={0.3}

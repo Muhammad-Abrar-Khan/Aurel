@@ -40,17 +40,25 @@ declare namespace __next_route_internal_types__ {
     | `/admin/login`
     | `/admin/products`
     | `/cardholders`
+    | `/case-studies`
     | `/collections`
     | `/contact`
     | `/corporate-gifting`
     | `/customization`
+    | `/faq`
+    | `/industries`
+    | `/manufacturing`
+    | `/manufacturing/oem`
+    | `/materials`
     | `/privacy-policy`
     | `/products`
+    | `/request-quote`
     | `/robots.txt`
     | `/sitemap.xml`
     | `/terms`
     | `/wallets`
   type DynamicRoutes<T extends string = string> = 
+    | `/industries/${SafeSlug<T>}`
     | `/products/${SafeSlug<T>}`
 
   type RouteImpl<T> = 
