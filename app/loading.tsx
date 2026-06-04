@@ -26,7 +26,7 @@ export default function Loading() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#0a0908] text-on-surface relative overflow-hidden">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background text-on-surface relative overflow-hidden">
       {/* Subtle luxury ambient glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_50%,_rgba(201,169,110,0.04),_transparent)] pointer-events-none" />
 
@@ -35,7 +35,7 @@ export default function Loading() {
         initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="w-16 h-16 border border-primary/45 rounded flex items-center justify-center bg-[#141311] relative shadow-[0_20px_40px_rgba(0,0,0,0.5)] mb-8"
+        className="w-16 h-16 border border-primary/45 rounded flex items-center justify-center bg-surface relative shadow-[0_12px_40px_rgba(38,33,26,0.06)] mb-8"
       >
         <span className="font-display italic text-2xl text-primary leading-none">A</span>
         <div className="absolute inset-[3px] border border-primary/10 rounded-sm pointer-events-none" />
@@ -72,7 +72,7 @@ export default function Loading() {
       </motion.p>
 
       {/* Tiny gold progress line */}
-      <div className="w-48 h-0.5 bg-white/5 mt-10 relative overflow-hidden rounded-full">
+      <div className="w-48 h-0.5 bg-primary/15 mt-10 relative overflow-hidden rounded-full">
         <motion.div
           initial={{ left: "-100%" }}
           animate={{ left: "100%" }}

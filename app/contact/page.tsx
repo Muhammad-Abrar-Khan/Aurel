@@ -4,6 +4,7 @@ import { SimpleFAQ } from '@/components/SimpleFAQ';
 export const metadata = {
   title: 'Contact | Aurel Leather',
   description: 'Contact Aurel Leather for quotes, samples and corporate inquiries. Reach us via WhatsApp or the contact form.',
+  alternates: { canonical: '/contact' },
 };
 
 const faq = [

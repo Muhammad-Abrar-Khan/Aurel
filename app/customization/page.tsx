@@ -4,6 +4,7 @@ import { SimpleFAQ } from '@/components/SimpleFAQ';
 export const metadata = {
   title: 'Customization | Aurel Leather',
   description: 'Customization options: embossing, foil, color matching and bespoke packaging for corporate branding.',
+  alternates: { canonical: '/customization' },
 };
 
 const faq = [

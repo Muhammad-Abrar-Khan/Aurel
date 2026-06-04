@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'B2B FAQ | Aurel Leather Pakistan',
   description:
     'Answers to common questions about Aurel Leather corporate gifting: MOQ, customization, production timelines, payment, and export.',
+  alternates: { canonical: '/faq' },
 };
 
 const faqGroups = [

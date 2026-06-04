@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: 'Leather Manufacturing Karachi | Aurel Leather',
   description:
     'Pakistan premier factory-direct leather manufacturer in Karachi. Full-grain cowhide, custom embossing, 50-unit MOQ, 7-14 day production. Trusted by enterprises across Pakistan and GCC.',
+  alternates: { canonical: '/manufacturing' },
 };
 
 const processSteps = [

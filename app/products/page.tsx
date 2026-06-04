@@ -6,6 +6,7 @@ import { getAllProducts, categories } from '@/lib/shop';
 export const metadata = {
   title: 'Products | Aurel Leather',
   description: 'Explore Aurel Leather’s premium leather products for corporate gifting, executive accessories, and luxury branded presentations.',
+  alternates: { canonical: '/products' },
 };
 
 export default function ProductsPage() {

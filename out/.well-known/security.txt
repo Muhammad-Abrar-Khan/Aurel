@@ -1,4 +1,4 @@
-Contact: security@aurel.pk
+Contact: mailto:hello.aurel.pk@gmail.com
 Preferred-Languages: en, ur
-Expiration: 2026-05-22T00:00:00Z
-Canonical: https://aurel-app-3498d.web.app/.well-known/security.txt
+Expiration: 2027-06-03T00:00:00Z
+Canonical: https://aurelleatherpk.web.app/.well-known/security.txt

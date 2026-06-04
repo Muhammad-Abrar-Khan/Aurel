@@ -11,6 +11,7 @@ import { waLinks } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Industries | Aurel Leather',
   description: 'Leather corporate gifting solutions for banking, technology, education, real estate, and healthcare. Explore industry-tailored proposals from Aurel Leather.',
+  alternates: { canonical: '/industries' },
 };
 
 const industries = [

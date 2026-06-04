@@ -106,6 +106,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${industry.title} | Aurel Leather`,
     description: industry.description,
+    alternates: { canonical: `/industries/${industry.slug}` },
   };
 }
 

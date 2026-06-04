@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'Materials | Aurel Leather',
   description:
     'Explore Aurel Leather material options including full-grain cowhide, pebble grain, saffiano, and pull-up leather. See finishes, colors, textures, and recommended uses for corporate programs.',
+  alternates: { canonical: '/materials' },
 };
 
 const materials = [

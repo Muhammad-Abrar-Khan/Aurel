@@ -12,6 +12,7 @@ import { waLinks } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Case Studies | Aurel Leather',
   description: 'Explore Aurel Leather enterprise case studies and premium bulk manufacturing outcomes across banking, FMCG, and technology sectors.',
+  alternates: { canonical: '/case-studies' },
 };
 
 const caseStudies = [

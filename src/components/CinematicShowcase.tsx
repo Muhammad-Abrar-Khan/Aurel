@@ -214,13 +214,13 @@ export const CinematicShowcase = () => {
   };
 
   return (
-    <div className="w-full bg-[#0b0a09] border border-white/5 rounded-3xl p-6 md:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.8)] relative overflow-hidden">
+    <div className="w-full bg-surface border border-primary/10 rounded-3xl p-6 md:p-10 shadow-[0_20px_50px_rgba(38,33,26,0.06)] relative overflow-hidden">
       {/* Glow backgrounds */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#a1814e]/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-8 border-b border-white/5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-8 border-b border-primary/10">
         <div>
           <div className="flex items-center gap-3 mb-2">
             <span className="font-mono text-[9px] tracking-[0.4em] text-primary uppercase bg-primary/10 px-2.5 py-1 rounded">
@@ -365,14 +365,14 @@ export const CinematicShowcase = () => {
             transition={{ duration: 0.5 }}
           >
             {/* Shot Selector Tabs */}
-            <div className="grid grid-cols-3 gap-2 mb-8 p-1 bg-surface border border-white/5 rounded-xl">
+            <div className="grid grid-cols-3 gap-2 mb-8 p-1 bg-background border border-primary/10 rounded-xl">
               {storyboardShots.map((shot) => (
                 <button
                   key={shot.id}
                   onClick={() => setActiveShot(shot)}
                   className={`py-3.5 rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
                     activeShot.id === shot.id
-                      ? "bg-[#181614] border border-primary/25 shadow-xl text-primary"
+                      ? "bg-surface-high border border-primary/25 shadow-md text-primary"
                       : "text-on-surface-variant hover:text-on-surface"
                   }`}
                 >
@@ -399,7 +399,7 @@ export const CinematicShowcase = () => {
                 </div>
 
                 {/* Visual Cue Mockup Card */}
-                <div className="p-4 rounded-xl bg-[#11100f] border border-white/5">
+                <div className="p-4 rounded-xl bg-surface-low border border-primary/10">
                   <div className="flex items-center gap-2 mb-2 font-mono text-[10px] text-primary">
                     <Compass size={12} />
                     <span>CHOREOGRAPHY & MOTION TARGET</span>
@@ -410,14 +410,14 @@ export const CinematicShowcase = () => {
                 </div>
 
                 {/* Universal Prompt Box */}
-                <div className="relative group rounded-xl border border-white/8 bg-surface p-5 shadow-inner">
-                  <div className="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
+                <div className="relative group rounded-xl border border-primary/10 bg-background p-5 shadow-sm">
+                  <div className="flex items-center justify-between mb-3 border-b border-primary/10 pb-2">
                     <span className="font-mono text-[10px] tracking-widest text-outline uppercase">
                       Universal Prompt (Base)
                     </span>
                     <button
                       onClick={() => copyToClipboard(activeShot.universalPrompt, `${activeShot.id}-universal`)}
-                      className="p-1.5 rounded bg-white/5 hover:bg-primary/20 text-on-surface-variant hover:text-primary transition-all duration-300 flex items-center gap-1.5 font-mono text-[10px]"
+                      className="p-1.5 rounded bg-primary/10 hover:bg-primary/20 text-on-surface-variant hover:text-primary transition-all duration-300 flex items-center gap-1.5 font-mono text-[10px]"
                     >
                       {copiedStates[`${activeShot.id}-universal`] ? (
                         <>
@@ -439,8 +439,8 @@ export const CinematicShowcase = () => {
               </div>
 
               {/* AI Generators Prompt Engine */}
-              <div className="rounded-2xl border border-white/8 bg-[#11100f] p-6 space-y-6">
-                <div className="flex items-center justify-between border-b border-white/5 pb-4">
+              <div className="rounded-2xl border border-primary/10 bg-surface-low p-6 space-y-6">
+                <div className="flex items-center justify-between border-b border-primary/10 pb-4">
                   <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-primary" />
                     <h3 className="font-mono text-xs tracking-widest text-outline uppercase">
@@ -449,7 +449,7 @@ export const CinematicShowcase = () => {
                   </div>
 
                   {/* Engine Selector buttons */}
-                  <div className="flex p-0.5 bg-surface border border-white/5 rounded-lg">
+                  <div className="flex p-0.5 bg-background border border-primary/10 rounded-lg">
                     {(["runway", "kling", "luma"] as const).map((eng) => (
                       <button
                         key={eng}
@@ -491,7 +491,7 @@ export const CinematicShowcase = () => {
                   </div>
 
                   {/* Highlighted copy container */}
-                  <div className="p-4 rounded-xl bg-surface border border-white/5 font-sans text-xs text-on-surface-variant leading-relaxed select-all min-h-[120px]">
+                  <div className="p-4 rounded-xl bg-surface-low border border-primary/10 font-sans text-xs text-on-surface-variant leading-relaxed select-all min-h-[120px]">
                     {activeShot.engines[activeEngine].prompt}
                   </div>
                 </div>
@@ -507,7 +507,7 @@ export const CinematicShowcase = () => {
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {activeShot.engines[activeEngine].parameters.map((param, pi) => (
-                      <div key={pi} className="p-3 rounded-lg bg-surface border border-white/5">
+                      <div key={pi} className="p-3 rounded-lg bg-background border border-primary/10">
                         <span className="font-mono text-[8px] text-outline block mb-1 uppercase">
                           {param.key}
                         </span>

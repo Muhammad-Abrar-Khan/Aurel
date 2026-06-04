@@ -41,7 +41,7 @@ const navLinks = {
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-[#0c0b0a] border-t border-primary/10 overflow-hidden">
+    <footer className="relative bg-surface-low border-t border-primary/10 overflow-hidden">
       <div className="grain-overlay" />
       <div className="absolute top-0 left-0 right-0 h-px gold-thread opacity-50" />
 
@@ -76,7 +76,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 border border-primary/15 flex items-center justify-center text-outline hover:text-primary hover:border-primary/50 hover:shadow-[0_0_16px_rgba(201,169,110,0.15)] transition-all duration-300 rounded-sm bg-background/25"
+                  className="w-9 h-9 border border-primary/20 flex items-center justify-center text-outline hover:text-primary hover:border-primary/50 hover:shadow-[0_0_16px_rgba(181,147,83,0.15)] transition-all duration-300 rounded-sm bg-background/50"
                 >
                   {social.icon}
                 </a>
@@ -91,7 +91,7 @@ export const Footer = () => {
                 <input
                   type="email"
                   placeholder="enter.corporate@email.com"
-                  className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/25 font-sans"
+                  className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/60 font-sans"
                 />
                 <button className="text-primary pl-3 hover:opacity-70 transition-opacity" aria-label="Subscribe">
                   <ArrowRight size={12} />

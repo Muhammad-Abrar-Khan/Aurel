@@ -22,6 +22,7 @@ import { WHATSAPP_URL } from '@/lib/constants';
 export const metadata = {
   title: 'Corporate Gifting | Aurel Leather',
   description: 'Elevated B2B corporate gifting. Rigid gift box presentations, custom gold foil logo branding, private label leathercraft, and nationwide logistics from Karachi.',
+  alternates: { canonical: '/corporate-gifting' },
 };
 
 const B2BCapabilities = [
@@ -96,7 +97,7 @@ const faq = [
 
 export default function CorporateGiftingPage() {
   return (
-    <div className="bg-[#0b0a09] text-on-surface min-h-screen overflow-x-hidden flex flex-col justify-between">
+    <div className="bg-background text-on-surface min-h-screen overflow-x-hidden flex flex-col justify-between">
       <Navbar />
       
       <main id="main" className="relative flex-grow">

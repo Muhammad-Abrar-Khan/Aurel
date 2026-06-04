@@ -58,7 +58,7 @@ export const TestimonialsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.14 }}
-              className="group relative bg-surface border border-primary/8 p-8 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden"
+              className="group relative bg-surface border border-primary/8 p-8 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_15px_45px_rgba(38,33,26,0.06)] overflow-hidden"
             >
               {/* Top shimmer on hover */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

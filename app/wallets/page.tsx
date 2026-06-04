@@ -4,6 +4,7 @@ import { SimpleFAQ } from '@/components/SimpleFAQ';
 export const metadata = {
   title: 'Wallets | Aurel Leather',
   description: 'Premium leather wallets for corporate gifting — Aurel Leather produces trade-grade, customizable wallets in Karachi, Pakistan.',
+  alternates: { canonical: '/wallets' },
 };
 
 const faq = [

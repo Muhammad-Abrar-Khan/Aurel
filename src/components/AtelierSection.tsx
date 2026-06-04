@@ -65,7 +65,7 @@ export const AtelierSection = () => {
             className={img.span}
           >
             <ThreeDCard className="h-full">
-              <div className="group relative h-full w-full overflow-hidden cursor-pointer min-h-[280px] md:min-h-0 bg-surface shadow-[0_20px_60px_rgba(0,0,0,0.45)] border border-primary/5 hover:border-primary/20 transition-all duration-500 rounded-sm">
+              <div className="group relative h-full w-full overflow-hidden cursor-pointer min-h-[280px] md:min-h-0 bg-surface shadow-[0_15px_45px_rgba(38,33,26,0.06)] border border-primary/5 hover:border-primary/20 transition-all duration-500 rounded-sm">
                 
                 {img.video ? (
                   <video

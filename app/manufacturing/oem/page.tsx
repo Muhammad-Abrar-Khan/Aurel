@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'OEM & Private Label Leather Goods Pakistan | Aurel Leather',
   description:
     'Factory-direct OEM and private label leather manufacturing in Karachi. Custom branding, 50-unit MOQ, export to GCC, UK, EU.',
+  alternates: { canonical: '/manufacturing/oem' },
 };
 
 const offerings = [

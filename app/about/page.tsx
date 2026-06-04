@@ -4,6 +4,7 @@ import { SimpleFAQ } from '@/components/SimpleFAQ';
 export const metadata = {
   title: 'About | Aurel Leather',
   description: 'Aurel Leather — craft and production in Karachi. Learn about our manufacturing, team and values.',
+  alternates: { canonical: '/about' },
 };
 
 const faq = [
