@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 
 export default function NotFoundPage() {
@@ -28,7 +27,6 @@ export default function NotFoundPage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

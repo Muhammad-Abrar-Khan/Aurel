@@ -16,7 +16,7 @@ import {
   Sliders,
   Sparkles
 } from "lucide-react";
-import { getAssetPath } from "@/utils/assetHelpers";
+
 
 // Types
 interface ShotData {
@@ -278,7 +278,7 @@ export const CinematicShowcase = () => {
             <div className="relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
               <video
                 id="draft-video"
-                src={getAssetPath("3d-video.mp4") || "/assets/3d-video.mp4"}
+                src="/assets/3d-video.mp4"
                 loop
                 muted
                 className="w-full h-full object-cover opacity-80"

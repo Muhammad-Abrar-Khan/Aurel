@@ -6,16 +6,18 @@ import { TrustBar }               from '@/components/TrustBar';
 import { ExecutiveCollection }    from '@/components/ExecutiveCollection';
 import { CorporateGiftingFlow }   from '@/components/CorporateGiftingFlow';
 import { IndustrialCapabilities } from '@/components/IndustrialCapabilities';
-import { WhyAurel }               from '@/components/WhyAurel';
 import { AurelLeather }           from '@/components/AurelLeather';
-import AtelierSection             from '@/components/AtelierSection';
-import { LuxuryPackaging }        from '@/components/LuxuryPackaging';
+import dynamic from 'next/dynamic';
+
+const WhyAurel = dynamic(() => import('@/components/WhyAurel').then(mod => mod.WhyAurel));
+const AtelierSection = dynamic(() => import('@/components/AtelierSection'));
+const LuxuryPackaging = dynamic(() => import('@/components/LuxuryPackaging').then(mod => mod.LuxuryPackaging));
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection').then(mod => mod.TestimonialsSection));
+
 import { DeliveryModel }          from '@/components/DeliveryModel';
-import { TestimonialsSection }    from '@/components/TestimonialsSection';
 import { TechnicalSpecs }         from '@/components/TechnicalSpecs';
 import { ProposalForm }           from '@/components/ProposalForm';
 import { Footer }                 from '@/components/Footer';
-import { WhatsAppCTA }            from '@/components/WhatsAppCTA';
 
 export function HomePageContent() {
   return (
@@ -62,7 +64,6 @@ export function HomePageContent() {
         <ProposalForm />
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

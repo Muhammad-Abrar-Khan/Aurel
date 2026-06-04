@@ -11,6 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import { EMAIL_ADDRESS, WHATSAPP_URL } from "@/lib/constants";
+import Image from "next/image";
 
 const navLinks = {
   Products: [
@@ -50,9 +51,13 @@ export const Footer = () => {
           <div className="lg:col-span-4 flex flex-col gap-6">
             <div>
               <div className="select-none mb-6">
-                <span className="font-display font-bold tracking-[0.2em] text-primary text-2xl leading-none">
-                  AUREL
-                </span>
+                <Image 
+                  src="/assets/HeaderLogo.webp" 
+                  alt="Aurel Leather" 
+                  width={200} 
+                  height={60} 
+                  className="w-auto h-[45px] lg:h-[55px] object-contain"
+                />
               </div>
               <div className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mb-6 leading-tight">
                 Premium Leather Manufacturing

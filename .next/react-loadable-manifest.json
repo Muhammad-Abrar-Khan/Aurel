@@ -19,6 +19,30 @@
       "static/chunks/1646.9123ee47220ed70b.js"
     ]
   },
+  "src\\components\\HomePage.tsx -> @/components/AtelierSection": {
+    "id": 7084,
+    "files": [
+      "static/chunks/7084.297f7adb44b4b4f0.js"
+    ]
+  },
+  "src\\components\\HomePage.tsx -> @/components/LuxuryPackaging": {
+    "id": 3274,
+    "files": [
+      "static/chunks/3274.ce03b72241870ab4.js"
+    ]
+  },
+  "src\\components\\HomePage.tsx -> @/components/TestimonialsSection": {
+    "id": 3510,
+    "files": [
+      "static/chunks/3510.26180ff73f78b08f.js"
+    ]
+  },
+  "src\\components\\HomePage.tsx -> @/components/WhyAurel": {
+    "id": 8464,
+    "files": [
+      "static/chunks/8464.5654064b385a44f0.js"
+    ]
+  },
   "src\\components\\LuxuryPackaging.tsx -> ./LuxuryPackaging3D": {
     "id": 9722,
     "files": [

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { CinematicShowcase } from '@/components/CinematicShowcase';
 import { SimpleFAQ } from '@/components/SimpleFAQ';
 import { PremiumButton } from '@/components/ui/PremiumButton';
@@ -291,7 +290,6 @@ export default function CorporateGiftingPage() {
       </main>
 
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

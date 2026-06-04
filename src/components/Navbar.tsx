@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const navItems = [
   { label: 'Products', href: '/products', type: 'link' },
@@ -53,8 +54,15 @@ export const Navbar = () => {
       }`}
     >
       <div className="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-full">
-        <Link href="/" className="group cursor-pointer select-none">
-          <span className={`font-display font-bold tracking-[0.2em] text-primary ${isScrolled ? 'text-lg' : 'text-2xl'}`}>AUREL</span>
+        <Link href="/" className="group cursor-pointer select-none flex items-center">
+          <Image 
+            src="/assets/HeaderLogo.webp" 
+            alt="Aurel Leather" 
+            width={180} 
+            height={50} 
+            priority
+            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-[40px]' : 'h-[45px] lg:h-[55px]'}`}
+          />
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">

@@ -6,7 +6,7 @@ import { PremiumButton } from '@/components/ui/PremiumButton';
 import LeadModal from './LeadModal';
 import { WHATSAPP_URL } from '@/lib/constants';
 import { ArrowDown, ArrowRight, MessageCircle } from 'lucide-react';
-import { getAssetPath } from '@/utils/assetHelpers';
+import Image from 'next/image';
 
 /* ─── Mouse-tracking tilt card ─── */
 const TiltCard = ({ children }: { children: React.ReactNode }) => {
@@ -211,11 +211,14 @@ export const Hero = () => {
                   <div className="grain-overlay rounded-[2px]" />
 
                   {/* Product image */}
-                  <img
-                    src={getAssetPath('premium-leather-wallet-bulk.jpeg') || '/assets/premium-leather-wallet-bulk.jpeg'}
+                  <Image
+                    src="/assets/premium-leather-wallet-bulk.webp"
                     alt="Aurel Leather — Premium Corporate Gift Collection"
+                    width={800}
+                    height={520}
                     className="w-full h-[520px] object-cover opacity-90 contrast-[1.08]"
-                    loading="eager"
+                    priority
+                    fetchPriority="high"
                   />
 
                   {/* Gradient overlay */}

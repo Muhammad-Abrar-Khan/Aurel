@@ -38,7 +38,7 @@ export const WhyAurel = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="why-aurel" className="scroll-mt-28 relative py-32 px-8 md:px-16 bg-background overflow-hidden border-t border-primary/5">
+    <section id="why-aurel" className="scroll-mt-28 relative py-32 px-8 md:px-16 bg-leather/5 overflow-hidden border-t border-primary/5">
       {/* Background ambient lighting */}
       <div className="grain-overlay" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_0%_50%,_rgba(201,169,110,0.035)_0%,_transparent_70%)] pointer-events-none" />

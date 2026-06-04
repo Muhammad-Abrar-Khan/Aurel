@@ -17,11 +17,10 @@ export const CustomCursor = () => {
   const ringY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Completely disable on touch screens or mobile viewports to prevent jank
+    // Completely disable on touch screens to prevent jank, but allow on small non-touch screens
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth < 1024;
     
-    if (isTouchDevice || isSmallScreen) {
+    if (isTouchDevice) {
       setEnabled(false);
       return;
     }

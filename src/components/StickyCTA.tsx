@@ -90,6 +90,22 @@ export const StickyCTA = () => {
                 <ChevronUp size={16} />
               </motion.button>
 
+              {/* WhatsApp Desktop CTA */}
+              <motion.a
+                href={`${WHATSAPP_URL}?text=Hi%20Aurel%20Leather%2C%20I%20would%20like%20to%20discuss%20a%20corporate%20order.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 50, opacity: 0 }}
+                whileHover={{ scale: 1.05, translateY: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3 bg-[#25D366] text-white px-6 py-4 font-mono text-[9px] tracking-[0.25em] uppercase shadow-[0_15px_35px_rgba(37,211,102,0.22)] border border-[#25D366] hover:border-white/20 transition-all rounded-sm"
+              >
+                <MessageCircle size={12} fill="currentColor" />
+                WhatsApp
+              </motion.a>
+
               {/* Float Request Pill */}
               <motion.button
                 initial={{ x: 50, opacity: 0 }}

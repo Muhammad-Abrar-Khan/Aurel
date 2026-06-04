@@ -35,6 +35,14 @@ export const LuxuryPackaging = () => {
   const isInView = useInView(containerRef, { once: false, amount: 0.35 });
   const [triggerOpen, setTriggerOpen] = useState(false);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Play animation once when entering the viewport
   useEffect(() => {
@@ -86,8 +94,20 @@ export const LuxuryPackaging = () => {
                 </span>
               </div>
 
-              {/* R3F Box Model */}
-              <LuxuryPackaging3D triggerOpen={triggerOpen} />
+              {/* R3F Box Model or Mobile Fallback */}
+              {isMobile ? (
+                <div className="w-full h-full relative">
+                  <img
+                    src="/assets/institutional-gifting-packaging.webp"
+                    alt="Aurel Rigid Packaging"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-background/10 mix-blend-overlay" />
+                </div>
+              ) : (
+                <LuxuryPackaging3D triggerOpen={triggerOpen} />
+              )}
 
               {/* Gradient overlays */}
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
