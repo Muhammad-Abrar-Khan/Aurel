@@ -6,7 +6,7 @@ import { PremiumButton } from '@/components/ui/PremiumButton';
 import LeadModal from './LeadModal';
 import { WHATSAPP_URL } from '@/lib/constants';
 import { ArrowDown, ArrowRight, MessageCircle } from 'lucide-react';
-import { getAssetPath } from '@/utils/assetHelpers';
+import Image from 'next/image';
 
 /* ─── Mouse-tracking tilt card ─── */
 const TiltCard = ({ children }: { children: React.ReactNode }) => {
@@ -83,7 +83,7 @@ export const Hero = () => {
         {/* Grain overlay */}
         <div className="grain-overlay" />
         {/* Edge vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(26,25,23,0.7)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(250,248,245,0.7)_100%)]" />
       </motion.div>
 
       {/* ── Decorative lines ── */}
@@ -110,11 +110,11 @@ export const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Headline — staggered word reveal */}
-            <div className="overflow-hidden">
+            {/* Headline — staggered word reveal (single h1 for SEO) */}
+            <h1 className="font-display italic leading-[1.0] tracking-tight text-on-surface">
               {headline.split('\n').map((line, li) => (
-                <div key={li} className="overflow-hidden">
-                  <motion.h1
+                <span key={li} className="overflow-hidden block">
+                  <motion.span
                     initial={{ y: '110%', opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
@@ -122,17 +122,15 @@ export const Hero = () => {
                       ease: [0.16, 1, 0.3, 1],
                       delay: 0.2 + li * 0.12,
                     }}
-                    className={`font-display italic leading-[1.0] tracking-tight text-on-surface block ${
-                      li === 0 ? 'text-5xl md:text-7xl xl:text-8xl' :
-                      li === 1 ? 'text-5xl md:text-7xl xl:text-8xl text-primary' :
-                                 'text-5xl md:text-7xl xl:text-8xl'
+                    className={`block text-5xl md:text-7xl xl:text-8xl ${
+                      li === 1 ? 'text-primary' : ''
                     }`}
                   >
                     {line}
-                  </motion.h1>
-                </div>
+                  </motion.span>
+                </span>
               ))}
-            </div>
+            </h1>
 
             {/* Subtext */}
             <motion.p
@@ -207,17 +205,20 @@ export const Hero = () => {
               className="relative hidden lg:flex items-center justify-center h-full"
             >
               <TiltCard>
-                <div className="relative rounded-[2px] border border-primary/12 bg-surface overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.7)] luxury-glow" style={{ minHeight: 520 }}>
+                <div className="relative rounded-[2px] border border-primary/12 bg-surface overflow-hidden shadow-[0_30px_80px_rgba(38,33,26,0.15)] luxury-glow" style={{ minHeight: 520 }}>
                   
                   {/* Grain overlay */}
                   <div className="grain-overlay rounded-[2px]" />
 
                   {/* Product image */}
-                  <img
-                    src={getAssetPath('premium-leather-wallet-bulk.jpeg') || '/assets/premium-leather-wallet-bulk.jpeg'}
+                  <Image
+                    src="/assets/premium-leather-wallet-bulk.webp"
                     alt="Aurel Leather — Premium Corporate Gift Collection"
+                    width={800}
+                    height={520}
                     className="w-full h-[520px] object-cover opacity-90 contrast-[1.08]"
-                    loading="eager"
+                    priority
+                    fetchPriority="high"
                   />
 
                   {/* Gradient overlay */}

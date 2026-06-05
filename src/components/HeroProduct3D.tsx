@@ -48,7 +48,7 @@ export default function HeroProduct3D() {
   const dpr = typeof window !== 'undefined' ? Math.min(1.25, window.devicePixelRatio || 1) : 1;
 
   return (
-    <div className="h-[520px] w-full rounded-[2rem] border border-white/10 bg-[#0b0a09]/80 shadow-2xl overflow-hidden">
+    <div className="h-[520px] w-full rounded-[2rem] border border-primary/10 bg-surface shadow-[0_20px_50px_rgba(38,33,26,0.08)] overflow-hidden">
       <Canvas
         frameloop="demand"
         dpr={[1, dpr]}

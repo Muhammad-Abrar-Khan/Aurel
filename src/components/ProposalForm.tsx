@@ -122,7 +122,7 @@ export const ProposalForm = () => {
     }
   };
 
-  const textFieldCls = "w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none placeholder:text-outline/25 font-sans text-sm";
+  const textFieldCls = "w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none placeholder:text-outline/60 font-sans text-sm";
 
   return (
     <section id="contact" className="scroll-mt-28 relative py-32 px-8 md:px-16 bg-background border-t border-primary/5 overflow-hidden">
@@ -184,7 +184,7 @@ export const ProposalForm = () => {
                     onBlur={() => setFocused(null)}
                     className={textFieldCls}
                   />
-                  {errors.fullName && <p className="text-red-400 text-xs mt-1">{errors.fullName}</p>}
+                  {errors.fullName && <p className="text-red-600 text-xs mt-1">{errors.fullName}</p>}
                 </div>
 
                 {/* Company */}
@@ -199,7 +199,7 @@ export const ProposalForm = () => {
                     onBlur={() => setFocused(null)}
                     className={textFieldCls}
                   />
-                  {errors.company && <p className="text-red-400 text-xs mt-1">{errors.company}</p>}
+                  {errors.company && <p className="text-red-600 text-xs mt-1">{errors.company}</p>}
                 </div>
 
                 {/* WhatsApp */}
@@ -214,7 +214,7 @@ export const ProposalForm = () => {
                     onBlur={() => setFocused(null)}
                     className={textFieldCls}
                   />
-                  {errors.whatsapp && <p className="text-red-400 text-xs mt-1">{errors.whatsapp}</p>}
+                  {errors.whatsapp && <p className="text-red-600 text-xs mt-1">{errors.whatsapp}</p>}
                 </div>
 
                 {/* Email */}
@@ -229,7 +229,7 @@ export const ProposalForm = () => {
                     onBlur={() => setFocused(null)}
                     className={textFieldCls}
                   />
-                  {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
                 </div>
 
                 {/* Product Interest */}
@@ -241,7 +241,7 @@ export const ProposalForm = () => {
                     className="w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none font-sans text-sm"
                   >
                     {PRODUCTS.map(p => (
-                      <option key={p} value={p} className="bg-[#1A1917]">{p}</option>
+                      <option key={p} value={p} className="bg-background text-on-surface">{p}</option>
                     ))}
                   </select>
                 </div>
@@ -255,7 +255,7 @@ export const ProposalForm = () => {
                     className="w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none font-sans text-sm"
                   >
                     {QUANTITIES.map(q => (
-                      <option key={q} value={q} className="bg-[#1A1917]">{q}</option>
+                      <option key={q} value={q} className="bg-background text-on-surface">{q}</option>
                     ))}
                   </select>
                 </div>
@@ -280,12 +280,12 @@ export const ProposalForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none placeholder:text-outline/25 font-sans text-sm resize-none"
+                    className="w-full bg-transparent border-b border-primary/20 focus:border-primary transition-all duration-300 pb-3 text-on-surface outline-none placeholder:text-outline/60 font-sans text-sm resize-none"
                   />
                 </div>
 
                 {status === 'error' && (
-                  <div className="flex items-center gap-2 p-3 bg-red-950/30 border border-red-900/50 rounded text-red-300 text-sm">
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
                     <AlertCircle size={16} />
                     <p>Error sending enquiry. Please try again.</p>
                   </div>

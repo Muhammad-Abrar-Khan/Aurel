@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
@@ -14,6 +13,7 @@ export const metadata: Metadata = {
   title: 'Leather Manufacturing Karachi | Aurel Leather',
   description:
     'Pakistan premier factory-direct leather manufacturer in Karachi. Full-grain cowhide, custom embossing, 50-unit MOQ, 7-14 day production. Trusted by enterprises across Pakistan and GCC.',
+  alternates: { canonical: '/manufacturing' },
 };
 
 const processSteps = [
@@ -187,7 +187,6 @@ export default function ManufacturingPage() {
         />
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

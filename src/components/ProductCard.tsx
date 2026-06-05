@@ -4,8 +4,8 @@ import type { Product } from '@/lib/shop';
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <article className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-surface p-6 shadow-xl transition-all hover:-translate-y-1 hover:border-primary/20">
-      <div className="relative mb-6 h-64 overflow-hidden rounded-[1.75rem] bg-[#10100f]">
+    <article className="group relative overflow-hidden rounded-[2rem] border border-outline-variant bg-surface p-6 shadow-[0_4px_24px_rgba(38,33,26,0.06)] transition-all hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_12px_40px_rgba(38,33,26,0.1)]">
+      <div className="relative mb-6 h-64 overflow-hidden rounded-[1.75rem] bg-surface-low">
         <Image
           src={product.images[0]}
           alt={product.name}

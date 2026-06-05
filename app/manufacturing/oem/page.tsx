@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
@@ -11,6 +10,7 @@ export const metadata: Metadata = {
   title: 'OEM & Private Label Leather Goods Pakistan | Aurel Leather',
   description:
     'Factory-direct OEM and private label leather manufacturing in Karachi. Custom branding, 50-unit MOQ, export to GCC, UK, EU.',
+  alternates: { canonical: '/manufacturing/oem' },
 };
 
 const offerings = [
@@ -131,7 +131,6 @@ export default function OemPage() {
         </section>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

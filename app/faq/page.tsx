@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { faqSchema } from '@/lib/schemas';
 
@@ -10,6 +9,7 @@ export const metadata: Metadata = {
   title: 'B2B FAQ | Aurel Leather Pakistan',
   description:
     'Answers to common questions about Aurel Leather corporate gifting: MOQ, customization, production timelines, payment, and export.',
+  alternates: { canonical: '/faq' },
 };
 
 const faqGroups = [
@@ -134,8 +134,7 @@ export default function FAQPage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
     </div>
   );
 }

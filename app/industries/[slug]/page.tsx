@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
@@ -99,18 +98,21 @@ export function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const industry = industries.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const industry = industries.find((item) => item.slug === resolvedParams.slug);
   if (!industry) return { title: 'Industry | Aurel Leather', description: 'Aurel Leather industry solutions.' };
 
   return {
     title: `${industry.title} | Aurel Leather`,
     description: industry.description,
+    alternates: { canonical: `/industries/${industry.slug}` },
   };
 }
 
-export default function IndustryDetailPage({ params }: { params: { slug: string } }) {
-  const industry = industries.find((item) => item.slug === params.slug);
+export default async function IndustryDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const industry = industries.find((item) => item.slug === resolvedParams.slug);
   if (!industry) {
     notFound();
   }
@@ -203,7 +205,6 @@ export default function IndustryDetailPage({ params }: { params: { slug: string 
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

@@ -39,7 +39,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${[
   createUrlEntry('/', '1.0', 'weekly'),
   createUrlEntry('/products', '0.9', 'weekly'),
-  ...staticUrls.filter((url) => url !== '/products').map((url) => createUrlEntry(url, '0.8', 'monthly')),
+  ...staticUrls.filter((url) => url !== '/products' && url !== '/').map((url) => createUrlEntry(url, '0.8', 'monthly')),
   ...productUrls.map((url) => createUrlEntry(url, '0.7', 'monthly')),
 ].join('\n')}
 </urlset>`;

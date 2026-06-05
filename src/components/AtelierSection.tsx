@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ThreeDCard } from "./ThreeDCard";
 
@@ -65,18 +65,10 @@ export const AtelierSection = () => {
             className={img.span}
           >
             <ThreeDCard className="h-full">
-              <div className="group relative h-full w-full overflow-hidden cursor-pointer min-h-[280px] md:min-h-0 bg-surface shadow-[0_20px_60px_rgba(0,0,0,0.45)] border border-primary/5 hover:border-primary/20 transition-all duration-500 rounded-sm">
+              <div className="group relative h-full w-full overflow-hidden cursor-pointer min-h-[280px] md:min-h-0 bg-surface shadow-[0_15px_45px_rgba(38,33,26,0.06)] border border-primary/5 hover:border-primary/20 transition-all duration-500 rounded-sm">
                 
                 {img.video ? (
-                  <video
-                    src={img.video}
-                    poster={img.image}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-[2000ms] ease-out opacity-75 group-hover:opacity-90"
-                  />
+                  <VideoPlayer src={img.video} poster={img.image!} inView={inView} />
                 ) : (
                   <img
                     src={img.image}
@@ -110,6 +102,31 @@ export const AtelierSection = () => {
         ))}
       </div>
     </section>
+  );
+};
+
+const VideoPlayer = ({ src, poster, inView }: { src: string; poster: string; inView: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  useEffect(() => {
+    if (inView && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    } else if (!inView && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [inView]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      poster={poster}
+      preload="none"
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-[2000ms] ease-out opacity-75 group-hover:opacity-90"
+    />
   );
 };
 

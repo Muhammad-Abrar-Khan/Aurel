@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
@@ -11,6 +10,7 @@ import { waLinks } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Industries | Aurel Leather',
   description: 'Leather corporate gifting solutions for banking, technology, education, real estate, and healthcare. Explore industry-tailored proposals from Aurel Leather.',
+  alternates: { canonical: '/industries' },
 };
 
 const industries = [
@@ -145,7 +145,6 @@ export default function IndustriesPage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

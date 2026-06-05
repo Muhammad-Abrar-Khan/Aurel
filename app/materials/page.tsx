@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { waLinks } from '@/lib/whatsapp';
@@ -10,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Materials | Aurel Leather',
   description:
     'Explore Aurel Leather material options including full-grain cowhide, pebble grain, saffiano, and pull-up leather. See finishes, colors, textures, and recommended uses for corporate programs.',
+  alternates: { canonical: '/materials' },
 };
 
 const materials = [
@@ -92,7 +92,6 @@ export default function MaterialsPage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

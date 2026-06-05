@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { ThreeDCard } from "./ThreeDCard";
 import LeadModal from "./LeadModal";
-import { getAssetSrcset, getAssetPath, getAssetSizes } from "../utils/assetHelpers";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import Image from "next/image";
 import { AnimatedReveal } from "@/components/ui/AnimatedReveal";
 import { ArrowRight } from "lucide-react";
 
@@ -20,7 +20,7 @@ const products = [
     features: ["Logo Embossing", "6 Card Slots", "Gift Box Included"],
     pricing: "Rs. 1,400–1,200 per unit",
     moq: "50 Units Minimum",
-    assetName: "premium-leather-wallet-bulk.jpeg",
+    image: "/assets/premium-leather-wallet-bulk.webp",
   },
   {
     id: 'cardholder',
@@ -31,7 +31,7 @@ const products = [
     features: ["Slim Profile", "8–12 Cards", "Custom Emboss"],
     pricing: "Rs. 750–650 per unit",
     moq: "50 Units Minimum",
-    assetName: "card-holder-branded-bulk.jpeg",
+    image: "/assets/card-holder-branded-bulk.webp",
   },
   {
     id: 'notebook',
@@ -42,7 +42,7 @@ const products = [
     features: ["Custom Inner Pages", "Gold/Silver Emboss", "Ribbon Bookmark"],
     pricing: "Rs. 1,100–950 per unit",
     moq: "50 Units Minimum",
-    assetName: "executive-notebook-embossed.jpeg",
+    image: "/assets/executive-notebook-embossed.webp",
   },
   {
     id: 'giftset',
@@ -54,7 +54,7 @@ const products = [
     features: ["Premium Gift Box", "Matching Leather Set", "Custom Insert Card"],
     pricing: "Custom Quote",
     moq: "50 Units Minimum",
-    assetName: "corporate-gift-set-pakistan.jpeg",
+    image: "/assets/corporate-gift-set-pakistan.webp",
   },
 ];
 
@@ -120,13 +120,12 @@ export const ExecutiveCollection = () => {
 
                 {/* Product image */}
                 <div className="relative overflow-hidden h-60 flex-shrink-0" style={{ transform: "translateZ(20px)" }}>
-                  <img
-                    src={getAssetPath(p.assetName) || "/assets/placeholder.webp"}
-                    srcSet={getAssetSrcset(p.assetName) || undefined}
-                    sizes={getAssetSizes()}
-                    loading="lazy"
+                  <Image
+                    src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover transform group-hover:scale-[1.06] transition-transform duration-[1200ms] ease-out contrast-[1.05]"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transform group-hover:scale-[1.06] transition-transform duration-[1200ms] ease-out contrast-[1.05]"
                   />
                   {/* Luxury overlay CTA */}
                   <button

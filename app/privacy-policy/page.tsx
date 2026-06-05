@@ -3,11 +3,12 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy | AUREL',
   description: 'Privacy policy for AUREL premium leather gifting.',
+  alternates: { canonical: '/privacy-policy' },
 };
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen bg-[#1A1917] text-[#F0EDE8] pt-[120px]">
+    <main className="min-h-screen bg-background text-on-surface pt-[120px]">
       <div className="max-w-4xl mx-auto px-8 md:px-16 py-20">
         <h1 className="font-display text-4xl md:text-5xl mb-8 text-[#C9A96E]">Privacy Policy</h1>
         

@@ -1,20 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono&display=swap');
+
 @import "tailwindcss";
 
 @theme {
-  --color-background: #1A1917;
-  --color-primary: #C9A96E;
-  --color-primary-light: #dfc08c;
-  --color-primary-dark: #a88548;
-  --color-on-primary: #1A1917;
-  --color-surface: #211f1d;
-  --color-surface-low: #1c1b19;
-  --color-surface-high: #2b2a28;
-  --color-surface-highest: #363432;
-  --color-on-surface: #e6e2de;
-  --color-on-surface-variant: #d0c5b5;
-  --color-outline: #998f81;
-  --color-outline-variant: #4d463a;
+  --color-background: #FAF8F5;
+  --color-primary: #B59353;
+  --color-primary-light: #C9A96E;
+  --color-primary-dark: #826532;
+  --color-on-primary: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-low: #F7F4EF;
+  --color-surface-high: #EDE8DF;
+  --color-surface-highest: #E4DCCF;
+  --color-on-surface: #2C261F;
+  --color-on-surface-variant: #5A5043;
+  --color-outline: #B5A896;
+  --color-outline-variant: #E6DFD3;
+  --color-leather: #4A3018;
+  --color-leather-light: #6E4927;
 
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "DM Sans", sans-serif;
@@ -139,7 +141,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(26,25,23,0.6) 100%);
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(250,248,245,0.6) 100%);
   pointer-events: none;
 }
 

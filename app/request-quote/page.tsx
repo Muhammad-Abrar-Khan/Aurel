@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MultiStepRFQ } from '@/components/MultiStepRFQ';
 
@@ -9,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Request a Quote | Aurel Leather',
   description:
     'Get a custom B2B quote for leather corporate gifts. Tell us your requirements and we will respond within 2 hours.',
+  alternates: { canonical: '/request-quote' },
 };
 
 export default function RequestQuotePage() {
@@ -29,7 +29,6 @@ export default function RequestQuotePage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-    </div>
+          </div>
   );
 }

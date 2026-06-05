@@ -38,7 +38,7 @@ export const WhyAurel = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="why-aurel" className="scroll-mt-28 relative py-32 px-8 md:px-16 bg-background overflow-hidden border-t border-primary/5">
+    <section id="why-aurel" className="scroll-mt-28 relative py-32 px-8 md:px-16 bg-leather/5 overflow-hidden border-t border-primary/5">
       {/* Background ambient lighting */}
       <div className="grain-overlay" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_0%_50%,_rgba(201,169,110,0.035)_0%,_transparent_70%)] pointer-events-none" />
@@ -81,7 +81,7 @@ export const WhyAurel = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="lg:col-span-6 bg-[#0c0b0a] border border-primary/15 p-8 shadow-2xl relative rounded-sm"
+            className="lg:col-span-6 bg-surface border border-primary/10 p-8 shadow-lg relative rounded-sm"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none rounded-bl-full" />
             
@@ -98,9 +98,9 @@ export const WhyAurel = () => {
                 { label: "Turnaround SLA",     value: "7 to 14 business days standard" },
                 { label: "Sourcing Location",  value: "Direct Karachi Facility (Karachi, PK)" },
               ].map((spec, idx) => (
-                <li key={idx} className="flex justify-between items-baseline gap-4 py-1.5 border-b border-white/5 last:border-0">
+                <li key={idx} className="flex justify-between items-baseline gap-4 py-1.5 border-b border-primary/10 last:border-0">
                   <span className="font-mono text-[9px] tracking-wider text-outline uppercase shrink-0">{spec.label}</span>
-                  <div className="flex-1 h-px bg-white/5 border-dashed self-center mx-2" />
+                  <div className="flex-1 h-px bg-primary/10 border-dashed self-center mx-2" />
                   <span className="font-sans text-xs text-on-surface text-right font-semibold">{spec.value}</span>
                 </li>
               ))}
@@ -124,7 +124,7 @@ export const WhyAurel = () => {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded border border-primary/10 bg-[#0e0d0c] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          <div className="overflow-x-auto rounded border border-primary/10 bg-surface shadow-[0_20px_50px_rgba(38,33,26,0.06)]">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-primary/15 bg-background/50">
@@ -137,7 +137,7 @@ export const WhyAurel = () => {
                 {comparisonData.map((row, idx) => (
                   <tr 
                     key={idx} 
-                    className={`border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors ${row.focus ? 'bg-primary/[0.02]' : ''}`}
+                    className={`border-b border-primary/10 last:border-0 hover:bg-primary/[0.02] transition-colors ${row.focus ? 'bg-primary/[0.02]' : ''}`}
                   >
                     <td className="p-5 font-sans text-xs font-semibold text-on-surface">{row.feature}</td>
                     

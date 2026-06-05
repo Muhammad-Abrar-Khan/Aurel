@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PremiumButton } from '@/components/ui/PremiumButton';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
@@ -12,6 +11,7 @@ import { waLinks } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Case Studies | Aurel Leather',
   description: 'Explore Aurel Leather enterprise case studies and premium bulk manufacturing outcomes across banking, FMCG, and technology sectors.',
+  alternates: { canonical: '/case-studies' },
 };
 
 const caseStudies = [
@@ -93,8 +93,7 @@ export default function CaseStudiesPage() {
         </div>
       </main>
       <Footer />
-      <WhatsAppCTA />
-      <script
+            <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

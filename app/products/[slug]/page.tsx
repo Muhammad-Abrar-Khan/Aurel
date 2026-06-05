@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: product.seoTitle,
     description: product.seoDescription,
+    alternates: { canonical: `/products/${product.slug}` },
     openGraph: {
       title: product.seoTitle,
       description: product.seoDescription,
@@ -179,7 +180,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
                     <Link 
                       key={item.slug} 
                       href={`/products/${item.slug}`} 
-                      className="block rounded border border-primary/5 bg-[#0f0e0d]/50 p-4 transition-all duration-300 hover:border-primary/20 hover:bg-[#0f0e0d]"
+                      className="block rounded border border-primary/8 bg-surface-low p-4 transition-all duration-300 hover:border-primary/20 hover:bg-surface-high"
                     >
                       <p className="text-[9px] font-bold uppercase tracking-widest text-outline">{item.category}</p>
                       <p className="text-xs font-bold text-on-surface mt-1 group-hover:text-primary transition-colors">{item.name}</p>
@@ -231,10 +232,10 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
                       </li>
                     ))}
                   </ul>
-                  <div className="bg-[#0f0e0d]/50 p-6 border border-primary/5 rounded space-y-4">
+                  <div className="bg-surface-low p-6 border border-primary/8 rounded space-y-4">
                     <h4 className="font-mono text-[9px] tracking-widest text-primary uppercase border-b border-primary/10 pb-2">Technical Summary</h4>
                     {Object.entries(product.specs).map(([key, val]) => (
-                      <div key={key} className="flex justify-between text-xs py-1 border-b border-white/5 last:border-b-0">
+                      <div key={key} className="flex justify-between text-xs py-1 border-b border-primary/10 last:border-b-0">
                         <span className="text-outline">{key}</span>
                         <span className="font-bold text-on-surface text-right">{val}</span>
                       </div>
@@ -249,7 +250,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
               <h2 className="font-display text-2xl italic text-primary mb-6">Fulfillment FAQ</h2>
               <div className="space-y-4 text-on-surface-variant text-xs leading-relaxed">
                 {faqItems.map((faq) => (
-                  <div key={faq.q} className="rounded border border-primary/5 p-5 bg-[#0a0908]/50">
+                  <div key={faq.q} className="rounded border border-primary/8 p-5 bg-surface-low">
                     <p className="font-bold text-on-surface text-sm mb-2">{faq.q}</p>
                     <p className="text-on-surface-variant leading-relaxed">{faq.a}</p>
                   </div>

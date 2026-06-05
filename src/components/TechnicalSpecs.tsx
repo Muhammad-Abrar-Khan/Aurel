@@ -60,7 +60,7 @@ export const TechnicalSpecs = () => {
                 transition={{ delay: idx * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className={`border overflow-hidden transition-all duration-400 ${
                   isOpen
-                    ? "border-primary/30 shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
+                    ? "border-primary/30 shadow-[0_8px_24px_rgba(38,33,26,0.04)] bg-surface"
                     : "border-primary/8"
                 }`}
               >

@@ -35,6 +35,14 @@ export const LuxuryPackaging = () => {
   const isInView = useInView(containerRef, { once: false, amount: 0.35 });
   const [triggerOpen, setTriggerOpen] = useState(false);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Play animation once when entering the viewport
   useEffect(() => {
@@ -75,10 +83,10 @@ export const LuxuryPackaging = () => {
               initial={{ opacity: 0, scale: 0.94 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full h-[450px] relative rounded-lg border border-primary/8 bg-[#0b0a09]/60 shadow-[0_40px_100px_rgba(0,0,0,0.65)] overflow-hidden"
+              className="w-full h-[450px] relative rounded-lg border border-primary/10 bg-surface-low shadow-[0_20px_50px_rgba(38,33,26,0.08)] overflow-hidden"
             >
               <div className="absolute inset-x-0 top-6 z-20 flex justify-between px-6 pointer-events-none">
-                <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-outline bg-background/80 px-3 py-1 rounded-sm border border-white/5">
+                <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-outline bg-background/90 px-3 py-1 rounded-sm border border-primary/10">
                   Interactive R3F 3D Viewport
                 </span>
                 <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-primary bg-primary/10 px-3 py-1 rounded-sm border border-primary/20">
@@ -86,8 +94,20 @@ export const LuxuryPackaging = () => {
                 </span>
               </div>
 
-              {/* R3F Box Model */}
-              <LuxuryPackaging3D triggerOpen={triggerOpen} />
+              {/* R3F Box Model or Mobile Fallback */}
+              {isMobile ? (
+                <div className="w-full h-full relative">
+                  <img
+                    src="/assets/institutional-gifting-packaging.webp"
+                    alt="Aurel Rigid Packaging"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-background/10 mix-blend-overlay" />
+                </div>
+              ) : (
+                <LuxuryPackaging3D triggerOpen={triggerOpen} />
+              )}
 
               {/* Gradient overlays */}
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
@@ -98,7 +118,7 @@ export const LuxuryPackaging = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleReplay}
-              className="mt-6 flex items-center gap-2 font-mono text-[9px] tracking-[0.3em] uppercase text-primary border border-primary/30 px-6 py-3 bg-[#0d0c0a] hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-xl"
+              className="mt-6 flex items-center gap-2 font-mono text-[9px] tracking-[0.3em] uppercase text-primary border border-primary/30 px-6 py-3 bg-surface-low hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-md"
             >
               <RefreshCw size={10} className="animate-spin-slow" />
               Replay Unboxing

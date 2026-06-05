@@ -17,11 +17,10 @@ export const CustomCursor = () => {
   const ringY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Completely disable on touch screens or mobile viewports to prevent jank
+    // Completely disable on touch screens to prevent jank, but allow on small non-touch screens
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth < 1024;
     
-    if (isTouchDevice || isSmallScreen) {
+    if (isTouchDevice) {
       setEnabled(false);
       return;
     }
@@ -67,7 +66,7 @@ export const CustomCursor = () => {
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
       {/* Lagging outer golden ring */}
       <motion.div
-        className="absolute w-7 h-7 border border-primary/45 rounded-full flex items-center justify-center mix-blend-screen"
+        className="absolute w-7 h-7 border border-primary/45 rounded-full flex items-center justify-center"
         style={{
           x: ringX,
           y: ringY,
@@ -85,7 +84,7 @@ export const CustomCursor = () => {
 
       {/* Instant center core dot */}
       <motion.div
-        className="absolute w-1.5 h-1.5 bg-primary rounded-full mix-blend-screen"
+        className="absolute w-1.5 h-1.5 bg-primary rounded-full"
         style={{
           x: cursorX,
           y: cursorY,

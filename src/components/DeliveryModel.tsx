@@ -93,7 +93,7 @@ export const DeliveryModel = () => {
                 >
                   {/* Icon circle */}
                   <div className="relative mb-6">
-                    <div className="w-[104px] h-[104px] rounded-full bg-background border border-primary/18 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.45)] group-hover:border-primary/55 group-hover:shadow-[0_14px_44px_rgba(201,169,110,0.18)] transition-all duration-500 relative overflow-hidden">
+                    <div className="w-[104px] h-[104px] rounded-full bg-background border border-primary/18 flex items-center justify-center shadow-[0_8px_24px_rgba(38,33,26,0.05)] group-hover:border-primary/55 group-hover:shadow-[0_14px_44px_rgba(181,147,83,0.15)] transition-all duration-500 relative overflow-hidden">
                       {/* Inner glow gradient */}
                       <div className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <Icon

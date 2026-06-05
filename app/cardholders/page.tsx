@@ -4,6 +4,7 @@ import { SimpleFAQ } from '@/components/SimpleFAQ';
 export const metadata = {
   title: 'Cardholders | Aurel Leather',
   description: 'Premium cardholders and small goods for corporate gifting — customizable, durable and elegant.',
+  alternates: { canonical: '/cardholders' },
 };
 
 const faq = [

@@ -11,6 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import { EMAIL_ADDRESS, WHATSAPP_URL } from "@/lib/constants";
+import Image from "next/image";
 
 const navLinks = {
   Products: [
@@ -41,7 +42,7 @@ const navLinks = {
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-[#0c0b0a] border-t border-primary/10 overflow-hidden">
+    <footer className="relative bg-surface-low border-t border-primary/10 overflow-hidden">
       <div className="grain-overlay" />
       <div className="absolute top-0 left-0 right-0 h-px gold-thread opacity-50" />
 
@@ -50,9 +51,13 @@ export const Footer = () => {
           <div className="lg:col-span-4 flex flex-col gap-6">
             <div>
               <div className="select-none mb-6">
-                <span className="font-display font-bold tracking-[0.2em] text-primary text-2xl leading-none">
-                  AUREL
-                </span>
+                <Image 
+                  src="/assets/HeaderLogo.webp" 
+                  alt="Aurel Leather" 
+                  width={200} 
+                  height={60} 
+                  className="w-auto h-[45px] lg:h-[55px] object-contain"
+                />
               </div>
               <div className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mb-6 leading-tight">
                 Premium Leather Manufacturing
@@ -76,7 +81,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 border border-primary/15 flex items-center justify-center text-outline hover:text-primary hover:border-primary/50 hover:shadow-[0_0_16px_rgba(201,169,110,0.15)] transition-all duration-300 rounded-sm bg-background/25"
+                  className="w-9 h-9 border border-primary/20 flex items-center justify-center text-outline hover:text-primary hover:border-primary/50 hover:shadow-[0_0_16px_rgba(181,147,83,0.15)] transition-all duration-300 rounded-sm bg-background/50"
                 >
                   {social.icon}
                 </a>
@@ -91,7 +96,7 @@ export const Footer = () => {
                 <input
                   type="email"
                   placeholder="enter.corporate@email.com"
-                  className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/25 font-sans"
+                  className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/60 font-sans"
                 />
                 <button className="text-primary pl-3 hover:opacity-70 transition-opacity" aria-label="Subscribe">
                   <ArrowRight size={12} />
