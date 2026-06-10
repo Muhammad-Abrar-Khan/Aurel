@@ -29,16 +29,16 @@ import { APP_URL } from '@/lib/constants';
 import { CustomCursor } from '@/components/CustomCursor';
 import { StickyCTA } from '@/components/StickyCTA';
 
-// ──────────────────────────────────────────────────────
-// TODO: Replace these placeholder IDs with your real ones
-// See the analytics setup guide for how to obtain them.
-// ──────────────────────────────────────────────────────
-const GA4_ID = 'G-XXXXXXXXXX';           // Google Analytics 4
-const GTM_ID = 'GTM-XXXXXXX';            // Google Tag Manager
-const CLARITY_ID = 'YOUR_CLARITY_ID';     // Microsoft Clarity
+// Analytics IDs — set in .env.local
+const GA4_ID = process.env.NEXT_PUBLIC_GA_ID ?? '';
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? '';
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID ?? '';
 
 export const metadata: Metadata = {
-  title: 'Aurel Leather | Factory-Direct Leather Manufacturing Pakistan',
+  title: {
+    default: 'Aurel Leather | Corporate Leather Manufacturing Pakistan',
+    template: '%s | Aurel Leather',
+  },
   description:
     'Aurel Leather — Karachi-based factory-direct leather manufacturer specializing in bulk corporate gifting, executive wallets, notebooks, and premium branded packaging. MOQ from 50 units. Genuine leather, global delivery.',
   keywords: [
@@ -54,7 +54,6 @@ export const metadata: Metadata = {
     title: 'Aurel Leather | Premium Leather Corporate Gifts in Pakistan',
     description:
       'Aurel Leather creates premium leather wallets, corporate gifts and custom branded packaging from Karachi. Enterprise-grade manufacturing for bulk corporate gifting and bespoke solutions in Pakistan.',
-    url: APP_URL,
     siteName: 'Aurel Leather',
     type: 'website',
     images: [
@@ -73,10 +72,19 @@ export const metadata: Metadata = {
       'Aurel Leather creates premium leather wallets, corporate gifts and custom branded packaging from Karachi.',
     creator: '@aurelpk',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
-    nocache: true,
   },
 };
 
@@ -90,7 +98,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preconnect" href="https://wa.me" />
 
         {/* Google Tag Manager */}
-        {GTM_ID !== 'GTM-XXXXXXX' && (
+        {GTM_ID && (
           <Script id="gtm" strategy="afterInteractive">{`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
             var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
@@ -100,7 +108,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
 
         {/* Google Analytics 4 (standalone fallback if GTM not set) */}
-        {GA4_ID !== 'G-XXXXXXXXXX' && GTM_ID === 'GTM-XXXXXXX' && (
+        {GA4_ID && !GTM_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
             <Script id="ga4" strategy="afterInteractive">{`
@@ -113,7 +121,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
 
         {/* Microsoft Clarity */}
-        {CLARITY_ID !== 'YOUR_CLARITY_ID' && (
+        {CLARITY_ID && (
           <Script id="clarity" strategy="afterInteractive">{`
             (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -124,7 +132,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         {/* GTM noscript fallback */}
-        {GTM_ID !== 'GTM-XXXXXXX' && (
+        {GTM_ID && (
           <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

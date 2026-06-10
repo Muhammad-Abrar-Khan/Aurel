@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Instagram,
   Linkedin,
@@ -9,9 +11,108 @@ import {
   Landmark,
   Mail,
   Clock,
+  Loader2,
+  CheckCircle2,
 } from "lucide-react";
 import { EMAIL_ADDRESS, WHATSAPP_URL } from "@/lib/constants";
 import Image from "next/image";
+
+// EmailJS credentials (same service used by ProposalForm / MultiStepRFQ)
+const SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID   ?? 'service_aurel';
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID ?? 'template_newsletter';
+const PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY   ?? '';
+
+/* ── Newsletter Form ── */
+function NewsletterForm() {
+  const [email, setEmail]   = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (PUBLIC_KEY) emailjs.init(PUBLIC_KEY);
+  }, []);
+
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim().toLowerCase();
+    if (!trimmed) return;
+
+    if (!isValidEmail(trimmed)) {
+      setStatus('error');
+      setMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      if (!PUBLIC_KEY) {
+        // Dev fallback: simulate success when EmailJS not yet configured
+        await new Promise(r => setTimeout(r, 600));
+        setStatus('success');
+        setMessage('Subscribed! (configure EmailJS to activate delivery)');
+        setEmail('');
+        return;
+      }
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        subscriber_email: trimmed,
+        subscribed_at: new Date().toISOString(),
+      });
+
+      setStatus('success');
+      setMessage('Thank you for subscribing!');
+      setEmail('');
+    } catch {
+      setStatus('error');
+      setMessage('Could not subscribe. Please try again.');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="flex items-center gap-2 text-primary py-2.5 max-w-xs">
+        <CheckCircle2 size={14} className="shrink-0" />
+        <span className="font-sans text-xs">{message}</span>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-xs" noValidate>
+      <div className="flex border-b border-primary/20 focus-within:border-primary transition-colors duration-300">
+        <input
+          id="newsletter-email"
+          type="email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setStatus('idle'); setMessage(''); }}
+          placeholder="enter.corporate@email.com"
+          className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/60 font-sans"
+          disabled={status === 'loading'}
+          aria-label="Newsletter email address"
+          required
+        />
+        <button
+          type="submit"
+          className="text-primary pl-3 hover:opacity-70 transition-opacity disabled:opacity-40"
+          aria-label="Subscribe to newsletter"
+          disabled={status === 'loading' || !email.trim()}
+        >
+          {status === 'loading'
+            ? <Loader2 size={12} className="animate-spin" />
+            : <ArrowRight size={12} />}
+        </button>
+      </div>
+      {status === 'error' && (
+        <p className="mt-1.5 font-sans text-[10px] text-red-400" role="alert">{message}</p>
+      )}
+    </form>
+  );
+}
+
 
 const navLinks = {
   Products: [
@@ -51,13 +152,7 @@ export const Footer = () => {
           <div className="lg:col-span-4 flex flex-col gap-6">
             <div>
               <div className="select-none mb-6">
-                <Image 
-                  src="/assets/HeaderLogo.webp" 
-                  alt="Aurel Leather" 
-                  width={200} 
-                  height={60} 
-                  className="w-auto h-[45px] lg:h-[55px] object-contain"
-                />
+                <span className="font-display text-3xl tracking-[0.4em] text-primary">AUREL LEATHER</span>
               </div>
               <div className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mb-6 leading-tight">
                 Premium Leather Manufacturing
@@ -92,16 +187,7 @@ export const Footer = () => {
               <p className="font-mono text-[8px] tracking-[0.3em] uppercase text-outline mb-3">
                 Newsletter
               </p>
-              <div className="flex border-b border-primary/20 focus-within:border-primary transition-colors duration-300 max-w-xs">
-                <input
-                  type="email"
-                  placeholder="enter.corporate@email.com"
-                  className="flex-1 bg-transparent py-2.5 text-xs text-on-surface outline-none placeholder:text-outline/60 font-sans"
-                />
-                <button className="text-primary pl-3 hover:opacity-70 transition-opacity" aria-label="Subscribe">
-                  <ArrowRight size={12} />
-                </button>
-              </div>
+              <NewsletterForm />
             </div>
           </div>
 

@@ -1,0 +1,163 @@
+[
+  {
+    "id": "p1",
+    "name": "Executive Bifold Wallet",
+    "slug": "executive-bifold-wallet",
+    "description": "Premium full-grain leather bifold wallet with RFID protection for executive gifting.",
+    "category": "wallets",
+    "priceRange": "$40 - $60",
+    "moq": 50,
+    "images": [
+      "/assets/wallet-1.webp",
+      "/assets/wallet-2.webp"
+    ],
+    "materials": [
+      "Full Grain Leather",
+      "RFID Lining"
+    ],
+    "useCases": [
+      "Corporate Gifting",
+      "Executive Gifts"
+    ]
+  },
+  {
+    "id": "p2",
+    "name": "Luxury Card Holder",
+    "slug": "luxury-card-holder",
+    "description": "Slim leather card holder designed for professionals and premium branding.",
+    "category": "wallets",
+    "priceRange": "$20 - $35",
+    "moq": 100,
+    "images": [
+      "/assets/card-1.webp",
+      "/assets/card-2.webp"
+    ],
+    "materials": [
+      "Saffiano Leather"
+    ],
+    "useCases": [
+      "Employee Gifts",
+      "Corporate Branding"
+    ]
+  },
+  {
+    "id": "p3",
+    "name": "Executive Passport Holder",
+    "slug": "executive-passport-holder",
+    "description": "Luxury leather passport holder with card slots and travel organization.",
+    "category": "accessories",
+    "priceRange": "$30 - $50",
+    "moq": 50,
+    "images": [
+      "/assets/passport-1.webp",
+      "/assets/passport-2.webp"
+    ],
+    "materials": [
+      "Full Grain Leather"
+    ],
+    "useCases": [
+      "Travel Kits",
+      "VIP Gifts"
+    ]
+  },
+  {
+    "id": "p4",
+    "name": "Institutional Notebook Cover",
+    "slug": "institutional-notebook-cover",
+    "description": "Premium leather notebook cover for corporate meetings and executive use.",
+    "category": "notebooks",
+    "priceRange": "$25 - $45",
+    "moq": 100,
+    "images": [
+      "/assets/notebook-1.webp",
+      "/assets/notebook-2.webp"
+    ],
+    "materials": [
+      "Top Grain Leather"
+    ],
+    "useCases": [
+      "Corporate Stationery",
+      "Board Meetings"
+    ]
+  },
+  {
+    "id": "p5",
+    "name": "Luxury Pen & Card Gift Set",
+    "slug": "luxury-pen-card-gift-set",
+    "description": "Elegant leather gift set including pen sleeve and premium card holder.",
+    "category": "gift-sets",
+    "priceRange": "$60 - $100",
+    "moq": 50,
+    "images": [
+      "/assets/set-1.webp",
+      "/assets/set-2.webp"
+    ],
+    "materials": [
+      "Nappa Leather"
+    ],
+    "useCases": [
+      "Client Gifts",
+      "Corporate Events"
+    ]
+  },
+  {
+    "id": "p6",
+    "name": "Executive Desk Pad",
+    "slug": "executive-desk-pad",
+    "description": "Premium leather desk mat for executive offices and conference rooms.",
+    "category": "accessories",
+    "priceRange": "$70 - $120",
+    "moq": 30,
+    "images": [
+      "/assets/desk-1.webp",
+      "/assets/desk-2.webp"
+    ],
+    "materials": [
+      "Top Grain Leather"
+    ],
+    "useCases": [
+      "Office Branding",
+      "Executive Desks"
+    ]
+  },
+  {
+    "id": "p7",
+    "name": "Leather Portfolio Folder",
+    "slug": "leather-portfolio-folder",
+    "description": "Professional leather portfolio for presentations and business meetings.",
+    "category": "portfolios",
+    "priceRange": "$80 - $150",
+    "moq": 50,
+    "images": [
+      "/assets/portfolio-1.webp",
+      "/assets/portfolio-2.webp"
+    ],
+    "materials": [
+      "Full Grain Leather"
+    ],
+    "useCases": [
+      "Presentations",
+      "Board Meetings"
+    ]
+  },
+  {
+    "id": "p8",
+    "name": "Executive Key Organizer",
+    "slug": "executive-key-organizer",
+    "description": "Minimal leather key organizer for premium corporate gifting.",
+    "category": "accessories",
+    "priceRange": "$15 - $30",
+    "moq": 100,
+    "images": [
+      "/assets/key-1.webp",
+      "/assets/key-2.webp"
+    ],
+    "materials": [
+      "Nappa Leather"
+    ],
+    "useCases": [
+      "Promotional Gifts",
+      "Corporate Giveaways"
+    ]
+  }
+]

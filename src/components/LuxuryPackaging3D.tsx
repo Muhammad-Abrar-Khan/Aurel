@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Environment, Text } from '@react-three/drei';
 import * as THREE from 'three';
@@ -75,25 +75,24 @@ const NestedPenCase = () => (
 
 export const LuxuryBoxScene = ({ triggerOpen }: { triggerOpen: boolean }) => {
   const hingeRef = useRef<THREE.Group>(null);
-  const [openProgress, setOpenProgress] = useState(0);
+  const openProgressRef = useRef(0);
 
   // Smooth physical opening animation on triggerOpen
   useFrame((state, delta) => {
+    const openProgress = openProgressRef.current;
     if (triggerOpen) {
       if (openProgress < 1) {
-        const nextProgress = Math.min(openProgress + delta * 1.5, 1); // 1.5s duration
-        setOpenProgress(nextProgress);
+        openProgressRef.current = Math.min(openProgress + delta * 1.5, 1); // 1.5s duration
       }
     } else {
       if (openProgress > 0) {
-        const nextProgress = Math.max(openProgress - delta * 2.0, 0); // faster close
-        setOpenProgress(nextProgress);
+        openProgressRef.current = Math.max(openProgress - delta * 2.0, 0); // faster close
       }
     }
 
     if (hingeRef.current) {
       // Rotate on X axis, starting at 0 (closed) up to 110 degrees (-Math.PI * 0.61)
-      const targetAngle = -Math.PI * 0.61 * easeOutCubic(openProgress);
+      const targetAngle = -Math.PI * 0.61 * easeOutCubic(openProgressRef.current);
       hingeRef.current.rotation.x = targetAngle;
     }
   });
@@ -181,33 +180,58 @@ export const LuxuryBoxScene = ({ triggerOpen }: { triggerOpen: boolean }) => {
 };
 
 export default function LuxuryPackaging3D({ triggerOpen }: { triggerOpen: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = React.useState(false);
   const dpr = typeof window !== 'undefined' ? Math.min(1.25, window.devicePixelRatio || 1) : 1;
 
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="w-full h-full min-h-[420px] relative">
-      <Canvas
-        shadows
-        dpr={[1, dpr]}
-        camera={{ position: [0, 3.2, 7.5], fov: 32 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={1.1} />
-        <directionalLight 
-          position={[5, 12, 4]} 
-          intensity={1.6} 
-          castShadow 
-          shadow-mapSize-width={1024} 
-          shadow-mapSize-height={1024}
-          shadow-bias={-0.0001}
-        />
-        <directionalLight position={[-6, 4, -4]} intensity={0.4} />
-        <spotLight position={[0, 15, 0]} intensity={0.8} penumbra={1} angle={0.2} />
-        
-        <LuxuryBoxScene triggerOpen={triggerOpen} />
-        
-        <ContactShadows opacity={0.6} scale={10} width={8} height={8} blur={2.4} far={4.5} resolution={1024} />
-        <Environment preset="studio" />
-      </Canvas>
+    <div ref={containerRef} className="w-full h-full min-h-[420px] relative">
+      {isVisible && (
+        <Canvas
+          shadows
+          dpr={[1, dpr]}
+          camera={{ position: [0, 3.2, 7.5], fov: 32 }}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <ambientLight intensity={1.1} />
+          <directionalLight 
+            position={[5, 12, 4]} 
+            intensity={1.6} 
+            castShadow 
+            shadow-mapSize-width={1024} 
+            shadow-mapSize-height={1024}
+            shadow-bias={-0.0001}
+          />
+          <directionalLight position={[-6, 4, -4]} intensity={0.4} />
+          <spotLight position={[0, 15, 0]} intensity={0.8} penumbra={1} angle={0.2} />
+          
+          <LuxuryBoxScene triggerOpen={triggerOpen} />
+          
+          <ContactShadows opacity={0.6} scale={10} width={8} height={8} blur={2.4} far={4.5} resolution={1024} />
+          <Environment preset="studio" />
+        </Canvas>
+      )}
+      {!isVisible && (
+        <div className="w-full h-full min-h-[420px] bg-surface flex items-center justify-center">
+          <span className="font-display text-primary text-xl tracking-widest animate-pulse">AUREL</span>
+        </div>
+      )}
     </div>
   );
 }

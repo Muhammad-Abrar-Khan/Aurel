@@ -26,9 +26,9 @@
     ]
   },
   "src\\components\\HomePage.tsx -> @/components/LuxuryPackaging": {
-    "id": 3274,
+    "id": 8402,
     "files": [
-      "static/chunks/3274.ce03b72241870ab4.js"
+      "static/chunks/8402.b06e6a2b2b0fc05c.js"
     ]
   },
   "src\\components\\HomePage.tsx -> @/components/TestimonialsSection": {
@@ -50,7 +50,7 @@
       "static/chunks/0f8af13e.2f232d4db1491587.js",
       "static/chunks/b79b7286.f0a6fa037f423e30.js",
       "static/chunks/4571.3c56d2ed4bd42954.js",
-      "static/chunks/9722.17f12bf4ee9d28ae.js"
+      "static/chunks/9722.38a08bfbdbb6ae18.js"
     ]
   }
 }

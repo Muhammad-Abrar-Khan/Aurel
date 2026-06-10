@@ -55,14 +55,7 @@ export const Navbar = () => {
     >
       <div className="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-full">
         <Link href="/" className="group cursor-pointer select-none flex items-center">
-          <Image 
-            src="/assets/HeaderLogo.webp" 
-            alt="Aurel Leather" 
-            width={180} 
-            height={50} 
-            priority
-            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-[40px]' : 'h-[45px] lg:h-[55px]'}`}
-          />
+          <span className={`font-display text-3xl tracking-[0.4em] text-primary transition-all duration-300 ${isScrolled ? 'text-2xl' : 'text-3xl'}`}>AUREL LEATHER</span>
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
