@@ -1,53 +1,47 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "target": "ES2022",
-    "useDefineForClassFields": false,
-    "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+
     "allowJs": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "types": [
-      "node"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "noEmit": true,
+    "skipLibCheck": true,
     "strict": false,
+    "noEmit": true,
     "incremental": true,
+
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "5.0",
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+
+    "types": ["node"]
   },
+
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
+
   "exclude": [
     "node_modules",
-    "dist",
     ".next",
-    "src/App.tsx",
-    "src/main.tsx",
-    "src/vite-env.d.ts",
-    "vite.config.ts",
-    "index.html"
+    "dist"
   ]
 }

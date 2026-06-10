@@ -152,13 +152,7 @@ export const Footer = () => {
           <div className="lg:col-span-4 flex flex-col gap-6">
             <div>
               <div className="select-none mb-6">
-                <Image 
-                  src="/assets/HeaderLogo.webp" 
-                  alt="Aurel Leather" 
-                  width={200} 
-                  height={60} 
-                  className="w-auto h-[45px] lg:h-[55px] object-contain"
-                />
+                <span className="font-display text-3xl tracking-[0.4em] text-primary">AUREL LEATHER</span>
               </div>
               <div className="font-mono text-[8px] tracking-[0.3em] text-outline/60 uppercase mb-6 leading-tight">
                 Premium Leather Manufacturing

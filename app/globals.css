@@ -2,21 +2,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #FAF8F5;
-  --color-primary: #B59353;
-  --color-primary-light: #C9A96E;
-  --color-primary-dark: #826532;
+  --color-background: #FFFFFF;
+  --color-primary: #D4AF37;
+  --color-primary-light: #E8C655;
+  --color-primary-dark: #B8960F;
   --color-on-primary: #FFFFFF;
   --color-surface: #FFFFFF;
-  --color-surface-low: #F7F4EF;
-  --color-surface-high: #EDE8DF;
-  --color-surface-highest: #E4DCCF;
-  --color-on-surface: #2C261F;
-  --color-on-surface-variant: #5A5043;
-  --color-outline: #B5A896;
-  --color-outline-variant: #E6DFD3;
-  --color-leather: #4A3018;
-  --color-leather-light: #6E4927;
+  --color-surface-low: #FFFFFF;
+  --color-surface-high: #FAFAFA;
+  --color-surface-highest: #F5F5F5;
+  --color-on-surface: #0A0A0A;
+  --color-on-surface-variant: #4A4A4A;
+  --color-outline: #B0B0B0;
+  --color-outline-variant: #E0E0E0;
+  --color-leather: #6B4220;
+  --color-leather-light: #8B5E2F;
 
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "DM Sans", sans-serif;
@@ -50,12 +50,6 @@
     overflow-x: hidden;
   }
 
-  /* Deactivate standard cursor on desktop viewports to leverage the bespoke golden cursor */
-  @media (min-width: 1024px) {
-    html, body, a, button, [role="button"], input, textarea, select, .cursor-pointer {
-      cursor: none !important;
-    }
-  }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
@@ -109,14 +103,9 @@
 .perspective-2000 { perspective: 2000px; }
 .preserve-3d { transform-style: preserve-3d; }
 
-/* ─── Grain Overlay ─── */
+/* ─── Grain Overlay (ultra subtle) ─── */
 .grain-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  display: none;
 }
 
 /* ─── Luxury Glow ─── */
@@ -136,14 +125,6 @@
   background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
 }
 
-/* ─── Cinema Vignette ─── */
-.cinema-vignette::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(250,248,245,0.6) 100%);
-  pointer-events: none;
-}
 
 /* ─── Scrollbar None (for marquees) ─── */
 .scrollbar-none {
@@ -316,12 +297,14 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 2;
 }
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 3;
 }
 
 /* ─── Reveal clip animation (cinema curtain) ─── */
@@ -361,15 +344,6 @@
   50%       { box-shadow: 0 0 16px 2px rgba(201, 169, 110, 0.14); }
 }
 
-/* ─── Noise texture (heavier, for full-bleed panels) ─── */
-.noise-heavy {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.035;
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
 
 /* ─── Perspective utilities ─── */
 .perspective-1200 { perspective: 1200px; }

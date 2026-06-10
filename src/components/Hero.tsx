@@ -82,8 +82,6 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_80%_80%,_rgba(201,169,110,0.07)_0%,_transparent_60%)]" />
         {/* Grain overlay */}
         <div className="grain-overlay" />
-        {/* Edge vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(250,248,245,0.7)_100%)]" />
       </motion.div>
 
       {/* ── Decorative lines ── */}
